@@ -12,12 +12,13 @@ This repository contains the grimoire in HTML format, ready for web viewing and 
 
 ### 📖 Content Overview
 
-The grimoire is a complete 15-chapter system, and includes:
+The grimoire is a complete 16-chapter system, and includes:
 
 - **Complete Hermetic Philosophy** - Authentic principles from ancient sources
 - **The Hermetica and Their Transmission** - The Corpus Hermeticum, Ficino, and Casaubon's redating
 - **Sacred Geometry & Symbols** - Divine mathematics and symbolic systems  
-- **Alchemical Foundations** - Spiritual alchemy, with the operative tradition treated historically
+- **Alchemical Foundations** - The colour stages, the operations, the Greco-Egyptian foundation, and the operative tradition treated historically
+- **The Emerald Tablet** - The full text, its Arabic origin, the Latin transmission, and eight centuries of commentary
 - **Greek Magical Papyri** - A full chapter on the ancient corpus, its provenance and its scholarship
 - **The Solomonic Tradition** - The *Key of Solomon*, the *Lemegeton*, and the Renaissance transmission
 - **Rosicrucian Mysteries** - The three manifestos, the furore, and the question of authorship
