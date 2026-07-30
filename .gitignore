@@ -56,3 +56,8 @@ venv/
 # System files
 *.lnk
 *.rdp
+
+# Book editions are build products of build_book.py, but they are the
+# deliverable here, so they are tracked despite the *.pdf / *.epub rules above.
+!grimoire.pdf
+!grimoire.epub
