@@ -3,76 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Complete Hermetic & Rosicrucian Grimoire</title>
+    <title>The Complete Hermetic &amp; Rosicrucian Grimoire</title>
+    <meta name="description" content="Hermetic philosophy, alchemy, the Greek Magical Papyri, the Solomonic tradition and Rosicrucian practice — each source dated and attributed.">
     <style>
-        body { 
-            font-family: 'Times New Roman', serif; 
-            line-height: 1.6; 
-            margin: 2em; 
-            background: #f5f5dc; 
-            color: #2f4f4f;
-            max-width: 800px;
-            margin: 2em auto;
-            padding: 0 2em;
+        :root {
+            --bg: #f5f5dc;
+            --fg: #2f4f4f;
+            --accent: #8B4513;
+            --rule: #d8d8b8;
+            --panel: #f0f8ff;
+            --panel-edge: #4169e1;
+            --link: #4169e1;
+            --warn-bg: #ffe6e6;
+            --warn-edge: #c00000;
+            --note-bg: #f4f0e4;
+            --note-edge: #b08d57;
+            --muted: #5c6b6b;
         }
-        h1 { 
-            color: #8B4513; 
-            text-align: center; 
-            border-bottom: 3px solid #8B4513; 
-            padding-bottom: 0.5em; 
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #1a1714;
+                --fg: #ded6c4;
+                --accent: #d9a066;
+                --rule: #3d352c;
+                --panel: #1f2530;
+                --panel-edge: #5b7bb5;
+                --link: #8fb3e8;
+                --warn-bg: #2e1a1a;
+                --warn-edge: #a35252;
+                --note-bg: #232019;
+                --note-edge: #8a6f45;
+                --muted: #a49a88;
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #1a1714;
+            --fg: #ded6c4;
+            --accent: #d9a066;
+            --rule: #3d352c;
+            --panel: #1f2530;
+            --panel-edge: #5b7bb5;
+            --link: #8fb3e8;
+            --warn-bg: #2e1a1a;
+            --warn-edge: #a35252;
+            --note-bg: #232019;
+            --note-edge: #8a6f45;
+            --muted: #a49a88;
+        }
+
+        :root[data-theme="light"] {
+            --bg: #f5f5dc;
+            --fg: #2f4f4f;
+            --accent: #8B4513;
+            --rule: #d8d8b8;
+            --panel: #f0f8ff;
+            --panel-edge: #4169e1;
+            --link: #4169e1;
+            --warn-bg: #ffe6e6;
+            --warn-edge: #c00000;
+            --note-bg: #f4f0e4;
+            --note-edge: #b08d57;
+            --muted: #5c6b6b;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            background: var(--bg);
+            color: var(--fg);
+            margin: 0;
+            padding: 0;
+        }
+
+        .skip {
+            position: absolute;
+            left: -9999px;
+        }
+        .skip:focus {
+            left: 1em;
+            top: 1em;
+            z-index: 100;
+            background: var(--bg);
+            padding: 0.5em 1em;
+            border: 2px solid var(--accent);
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 17em minmax(0, 1fr);
+            gap: 2.5em;
+            max-width: 68em;
+            margin: 0 auto;
+            padding: 2em 1.5em 4em;
+            align-items: start;
+        }
+
+        main { min-width: 0; }
+
+        h1 {
+            color: var(--accent);
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 0.5em;
+            margin: 0 0 1em;
+            font-size: 2em;
+        }
+
+        h2 {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.3em;
+            margin-top: 2.5em;
             margin-bottom: 1em;
+            scroll-margin-top: 1em;
         }
-        h2 { 
-            color: #8B4513; 
-            border-bottom: 2px solid #8B4513; 
-            padding-bottom: 0.3em; 
-            margin-top: 2em;
-            margin-bottom: 1em;
-        }
-        h3 { 
-            color: #8B4513; 
-            margin-top: 1.5em;
+
+        h3 {
+            color: var(--accent);
+            margin-top: 1.6em;
             margin-bottom: 0.5em;
         }
-        p { 
-            margin-bottom: 1em; 
-            text-align: justify; 
+
+        h4 {
+            margin: 0 0 0.4em;
+            color: var(--accent);
+            font-size: 1em;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
         }
-        .warning {
-            background: #ffe6e6;
-            border: 2px solid #ff0000;
-            padding: 1em;
-            margin: 1em 0;
-            border-radius: 5px;
+
+        p { margin-bottom: 1em; text-align: justify; }
+        li { margin: 0.4em 0; }
+        a { color: var(--link); }
+
+        blockquote {
+            margin: 1.2em 0 1.2em 1em;
+            padding-left: 1em;
+            border-left: 3px solid var(--note-edge);
+            font-style: italic;
+            color: var(--muted);
         }
+        blockquote p:last-child { margin-bottom: 0; }
+
+        /* ---- Table of contents / sidebar nav ---- */
+
         .toc {
-            background: #f0f8ff;
-            border: 1px solid #4169e1;
-            padding: 1em;
-            margin: 1em 0;
+            background: var(--panel);
+            border: 1px solid var(--panel-edge);
+            padding: 1em 1.2em;
+            position: sticky;
+            top: 1.5em;
+            max-height: calc(100vh - 3em);
+            overflow-y: auto;
+            font-size: 0.95em;
         }
-        .toc ul {
-            list-style-type: none;
+        .toc h2 {
+            font-size: 1.1em;
+            margin: 0 0 0.7em;
+            border-bottom-width: 1px;
+            padding-bottom: 0.3em;
+        }
+        .toc ol {
+            list-style: none;
             padding-left: 0;
+            margin: 0;
+            counter-reset: ch;
         }
         .toc li {
-            margin: 0.5em 0;
+            margin: 0.45em 0;
+            counter-increment: ch;
+            display: flex;
+            gap: 0.5em;
         }
-        .toc a {
+        .toc li::before {
+            content: counter(ch) ".";
+            color: var(--muted);
+            flex: 0 0 1.5em;
+            text-align: right;
+        }
+        .toc a { text-decoration: none; }
+        .toc a:hover, .toc a:focus { text-decoration: underline; }
+        .toc a.current { font-weight: bold; }
+        .toc .extra {
+            margin-top: 0.9em;
+            padding-top: 0.7em;
+            border-top: 1px solid var(--panel-edge);
+        }
+        .toc .extra a { font-variant: small-caps; letter-spacing: 0.03em; }
+
+        /* ---- Callouts ---- */
+
+        .warning {
+            background: var(--warn-bg);
+            border: 2px solid var(--warn-edge);
+            padding: 1em 1.2em;
+            margin: 1.5em 0;
+            border-radius: 5px;
+        }
+        .warning h3 { margin-top: 0; color: inherit; }
+        .warning p:last-child, .warning ul:last-child { margin-bottom: 0; }
+
+        .note {
+            background: var(--note-bg);
+            border-left: 4px solid var(--note-edge);
+            padding: 0.9em 1.1em;
+            margin: 1.5em 0;
+            font-size: 0.97em;
+        }
+        .note p:last-child { margin-bottom: 0; }
+
+        .modern {
+            border: 1px dashed var(--note-edge);
+            padding: 0.9em 1.1em;
+            margin: 1.5em 0;
+            font-size: 0.97em;
+        }
+        .modern p:last-child { margin-bottom: 0; }
+
+        .sources {
+            font-size: 0.88em;
+            color: var(--muted);
+            border-top: 1px solid var(--rule);
+            padding-top: 0.6em;
+            margin-top: 1.8em;
+            text-align: left;
+        }
+
+        /* ---- Difficulty badges ---- */
+
+        .difficulty {
+            display: inline-block;
+            vertical-align: middle;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 0.5em;
+            font-weight: normal;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            padding: 0.32em 0.7em;
+            border: 1px solid currentColor;
+            border-radius: 1em;
+            margin-left: 0.7em;
+            white-space: nowrap;
+        }
+        .difficulty.beginner { color: #2e7d32; }
+        .difficulty.adept    { color: #b06a00; }
+        .difficulty.advanced { color: #b32020; }
+        .difficulty.reference{ color: var(--muted); }
+
+        @media (prefers-color-scheme: dark) {
+            .difficulty.beginner { color: #7fc684; }
+            .difficulty.adept    { color: #e0a95c; }
+            .difficulty.advanced { color: #e08585; }
+        }
+        :root[data-theme="dark"] .difficulty.beginner { color: #7fc684; }
+        :root[data-theme="dark"] .difficulty.adept    { color: #e0a95c; }
+        :root[data-theme="dark"] .difficulty.advanced { color: #e08585; }
+        :root[data-theme="light"] .difficulty.beginner { color: #2e7d32; }
+        :root[data-theme="light"] .difficulty.adept    { color: #b06a00; }
+        :root[data-theme="light"] .difficulty.advanced { color: #b32020; }
+
+        .legend {
+            font-size: 0.9em;
+            color: var(--muted);
+            margin: 1.5em 0;
+        }
+
+        /* ---- Bibliography ---- */
+
+        .bib { list-style: none; padding-left: 0; }
+        .bib li {
+            margin: 0.8em 0;
+            padding-left: 1.4em;
+            text-indent: -1.4em;
+            font-size: 0.95em;
+        }
+        .bib .pd {
+            font-size: 0.82em;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-left: 0.4em;
+        }
+
+        /* ---- Back to top ---- */
+
+        .totop {
+            position: fixed;
+            right: 1.2em;
+            bottom: 1.2em;
+            background: var(--bg);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            width: 2.6em;
+            height: 2.6em;
+            display: none;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
-            color: #4169e1;
+            font-size: 1.1em;
+            z-index: 20;
         }
-        .toc a:hover {
-            text-decoration: underline;
+        .totop.visible { display: flex; }
+
+        hr { border: none; border-top: 1px solid var(--rule); margin: 2.5em 0; }
+
+        .colophon {
+            font-size: 0.9em;
+            color: var(--muted);
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* ---- Narrow viewports ---- */
+
+        @media (max-width: 900px) {
+            .layout {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 1.5em;
+                padding: 1.2em 1em 3em;
+            }
+            .toc {
+                position: static;
+                max-height: none;
+            }
+            h1 { font-size: 1.6em; }
+            p { text-align: left; }
+        }
+
+        /* ---- Print ---- */
+
+        @media print {
+            :root {
+                --bg: #fff;
+                --fg: #000;
+                --accent: #000;
+                --rule: #999;
+                --muted: #333;
+                --note-bg: #fff;
+                --warn-bg: #fff;
+                --panel: #fff;
+            }
+            body { background: #fff; color: #000; font-size: 11pt; }
+            .toc, .totop, .skip { display: none !important; }
+            .layout { display: block; max-width: none; padding: 0; }
+            h1, h2, h3, h4 { color: #000; page-break-after: avoid; break-after: avoid; }
+            h2 { page-break-before: always; break-before: page; }
+            h2#introduction { page-break-before: avoid; break-before: avoid; }
+            .warning, .note, .modern, blockquote, .sources {
+                page-break-inside: avoid;
+                break-inside: avoid;
+                border-color: #666;
+            }
+            a { color: #000; text-decoration: none; }
+            .difficulty { border-color: #666; color: #000 !important; }
         }
     </style>
 </head>
-<body>
-    <h1>The Complete Hermetic & Rosicrucian Grimoire</h1>
-    
+<body id="top">
+    <a class="skip" href="#content">Skip to content</a>
+
+    <div class="layout">
+
+    <nav class="toc" id="toc" aria-label="Table of contents">
+        <h2>Contents</h2>
+        <ol>
+            <li><a href="#introduction">Introduction to Hermetic Philosophy</a></li>
+            <li><a href="#principles">The Hermetica and Their Transmission</a></li>
+            <li><a href="#geometry">Sacred Geometry &amp; Symbols</a></li>
+            <li><a href="#alchemy">Alchemical Foundations</a></li>
+            <li><a href="#meditation">Meditation Practices</a></li>
+            <li><a href="#rituals">Ritual Foundations</a></li>
+            <li><a href="#papyri">The Greek Magical Papyri</a></li>
+            <li><a href="#solomonic">The Solomonic Tradition</a></li>
+            <li><a href="#rosicrucian">Rosicrucian Mysteries</a></li>
+            <li><a href="#advanced">Advanced Practices</a></li>
+            <li><a href="#protection">Protection &amp; Banishing</a></li>
+            <li><a href="#healing">Healing &amp; Wellness</a></li>
+            <li><a href="#prosperity">Prosperity &amp; Abundance</a></li>
+            <li><a href="#seasonal">Seasonal Celebrations</a></li>
+            <li><a href="#mysteries">Greater Mysteries</a></li>
+        </ol>
+        <div class="extra">
+            <a href="#sources">Sources &amp; Bibliography</a>
+        </div>
+    </nav>
+
+    <main id="content">
+
+    <h1>The Complete Hermetic &amp; Rosicrucian Grimoire</h1>
+
     <div class="warning">
-        <h3>⚠️ IMPORTANT SAFETY WARNING</h3>
-        <p><strong>This grimoire contains authentic ancient magical practices and should be approached with extreme caution:</strong></p>
+        <h3>⚠️ Important Safety Warning</h3>
+        <p><strong>This grimoire describes practices drawn from living and historical traditions. Approach it with care:</strong></p>
         <ul>
             <li>Proper preparation and protection are essential</li>
             <li>Use only for ethical intentions</li>
@@ -82,228 +409,752 @@
         </ul>
     </div>
 
-    <div class="toc">
-        <h2>Table of Contents</h2>
-        <ul>
-            <li><a href="#introduction">Chapter 1: Introduction to Hermetic Philosophy</a></li>
-            <li><a href="#principles">Chapter 2: Authentic Hermetic Principles</a></li>
-            <li><a href="#geometry">Chapter 3: Sacred Geometry & Symbols</a></li>
-            <li><a href="#alchemy">Chapter 4: Alchemical Foundations</a></li>
-            <li><a href="#meditation">Chapter 5: Meditation Practices</a></li>
-            <li><a href="#rituals">Chapter 6: Ritual Foundations</a></li>
-            <li><a href="#rosicrucian">Chapter 7: Rosicrucian Mysteries</a></li>
-            <li><a href="#advanced">Chapter 8: Advanced Practices</a></li>
-            <li><a href="#protection">Chapter 9: Protection & Banishing</a></li>
-            <li><a href="#healing">Chapter 10: Healing & Wellness</a></li>
-            <li><a href="#prosperity">Chapter 11: Prosperity & Abundance</a></li>
-            <li><a href="#seasonal">Chapter 12: Seasonal Celebrations</a></li>
-            <li><a href="#mysteries">Chapter 13: Greater Mysteries</a></li>
-        </ul>
+    <div class="note">
+        <h4>How to read this book</h4>
+        <p>Every source in this grimoire is <strong>dated and attributed</strong>. Where a teaching commonly presented as ancient turns out to be medieval, early-modern or modern, the chapter says so and gives the date. This is not scepticism for its own sake — it is the only way a book claiming to rest on primary sources can be checked. Knowing that a practice was written in 1888 rather than in remote antiquity takes nothing away from it; it tells you what you are actually holding.</p>
     </div>
 
-    <h2 id="introduction">Chapter 1: Introduction to Hermetic Philosophy</h2>
-    
-    <p>The Hermetic tradition represents one of the most profound and enduring systems of spiritual knowledge in human history. Rooted in the ancient wisdom of Egypt and Greece, Hermetic philosophy provides a comprehensive framework for understanding the nature of reality, consciousness, and the divine.</p>
+    <p class="legend"><strong>Difficulty:</strong>
+        <span class="difficulty beginner">Beginner</span> foundational, safe to begin alone &nbsp;
+        <span class="difficulty adept">Adept</span> assumes the foundations &nbsp;
+        <span class="difficulty advanced">Advanced</span> historical or demanding material &nbsp;
+        <span class="difficulty reference">Reference</span> background, not practice
+    </p>
+
+    <h2 id="introduction">Chapter 1: Introduction to Hermetic Philosophy <span class="difficulty beginner">Beginner</span></h2>
+    <p>The Hermetic tradition is one of the most enduring systems of spiritual thought in Western history. Rooted in the meeting of Greek philosophy and Egyptian religion in Roman Alexandria, and transmitted through Arabic, Byzantine and Renaissance hands before reaching us, it offers a framework for thinking about the nature of reality, the structure of consciousness, and the relation between the human being and the divine. Its central conviction is that the cosmos is intelligible, that it is ordered by correspondence rather than by accident, and that a person willing to work at it can come to know that order directly rather than on authority.</p>
+
+    <p>That tradition is genuinely old. Some of what is taught in its name is not, and the honest place to begin is with the seven principles that almost every modern introduction — including the earlier version of this book — puts first.</p>
 
     <h3>The Seven Hermetic Principles</h3>
-    
-    <p><strong>1. The Principle of Mentalism:</strong> "The All is Mind; the Universe is Mental." This principle states that the fundamental nature of reality is mental, and all phenomena are manifestations of the Universal Mind.</p>
-    
-    <p><strong>2. The Principle of Correspondence:</strong> "As above, so below; as below, so above." This principle reveals the harmony and correspondence between different planes of existence.</p>
-    
-    <p><strong>3. The Principle of Vibration:</strong> "Nothing rests; everything moves; everything vibrates." All matter and energy exist in a state of constant vibration at different frequencies.</p>
-    
-    <p><strong>4. The Principle of Polarity:</strong> "Everything is dual; everything has poles; everything has its pair of opposites." All phenomena have their opposite, and these opposites are identical in nature but different in degree.</p>
-    
-    <p><strong>5. The Principle of Rhythm:</strong> "Everything flows, out and in; everything has its tides; all things rise and fall." All phenomena manifest in cycles and rhythms.</p>
-    
-    <p><strong>6. The Principle of Cause and Effect:</strong> "Every cause has its effect; every effect has its cause." Nothing happens by chance; all is governed by law.</p>
-    
-    <p><strong>7. The Principle of Gender:</strong> "Gender is in everything; everything has its masculine and feminine principles." All creation requires the interaction of masculine and feminine energies.</p>
 
-    <h2 id="principles">Chapter 2: Authentic Hermetic Principles</h2>
-    
-    <p>The authentic Hermetic tradition is based on the teachings found in the Corpus Hermeticum, a collection of philosophical and religious texts attributed to Hermes Trismegistus. These texts provide the foundation for understanding the true nature of Hermetic philosophy.</p>
+    <p><strong>1. The Principle of Mentalism:</strong> "The All is Mind; the Universe is Mental." The fundamental nature of reality is mental, and all phenomena are manifestations of a Universal Mind.</p>
+
+    <p><strong>2. The Principle of Correspondence:</strong> "As above, so below; as below, so above." There is harmony and correspondence between the different planes of existence, such that what is learned of one informs understanding of another.</p>
+
+    <p><strong>3. The Principle of Vibration:</strong> "Nothing rests; everything moves; everything vibrates." All matter and energy exist in constant motion, differing in frequency rather than in kind.</p>
+
+    <p><strong>4. The Principle of Polarity:</strong> "Everything is dual; everything has poles; everything has its pair of opposites." Opposites are identical in nature and different only in degree, so that heat and cold, or love and hate, are positions on a single scale.</p>
+
+    <p><strong>5. The Principle of Rhythm:</strong> "Everything flows, out and in; everything has its tides; all things rise and fall." Phenomena manifest in cycles, and the pendulum swing in one direction implies its return.</p>
+
+    <p><strong>6. The Principle of Cause and Effect:</strong> "Every cause has its effect; every effect has its cause." Nothing happens by chance; what looks like chance is a cause not yet perceived.</p>
+
+    <p><strong>7. The Principle of Gender:</strong> "Gender is in everything; everything has its masculine and feminine principles." All creation proceeds from the interaction of an active and a receptive principle, on every plane and not merely the physical.</p>
+
+    <div class="note">
+        <h4>Where these principles actually come from</h4>
+        <p>These seven principles derive from <em><strong>The Kybalion</strong></em>, published in <strong>1908</strong> under the pseudonym "Three Initiates" and generally attributed to William Walker Atkinson (1862–1932), a pioneer of the American New Thought movement. They are not found as a set in the ancient Hermetic writings.</p>
+        <p>Some of the material has genuine ancestry: mentalism and the formula "as above, so below" do have a background in ancient and medieval Hermetic texts. Others do not. Nicholas E. Chapel's assessment is that while several aspects of the book draw on that background, "other aspects such as the principle of vibration … are not related to Hermeticism," and that the work as a whole "is too bound up with early 20th-century ideas emanating from the New Thought movement to be representative of the broader historical tradition." The title itself appears to have been invented to lend an impression of antiquity.</p>
+        <p>None of which means the seven principles are worthless. They are a lucid, teachable summary that has introduced more people to Hermetic thinking than any ancient text ever did, and they are set out above in full for that reason. But they are a 1908 formulation, and a book that claims to rest on primary sources has to say so. <a href="#principles">Chapter 2</a> deals with the attested ancient material.</p>
+    </div>
+
+    <h3>What the tradition is for</h3>
+
+    <p>Beneath the various formulations, ancient and modern, the Hermetic project is consistent in its aims. It holds that the universe is not inert — that it has structure, intelligence and direction, and that these can be investigated. It holds that the human being stands in a peculiar position, participating in both the material and the intelligible orders, and is therefore capable of understanding a cosmos that most of what exists cannot. And it holds that this understanding is transformative: to know the order of things truly is to be altered by knowing it.</p>
+
+    <p>This is why the tradition has always been simultaneously philosophical and practical. The meditations in <a href="#meditation">Chapter 5</a> and the ritual structures in <a href="#rituals">Chapter 6</a> are not decorations on the philosophy; they are how the philosophy is meant to be tested. The Hermetic claim is not that you should believe the cosmos is ordered, but that you can find out.</p>
+
+    <h3>On ethics</h3>
+
+    <p>The ethical position of this literature deserves stating directly, because it is easy to lose among the warnings and the symbolism. Every serious current in this tradition treats knowledge as inseparable from the character of the person holding it. The Hermetic texts frame ascent as purification: what has to be put down is not ignorance in the abstract but greed, deceit, cruelty, self-importance. The Rosicrucian manifestos made the healing of the sick without payment their first practical commitment. Agrippa insisted the magus must also be a devout philosopher, and drew a hard line against sorcery. The <em>Ars Notoria</em> asks for memory and understanding, not for power over anyone.</p>
+
+    <p>The practical form this takes is simple enough to state and difficult to keep. Do not work to coerce, injure, deceive, or override another person's will — this rules out a considerable amount of what the historical grimoires happily supply, which is one reason this book presents that material descriptively. Do not treat other people's crises as an opportunity. Do not charge the desperate. Do not confuse the sensation of insight with the fact of it, and keep the habit of checking your conclusions against something outside your own enthusiasm. Where a practice touches on health, treat it as a complement to medicine and never a substitute; <a href="#healing">Chapter 12</a> returns to this.</p>
+
+    <p>These are not rules imposed on the tradition from outside. They are what the sources themselves say, when read carefully — and they are considerably more demanding than any warning box.</p>
+
+    <p class="sources"><strong>Sources:</strong> Three Initiates [William Walker Atkinson], <em>The Kybalion: A Study of the Hermetic Philosophy of Ancient Egypt and Greece</em> (Chicago, 1908) <span class="pd">public domain</span>. Nicholas E. Chapel on the Kybalion's relation to the historical Hermetica.</p>
+
+    <h2 id="principles">Chapter 2: The Hermetica and Their Transmission <span class="difficulty reference">Reference</span></h2>
+    <p>The genuine foundation of Hermetic philosophy is a body of Greek writing attributed to Hermes Trismegistus — "Hermes the Thrice-Greatest," a figure identified with the Egyptian Thoth and understood by his readers as an ancient Egyptian sage. These are the <em>Hermetica</em>. They are real, they are substantial, and their history of transmission is one of the more remarkable episodes in European intellectual life, largely because for two centuries everybody was wrong about how old they were.</p>
+
+    <h3>What the Corpus Hermeticum is</h3>
+
+    <p>The <em>Corpus Hermeticum</em> is a selection of <strong>seventeen Greek treatises</strong>, first compiled as a collection by Byzantine editors from the wider Hermetic literature. The religio-philosophical <em>Hermetica</em> were, for the most part, produced in a relatively short span: <strong>between about 100 and about 300 CE</strong>. They are the product of Roman-era Alexandria — Greek in language and philosophical vocabulary, Egyptian in much of their religious frame, and shaped by the Platonism of their period.</p>
+
+    <p>Alongside the <em>Corpus</em> proper stand several related texts. The <em>Asclepius</em> survives mainly in a Latin translation, with some Greek and Coptic fragments. The Nag Hammadi discovery yielded three treatises attributed to Hermes Trismegistus, including fragments of the <em>Asclepius</em>, the Prayer of Thanksgiving — which also appears among the Greek Magical Papyri, a connection worth noting — and <em>The Discourse on the Eighth and Ninth</em>. Further material survives as excerpts in Stobaeus and as papyrus fragments.</p>
 
     <h3>The Divine Pymander</h3>
-    
-    <p>The Divine Pymander, or "Divine Shepherd," is the first treatise in the Corpus Hermeticum and describes the creation of the universe and the nature of the divine. It teaches that:</p>
-    
+
+    <p>The first treatise of the <em>Corpus</em>, the <em>Poimandres</em> or Divine Pymander — the "Divine Shepherd" — describes the creation of the cosmos and the nature of the divine, and it remains the best entry point to the collection. Its teaching, in summary:</p>
+
     <ul>
-        <li>The Divine Mind (Nous) is the source of all creation</li>
-        <li>Human beings contain a divine spark that can be awakened</li>
-        <li>Knowledge of the divine comes through direct experience, not mere belief</li>
-        <li>The path to enlightenment involves purification and contemplation</li>
+        <li>The Divine Mind, <em>Nous</em>, is the source of all creation</li>
+        <li>Human beings contain a divine element capable of being awakened</li>
+        <li>Knowledge of the divine comes through direct experience rather than through belief</li>
+        <li>The path to that knowledge runs through purification and contemplation</li>
     </ul>
 
-    <h2 id="geometry">Chapter 3: Sacred Geometry & Symbols</h2>
-    
-    <p>Sacred geometry is the study of the fundamental patterns and shapes that underlie all creation. These geometric forms are considered sacred because they reflect the divine order of the universe.</p>
+    <p>What makes the <em>Poimandres</em> compelling is that it is written as a report rather than a doctrine. The narrator describes an experience — a vision, a voice, a sequence of understandings — and the reader is invited to a method, not asked for assent. That posture runs through the whole collection and explains a great deal about the tradition it founded.</p>
 
-    <h3>Fundamental Sacred Shapes</h3>
-    
-    <p><strong>The Circle:</strong> Represents unity, wholeness, and the infinite. It has no beginning or end, symbolizing the eternal nature of the divine.</p>
-    
-    <p><strong>The Triangle:</strong> Represents the trinity and the threefold nature of existence. It symbolizes the connection between heaven, earth, and the human realm.</p>
-    
-    <p><strong>The Square:</strong> Represents stability, foundation, and the four elements. It symbolizes the material world and earthly manifestation.</p>
-    
-    <p><strong>The Pentagram:</strong> Represents the five elements and the microcosm. It symbolizes the human being as a reflection of the divine.</p>
+    <h3>The transmission, and the great misdating</h3>
 
-    <h2 id="alchemy">Chapter 4: Alchemical Foundations</h2>
-    
-    <p>Alchemy is the art of transformation, both physical and spiritual. The true goal of alchemy is not merely the transmutation of base metals into gold, but the transformation of the human soul.</p>
+    <p>Here is where the story becomes genuinely interesting. In 1462 Marsilio Ficino (1433–1499) was in Florence translating the complete works of Plato into Latin for his patron Cosimo de' Medici — a commission of enormous significance for the Renaissance. Then a manuscript of the <em>Corpus Hermeticum</em> reached him, and he broke off the Plato to translate Hermes first. He finished in <strong>1471</strong>. Lodovico Lazzarelli (1447–1500) worked on the material as well.</p>
 
-    <h3>The Three Principles</h3>
-    
-    <p><strong>Sulfur (Soul):</strong> The active, masculine principle that represents consciousness and will.</p>
-    
-    <p><strong>Mercury (Spirit):</strong> The passive, feminine principle that represents intuition and imagination.</p>
-    
-    <p><strong>Salt (Body):</strong> The neutral principle that represents the physical form and stability.</p>
+    <p>Ficino interrupted Plato because he believed these texts were older than Plato — older than Moses. On that reading, Hermes Trismegistus was an Egyptian sage of remote antiquity whose writings preserved a primordial revelation, a wisdom that had flowed down into Greek philosophy and Hebrew scripture alike. Recovering them was therefore more urgent than translating a comparatively recent philosopher.</p>
+
+    <p>He was mistaken, and the correction came from Isaac Casaubon (1559–1614), the classical scholar, in the early seventeenth century. Casaubon demonstrated that the Greek of these texts betrayed too recent a vocabulary — that they "must rather date from the early Christian period." The philology was decisive. The <em>Hermetica</em> were not pre-Mosaic Egyptian revelation but Graeco-Egyptian writing of the second and third centuries CE.</p>
+
+    <div class="note">
+        <h4>The misdating is the reason the tradition exists</h4>
+        <p>It would be easy to file Casaubon's finding as a debunking and move on. That would miss the most important thing about it. <em>The error is what made Hermeticism matter.</em></p>
+        <p>Had Ficino known these were second-century texts — roughly contemporary with the Church Fathers, plainly indebted to Platonism — he would very likely have finished the Plato first, and the <em>Corpus Hermeticum</em> might have remained a minor curiosity of late antique philosophy. Because he believed he was recovering the oldest wisdom in the world, the Hermetica were placed at the centre of Renaissance thought, and from there they shaped Ficino, Pico, Agrippa, Bruno, Dee, the alchemists, the Rosicrucian authors, and eventually every tradition covered in this book.</p>
+        <p>The dating was wrong. The influence was entirely real. And a tradition secure enough to record how it was founded on a philological mistake is in a stronger position than one that cannot mention it.</p>
+    </div>
+
+    <h3>The Emerald Tablet</h3>
+
+    <p>One short text deserves separate treatment, because it is the single most quoted item in the entire Hermetic literature and its origin is routinely misstated. The Emerald Tablet — the <em>Tabula Smaragdina</em> — is a compact and cryptic text, the source of "as above, so below" in its familiar form. It is not ancient Egyptian. It is <strong>first attested in Arabic</strong>, in the <em>Sirr al-khalīqa wa-ṣanʿat al-ṭabīʿa</em> (the Secret of Creation), of the <strong>late eighth or early ninth century</strong>.</p>
+
+    <p>This places the Tablet firmly in the Arabic-Islamic alchemical tradition that preserved, developed and transmitted so much of this material to medieval Europe — a debt that Western esoteric writing has often obscured. The Latin versions on which every later European reading depends are translations from Arabic. When the Tablet is described as a text of remote Egyptian antiquity, an entire and decisive stage of the tradition is being erased.</p>
+
+    <h3>Reading the Hermetica today</h3>
+
+    <p>For a reader who wants the primary texts rather than summaries, the standard modern scholarly translation is Brian Copenhaver's <em>Hermetica</em> (1992), which gives the Greek <em>Corpus</em> and the Latin <em>Asclepius</em> with a substantial introduction and notes; M. David Litwa's <em>Hermetica II</em> (2018) covers the Stobaean excerpts, papyrus fragments and ancient testimonies. Walter Scott's four-volume <em>Hermetica</em> (1924–36) is older and its editorial choices are now contested, but it remains foundational. G. R. S. Mead's <em>Thrice-Greatest Hermes</em> (1906) is out of copyright and widely available online, which is why it is the version most readers encounter — but it is a Theosophically-inflected translation from before Scott's work, and it should be read alongside Copenhaver rather than instead of him.</p>
+
+    <p class="sources"><strong>Sources:</strong> <em>Corpus Hermeticum</em>, 17 Greek treatises, c. 100–300 CE. Ficino's Latin translation, begun 1462, completed 1471; Lazzarelli (1447–1500). Casaubon (1559–1614) on the dating. Copenhaver, <em>Hermetica: The Greek Corpus Hermeticum and the Latin Asclepius</em> (Cambridge, 1992) — in copyright. Litwa, <em>Hermetica II</em> (2018). Scott, <em>Hermetica</em>, 4 vols (1924–36). Mead, <em>Thrice-Greatest Hermes</em> (1906) <span class="pd">public domain</span>. Emerald Tablet — first attested in the <em>Sirr al-khalīqa</em>, late 8th / early 9th c. Nag Hammadi Hermetica: <em>Asclepius</em> fragments, Prayer of Thanksgiving, <em>Discourse on the Eighth and Ninth</em>.</p>
+
+    <h2 id="geometry">Chapter 3: Sacred Geometry &amp; Symbols <span class="difficulty beginner">Beginner</span></h2>
+    <p>Sacred geometry is the study of the forms and proportions that recur throughout the natural world, understood in this tradition as evidence of an ordered cosmos. The claim is not that shapes possess power in themselves, but that certain forms appear so persistently — in crystal, in shell, in orbit, in the branching of plants — that they can be treated as the vocabulary in which the order of things is written. Symbols in this tradition are compressed arguments. Learning to read them is learning to hold a set of relations in mind at once, which is why they were taught as objects of contemplation rather than as decoration.</p>
+
+    <h3>The fundamental forms</h3>
+
+    <p><strong>The Circle</strong> represents unity, wholeness and the infinite. Having neither beginning nor end, it stands for the eternal, and for that which contains without being contained. In practice it is also the boundary: the ritual circle of <a href="#rituals">Chapter 6</a> and the Solomonic tradition is this figure put to work, defining an inside and an outside.</p>
+
+    <p><strong>The Triangle</strong> represents the threefold structure that recurs across the tradition — heaven, earth and the human realm; or in alchemical terms the three principles of <a href="#alchemy">Chapter 4</a>. Its orientation carries meaning: point upward for the ascent of the volatile and the aspiration of spirit, point downward for descent, manifestation and the fixed.</p>
+
+    <p><strong>The Square</strong> represents stability, foundation, and the four elements. It is the figure of the material world and of earthly manifestation — four walls, four directions, four winds. Where the circle bounds, the square builds.</p>
+
+    <p><strong>The Pentagram</strong> represents the five elements — the four with a fifth, quintessence or spirit, added — and the human microcosm. Drawn with a single unbroken line, it stands for the human being as a reflection of the cosmos, arms and legs and head at the five points. It is the central figure of the banishing practice in <a href="#protection">Chapter 11</a>, where its specific documented history is given.</p>
+
+    <p><strong>The Hexagram</strong>, two interpenetrating triangles, represents the union of the ascending and descending currents — the visual statement of "as above, so below." In alchemical contexts it also encodes the elements by their combination of upward and downward triangles with and without a bar.</p>
+
+    <h3>The Tree of Life</h3>
+
+    <p>The diagram that organises most Western ceremonial practice is the Qabalistic Tree of Life: ten <em>sephiroth</em>, or emanations, connected by twenty-two paths. It came into this tradition from Jewish mysticism, was extensively reworked by Christian Cabalists of the Renaissance, and reached modern practice through Agrippa and then the Golden Dawn, which mapped tarot, astrology, colour and Hebrew letter onto every path.</p>
+
+    <p>Two points of honesty are owed here. First, the Christian and occult Cabala of the Renaissance is a genuine tradition with real intellectual achievements, but it is not identical to Jewish Kabbalah and should not be presented as though it speaks for it; the correspondences layered on by nineteenth-century orders are their own contribution. Second, the elaborate tables of correspondence familiar from modern handbooks — this path to that tarot trump, that sephirah to this planet and colour — are largely Golden Dawn constructions of the late nineteenth century. They are coherent, they are useful, and they are not ancient.</p>
+
+    <h3>Proportion</h3>
+
+    <p>The proportional side of sacred geometry concerns ratios that recur in growth and in classical design: the relation of a diagonal to a side, the division of a line so that the whole is to the greater part as the greater is to the lesser, the interval ratios that produce consonance in music. The Pythagorean discovery that harmony can be expressed as simple whole-number ratios is the root of the whole enterprise, and it is the reason this tradition has always taken mathematics to be a spiritual discipline rather than a merely useful one. That a plucked string divided in half sounds the same note an octave higher is a fact about the world, and it was received as a revelation about the world.</p>
+
+    <p>A caution belongs here, in keeping with the rest of this book. A great deal of popular writing on sacred geometry claims to find the golden ratio in the Parthenon, the Great Pyramid, and the proportions of the human body, with a precision the measurements do not support. The genuine cases — in phyllotaxis, in certain spirals, in deliberate Renaissance design — are interesting enough without the invented ones. Contemplating a form for what it actually is remains the practice; contemplating a form for what a diagram claims about it does not.</p>
+
+    <p class="sources"><strong>Sources:</strong> Pythagorean ratio theory as transmitted through Platonic and Neoplatonic writing. Agrippa, <em>De occulta philosophia</em> (1533), Books I–II, for elemental and celestial correspondence. Tree of Life correspondences in their modern form: Hermetic Order of the Golden Dawn (1888 onward), published in Regardie, <em>The Golden Dawn</em> (1937–40).</p>
+
+    <h2 id="alchemy">Chapter 4: Alchemical Foundations <span class="difficulty adept">Adept</span></h2>
+    <p>Alchemy is the art of transformation, and its literature is the most systematically misread body of writing in this tradition. The popular account — that alchemists were failed chemists trying to make gold — describes some practitioners and almost none of the ones who mattered. The goal set out in the texts is the transformation of the operator. Metals are the language in which that process is described, because metallurgy supplied a vocabulary of purification, dissolution, and change of state that nothing else in the ancient world could match.</p>
+
+    <p>The evidence for this reading is not modern apologetics. It is the historical record of the alchemists themselves. Researchers of the Rosicrucian circle have noted that neither Michael Maier nor Heinrich Khunrath nor any of their associates ever claimed to have produced gold; their writings point toward a symbolic and spiritual alchemy rather than an operative one, and Maier's stated subject was the transmutation of the human being in body, soul and spirit. These were not men hiding a failure. They were describing a different project.</p>
+
+    <h3>The three principles</h3>
+
+    <p><strong>Sulfur — Soul.</strong> The active principle: consciousness, will, the animating and combustible element that drives change. In the operator, that which initiates.</p>
+
+    <p><strong>Mercury — Spirit.</strong> The mediating principle: intuition, imagination, the volatile element that passes between states and carries influence from one to another. In the operator, that which perceives and connects.</p>
+
+    <p><strong>Salt — Body.</strong> The fixed principle: form, stability, the residue that remains after burning. In the operator, that which persists and can be built upon.</p>
+
+    <p>To these the tradition adds the four elements as states rather than substances — earth for the solid and fixed, water for the fluid and receptive, air for the mobile and mediating, fire for the transformative — and, in most systems, a fifth, quintessence, standing outside the four as their principle of coherence.</p>
+
+    <h3>The stages of the work</h3>
+
+    <p>The <em>magnum opus</em> is described in stages, most often by colour, and the sequence is remarkably stable across centuries and languages. <em>Nigredo</em>, the blackening: putrefaction, dissolution, the breaking down of what was. <em>Albedo</em>, the whitening: washing and purification, what remains after the dross is gone. <em>Citrinitas</em>, the yellowing, is sometimes given and sometimes folded into the next. <em>Rubedo</em>, the reddening: the completed work, the union of what had been separated.</p>
+
+    <p>Read as an account of interior change this sequence is uncomfortably recognisable. Something held together comes apart; there is a period in which nothing is left but the fact of having come apart; what survives is smaller and cleaner than what went in; and only afterwards is there any integration worth the name. The alchemists insisted the stages cannot be skipped and cannot be hurried, and that <em>nigredo</em> is not a failure of the work but its beginning. Whatever one makes of their metallurgy, that is a serious psychological observation, and it is why this literature found readers in the twentieth century among people with no interest in furnaces at all.</p>
+
+    <h3>The operative tradition and its texts</h3>
+
+    <p>Physical laboratory alchemy was, of course, also real, and it deserves its historical due. Its practitioners developed distillation, sublimation and crystallisation techniques, identified acids and salts, built the apparatus — alembic, retort, athanor — and produced the observational groundwork on which chemistry was later built. Robert Boyle and Isaac Newton both worked in this tradition; Newton wrote more on alchemy than on physics.</p>
+
+    <p>The textual lineage runs deep. The Greco-Egyptian alchemists — Zosimos of Panopolis, Mary the Jewess, the pseudo-Democritan <em>Physika kai mystika</em> — give us the earliest substantial material, and two of the key documents, Leyden papyrus X and the Stockholm papyrus, came out of the same Theban cache as the Greek Magical Papyri of <a href="#papyri">Chapter 7</a>. From there the tradition passes into Arabic hands, where it was transformed: Jābir ibn Ḥayyān, Ibn Umayl, al-Rāzī, and the <em>Sirr al-khalīqa</em> that carries the earliest text of the Emerald Tablet. Latin Europe received it in translation from the twelfth century onward, and the great early-modern flowering — Paracelsus, Sendivogius, Maier's <em>Atalanta fugiens</em>, the <em>Rosary of the Philosophers</em>, <em>Splendor Solis</em> — builds on that inheritance.</p>
 
     <div class="warning">
         <h3>⚠️ Safety Warning for Alchemical Practices</h3>
-        <p>Alchemical work should only be undertaken with proper preparation, protection, and guidance. The transformation process can be intense and should be approached gradually.</p>
+        <p>Spiritual and contemplative alchemical work should be undertaken with proper preparation and, ideally, guidance; the process can be intense and should be approached gradually.</p>
+        <p><strong>Physical laboratory alchemy is a separate matter, and this book does not provide procedures for it.</strong> The historical recipes call for mercury, antimony, lead, arsenic compounds and corrosive acids, handled with heat in unventilated rooms. These substances cause irreversible neurological and organ damage, and the harm is frequently cumulative and unnoticed until advanced. Chronic mercury poisoning is well documented among historical practitioners. There is no traditional protection, purification or intention that alters the toxicology. If the operative tradition interests you, read its history — and leave the handling of its materials to people with a fume hood, a chemistry qualification and a waste-disposal contract.</p>
     </div>
 
-    <h2 id="meditation">Chapter 5: Meditation Practices</h2>
-    
-    <p>Meditation is the foundation of all Hermetic practice. Through meditation, we can still the mind, connect with the divine, and develop our spiritual faculties.</p>
+    <div class="modern">
+        <h4>Modern Practice</h4>
+        <p>Contemporary practitioners work the alchemical sequence almost entirely as an interior discipline, often keeping a written record structured by the stages — noting what is dissolving, what is being washed, what has survived. Some work with plant alchemy or <em>spagyrics</em>, which uses herbal tinctures and distillation and stays within the safety envelope of ordinary kitchen chemistry. C. G. Jung's reading of the alchemical corpus as a symbolic account of individuation has been enormously influential and is how most readers now encounter this material; it is a twentieth-century interpretation of the texts rather than what their authors said they were doing, and it is worth holding both readings at once.</p>
+    </div>
 
-    <h3>Basic Meditation Technique</h3>
-    
+    <p class="sources"><strong>Sources:</strong> Zosimos of Panopolis; pseudo-Democritus, <em>Physika kai mystika</em>; Leyden papyrus X and the Stockholm papyrus (Theban cache, cf. Ch. 7). Jābir ibn Ḥayyān; <em>Sirr al-khalīqa</em> (late 8th / early 9th c.). Maier, <em>Atalanta fugiens</em> (1617); Khunrath, <em>Amphitheatrum Sapientiae Aeternae</em> (1609) — on symbolic rather than operative alchemy. Jung's individuation reading: 20th century, interpretive.</p>
+
+    <h2 id="meditation">Chapter 5: Meditation Practices <span class="difficulty beginner">Beginner</span></h2>
+    <p>Meditation is the foundation of everything else in this book. Every other practice here assumes an attention that can be directed and held, and that capacity is not native — it is trained. The ancient texts are explicit that the ascent they describe begins with stillness, and the practical writers of every later period agree. Skipping this chapter to reach the interesting ones is the most common mistake made with material like this, and it reliably produces practitioners who can recite correspondences and cannot sit still for ten minutes.</p>
+
+    <h3>Basic technique</h3>
+
     <ol>
-        <li>Find a quiet, comfortable place to sit</li>
-        <li>Close your eyes and focus on your breath</li>
-        <li>When thoughts arise, gently return your attention to your breath</li>
-        <li>Start with 10-15 minutes daily and gradually increase</li>
-        <li>Be patient and consistent with your practice</li>
+        <li>Find a quiet place to sit, upright but not rigid, where you will not be interrupted.</li>
+        <li>Close your eyes and bring your attention to the breath — not controlling it, simply following it.</li>
+        <li>When thoughts arise, notice them and return attention to the breath. This <em>is</em> the practice; the returning is not an interruption of it.</li>
+        <li>Begin with ten to fifteen minutes daily and increase gradually.</li>
+        <li>Be consistent rather than ambitious. Ten minutes every day will take you further in a year than an hour once a week.</li>
     </ol>
 
-    <h2 id="rituals">Chapter 6: Ritual Foundations</h2>
-    
-    <p>Ritual is the external expression of internal spiritual work. Through ritual, we create sacred space and time, connecting with the divine through symbolic action.</p>
+    <p>Two things worth knowing at the outset. The first is that a session in which you notice fifty distractions is not a failed session — noticing is the skill being built, and fifty noticings is fifty repetitions. The second is that progress in this practice is almost invisible from inside it. What changes is not the quality of the sitting but the quality of the rest of the day.</p>
 
-    <h3>Basic Ritual Structure</h3>
-    
+    <h3>Contemplation of a form</h3>
+
+    <p>Once bare attention is reasonably stable, the tradition turns it toward an object. Take one of the forms from <a href="#geometry">Chapter 3</a> — the circle, the triangle, a single sephirah — and hold it in mind, returning to it as you returned to the breath. The aim is not to think discursively about the symbol but to let it remain in attention until it begins to disclose relations you had not put there.</p>
+
+    <p>This is the technique the Hermetic texts assume when they describe knowledge arriving as vision rather than as argument. It is also where honest self-assessment becomes important: the felt sense of profound insight is not evidence of insight, and the practice includes writing down what you thought you saw and reading it again a week later when the atmosphere has worn off.</p>
+
+    <h3>The discipline of the four elements</h3>
+
+    <p>A widely used progression takes the elements of <a href="#alchemy">Chapter 4</a> as meditative subjects in turn: sitting with earth as solidity and weight, water as flow and receptivity, air as movement and mediation, fire as transformation. Each is held for a period of days or weeks before moving on. The value of the exercise is diagnostic as much as devotional — most people find one of the four significantly harder than the others, and that difficulty is generally informative.</p>
+
+    <h3>Recording the work</h3>
+
+    <p>Keep a record. Date each session, note its length, and write a sentence or two on what happened without embellishing it. The reason is practical rather than ceremonial: memory is unreliable about interior states, and it edits in the direction of a good story. A written record is the only means you have of distinguishing genuine development from the impression of it, and it is the closest thing this tradition has to an experimental notebook.</p>
+
+    <div class="modern">
+        <h4>Modern Practice</h4>
+        <p>The technique above is essentially what the sources describe, and it needs little updating — but the surrounding context has changed in ways worth naming. Contemporary practitioners have access to a large body of clinical research on meditation that no historical author had, and it broadly supports the basic claims about attention, stress response and emotional regulation while saying nothing either way about the metaphysics. Many now use timers or apps for the practical business of sitting, which is a straightforward improvement over guessing. The one genuinely modern caution: intensive practice can destabilise people with certain psychiatric histories, a risk the historical literature does not discuss because it had no framework for it. If you have a history of dissociation, psychosis or severe trauma, extend the timelines and work with a professional rather than alone.</p>
+    </div>
+
+    <h2 id="rituals">Chapter 6: Ritual Foundations <span class="difficulty beginner">Beginner</span></h2>
+    <p>Ritual is structured action undertaken to mark, focus and contain a piece of inner work. Its function is to establish a boundary in time and space: within these words and this hour, attention is on one thing only. That framing is what does the work, and it is why ritual structure is remarkably consistent across traditions that share no content at all.</p>
+
+    <h3>The basic structure</h3>
+
     <ol>
-        <li><strong>Preparation:</strong> Cleanse yourself and the space</li>
-        <li><strong>Opening:</strong> Cast a circle and invoke protection</li>
-        <li><strong>Main Work:</strong> Perform the central ritual action</li>
-        <li><strong>Closing:</strong> Thank the divine and close the circle</li>
+        <li><strong>Preparation</strong> — cleanse yourself and the space. Bathe; clear the room of clutter and interruption; put away anything not needed. Historically this stage was elaborate: the <em>Key of Solomon</em> devotes considerable attention to ablution, abstinence and prayer before any operation begins.</li>
+        <li><strong>Opening</strong> — define the space and invoke protection. This is the circle of <a href="#geometry">Chapter 3</a> made operational, and it is where a banishing such as the one in <a href="#protection">Chapter 11</a> is normally performed.</li>
+        <li><strong>Main work</strong> — the central action: a meditation, a contemplation, a stated intention, a consecration.</li>
+        <li><strong>Closing</strong> — give thanks, and close the circle deliberately. Closing matters as much as opening. A ritual left open is a working left unfinished, and in practical terms it means the frame that was meant to contain the work now has nothing to contain it.</li>
     </ol>
+
+    <h3>Why the frame works</h3>
+
+    <p>It is worth being clear about the mechanism, because the tradition is not, at its better moments, mystifying about it. A ritual makes an intention expensive. It requires preparation, time, specific words in a specific order, and the deliberate exclusion of everything else. Anything held to that standard is held with a seriousness that a passing wish cannot reach. The consistency of ritual structure across unconnected cultures is easier to explain by the reliability of that effect than by any shared descent.</p>
+
+    <p>This is also why the historical sources are so insistent on precision. Instructions about the hour, the direction faced, the material of an instrument, the exact form of words — these are not arbitrary hurdles. They are the means by which an action is made deliberate. Whether one takes the planetary hours of the Solomonic literature literally or as a discipline of timing, the effect on the operator is much the same.</p>
+
+    <h3>Tools</h3>
+
+    <p>The traditional instruments — knife, wand, cup, disc, censer, lamp — correspond to the elements and to the functions of a working: to divide, to direct, to receive, to establish. The grimoire tradition specifies their making and consecration in great detail, often requiring specific materials, timings and inscriptions.</p>
+
+    <p>Two practical notes. First, tools are not required to begin; a clear space, an hour and a stated intention are sufficient, and every historical tradition contains practitioners who worked with almost nothing. Second, where the historical instructions call for animal sacrifice, blood, or materials obtained by harming anything, they should be read as history and not followed — the ethical position set out in <a href="#introduction">Chapter 1</a> takes precedence over textual fidelity, and no serious modern practice depends on those elements.</p>
 
     <div class="warning">
         <h3>⚠️ Ritual Safety</h3>
-        <p>Always begin with simple rituals and gradually work up to more complex practices. Never attempt advanced rituals without proper preparation and protection.</p>
+        <p>Begin with simple rituals and work up gradually. Do not attempt advanced or evocatory rituals without proper preparation and grounding. Practical matters deserve equal attention: open flames and candles want a stable surface and a clear space above them, incense wants ventilation, and long periods kneeling or standing in one position want a realistic assessment of your own body. The commonest injuries in ceremonial practice are burns and falls, not spiritual ones.</p>
     </div>
 
-    <h2 id="rosicrucian">Chapter 7: Rosicrucian Mysteries</h2>
-    
-    <p>The Rosicrucian tradition represents a synthesis of Hermetic philosophy, Christian mysticism, and alchemical knowledge. The Rosicrucians sought to reform society through spiritual enlightenment.</p>
+    <div class="modern">
+        <h4>Modern Practice</h4>
+        <p>Where the historical sources assume a private room, a full night, and access to consecrated ground, most contemporary practitioners have a bedroom and forty minutes. The adaptations are sensible and near-universal: shortened forms of the longer rituals, electric light where open flame is unsafe or prohibited, substituted materials where the traditional ones are unobtainable, protected or endangered. Many practitioners now work seasonally rather than by planetary hour, simply because a calendar is easier to keep than an ephemeris. What has not changed — and what the modern shortcuts most often lose — is the deliberate closing. Practitioners who abbreviate a ritual almost always abbreviate the end of it, and that is the one part the sources treat as non-negotiable.</p>
+    </div>
 
-    <h3>The Rosicrucian Manifestos</h3>
-    
-    <p>The three Rosicrucian manifestos - the Fama Fraternitatis, Confessio Fraternitatis, and Chymical Wedding - outline the goals and methods of the Rosicrucian brotherhood:</p>
-    
+    <p class="sources"><strong>Sources:</strong> <em>Clavicula Salomonis</em> (14th–15th c.; Mathers trans. 1889) for preparation, instruments and planetary hours. Agrippa, <em>De occulta philosophia</em> (1533), Book III, for ceremonial framing.</p>
+
+    <h2 id="papyri">Chapter 7: The Greek Magical Papyri <span class="difficulty advanced">Advanced</span></h2>
+    <p>Everything else in this book is a reconstruction, an interpretation, or a tradition about a tradition. This chapter is different. The Greek Magical Papyri are the working papers of practising magicians of the Graeco-Roman world, written on papyrus in their own hands, surviving in museum cases in London, Paris, Berlin and Leiden. They are not a later account of what ancient magic might have been. They are ancient magic, in its own words, with the abbreviations and marginal notes still in place.</p>
+
+    <p>Scholars call the collection the <em>Papyri Graecae Magicae</em>, abbreviated PGM. The materials in it date from roughly the 100s BCE to the 400s CE — some six centuries of accumulated practice. They are written mostly in ancient Greek, but also in Demotic Egyptian, in Old Coptic, and in passages of hieratic script and cipher. Individual texts are cited by volume and item number, so that PGM IV. 1266 refers to a specific line of a specific papyrus, the way one would cite any other classical text.</p>
+
+    <h3>How they came to light</h3>
+
+    <p>There was never an ancient library called "the Greek Magical Papyri." The corpus is a modern scholarly assembly, and knowing how it was put together matters for reading it. The papyri surfaced through the antiquities trade from the eighteenth century onward. The largest single group — the so-called Anastasi collection — was bought around 1827 by a man calling himself Jean d'Anastasi, a diplomatic representative at the Khedivial court in Alexandria. He said he had obtained them at Thebes, modern Luxor, and he sold them piecemeal to the great European collections: the British Museum, the Louvre, the Bibliothèque Nationale, the Staatliche Museen in Berlin, the Rijksmuseum van Oudheden in Leiden.</p>
+
+    <p>Hans Dieter Betz, who edited the standard English translation, argues that these pieces probably came from the library of a single scholar and collector working in Thebes in late antiquity — someone who was gathering magical books much as a modern researcher might. The same Theban cache also contained Leyden papyrus X and the Stockholm papyrus, both of them alchemical. That detail is worth pausing on: the alchemy of <a href="#alchemy">Chapter 4</a> and the magic of this chapter came out of the same hoard, collected by the same hands. In late antique Egypt these were not separate disciplines.</p>
+
+    <p>Publication was slow and, in one instance, tragic. PGM XII and XIII appeared first, in Greek in 1843 and in Latin translation in 1885. The first scholarly publication in English is credited to Charles Wycliffe Goodwin, who translated PGM V with commentary for the Cambridge Antiquarian Society in 1853. The critical edition is Karl Preisendanz's, published in two volumes in 1928 and 1931. A projected third volume, containing new texts and the indices, reached galley proofs dated "Pentecost 1941" — and then the type was destroyed in the bombing of Leipzig. Photocopies of the proofs circulated privately among scholars for decades. A revised edition, with Albert Henrichs, appeared in 1973–74, incorporating the lost third volume's papyri but omitting the indices. Betz's English translation, including the Demotic texts, was published by the University of Chicago Press in 1986. Preisendanz's numbering runs to PGM LXXXI; later finds have been given further numbers by convention.</p>
+
+    <h3>What is in them</h3>
+
+    <p>Most of these fragments are pages from spell books. Broadly they fall into two kinds. Some are compilations assembled by collectors — scholarly gatherings of magical writing, made out of interest or for study. Others read like the working manuals of travelling practitioners: a repertoire, formulae for all occasions, the common phrases abbreviated because the owner already knew them by heart.</p>
+
+    <p>The range is much wider than the popular image of ancient magic allows. There are summonings of gods and daemons of real gravity, and there are parlour tricks. There are fatal curses and there are love charms. There are cures for impotence and remedies for minor medical complaints. There are folk recipes sitting on the same page as elaborate theurgy. The best known single text in the whole corpus is the invocation now generally called the Mithras Liturgy — a sustained ritual of ascent, and the piece most often anthologised.</p>
+
+    <p>Certain features recur throughout and are worth recognising on sight:</p>
+
     <ul>
-        <li>Universal reformation of humanity</li>
-        <li>Spiritual and scientific advancement</li>
-        <li>Healing of the sick</li>
-        <li>Teaching of divine wisdom</li>
+        <li><strong><em>Voces magicae</em></strong> — strings of words with no meaning in Greek, Egyptian or Hebrew, to be spoken exactly as written. Their power was understood to lie in the sound and the precision, not in any sense they carried.</li>
+        <li><strong><em>Charaktêres</em></strong> — written signs resembling letters with small circles at their terminals, used as a script of their own.</li>
+        <li><strong>Assumption of a divine identity</strong> — rituals in which the practitioner takes on the identity of a deity, through invocation and visualisation, as part of an ascent or an operation.</li>
+        <li><strong>Figurines</strong> — repeatedly referenced, in judicial, erotic and curse workings alike, made of materials chosen to suit the spell. Surviving examples turn up across the Mediterranean, generally in places the Greeks associated with the underworld: graves, sanctuaries, bodies of water. Some were found inside lead coffins with the spell inscribed on the outside.</li>
+        <li><strong>Prayers</strong> alongside all of it, including the Prayer of Thanksgiving — a text that also turns up among the Nag Hammadi Hermetica.</li>
     </ul>
 
-    <h2 id="advanced">Chapter 8: Advanced Practices</h2>
-    
-    <p>Advanced Hermetic practices involve working with higher spiritual forces and developing greater spiritual faculties. These practices should only be undertaken after mastering the foundational work.</p>
+    <p>The formulae are often strikingly close to those found on <em>defixiones</em> — curse tablets or binding spells, <em>katadesmoi</em> in Greek — inscribed on ostraka, amulets and sheets of lead. Some of those tablets date from as early as the 500s BCE and have been recovered from Athens, Asia Minor, Rome and Sicily as well as Egypt. That continuity matters: it means the papyri are not an Egyptian curiosity but a window onto practice across the Graeco-Roman world.</p>
+
+    <h3>A syncretism, not a survival</h3>
+
+    <p>The religion of the papyri is a genuine blend rather than a pure inheritance. Greek, Egyptian, Jewish and later Christian elements sit together, sometimes in a single formula. Olympian gods take on the attributes of Egyptian counterparts, or Egyptian deities are addressed by Greek names — Aphrodite, associated with Hathor, is given the epithet <em>Neferihri</em>, from the Egyptian <em>nfr-iry.t</em>, "nice eyes" (PGM IV. 1266). Betz observes that the Greek gods here are frequently not the Hellenised aristocrats of contemporary literature but something closer to the figures of folklore: chthonic, demonic, dangerous.</p>
+
+    <p>Betz's own summary is careful about what this mixture represents: in it, he writes, the indigenous Egyptian religion "has in part survived, in part been profoundly hellenized," reduced and simplified to ease its assimilation — while Greek traditions were in turn Egyptianised. He is candid that the Jewish material resists explanation, calling its origin and nature "far from clear." He concludes that what we have is specifically a Greco-Egyptian syncretism rather than a general Greco-Roman one. Janet H. Johnson made the complementary point in 1996: the texts cannot be fully understood from the Greek alone, because the Demotic passages carry part of the argument.</p>
+
+    <p>The papyri also sit at the centre of a live scholarly disagreement that any honest reader should know about. Betz treats them as a fraction of a much larger lost literature, a kind of "underground literature" subject to book-burning — citing Acts 19:19, Augustus's order to burn magical books reported by Suetonius, and later Christian burnings. David Frankfurter reads them very differently: as the productions of innovative members of the Egyptian priesthood during the third- and fourth-century collapse of the temple infrastructure, and therefore far less "underground" than Betz allows. Alan F. Segal goes further still, using the hymns embedded in these supposedly magical texts to question whether the distinction between magic and religion holds up at all in the Hellenistic world. The people who copied these pages, on Segal's reading, saw no such line.</p>
+
+    <div class="note">
+        <h4>Why this chapter is not a set of instructions</h4>
+        <p>The PGM are presented here descriptively, and deliberately so. These are historical documents whose interest lies in what they tell us about the people who wrote them — their cosmology, their anxieties, their remarkable willingness to file a summoning of a god next to a cure for a headache. Reproducing a binding spell against a named person would not make this book more authentic; it would only make it worse. Read them as what they are: the most direct access we have to the ancient practice that everything later in this tradition claims to descend from.</p>
+    </div>
+
+    <p class="sources"><strong>Sources:</strong> Preisendanz, <em>Papyri Graecae Magicae</em>, 2 vols (1928, 1931; 2nd ed. with Henrichs, 1973–74) — vol. 1 available at the Internet Archive. Betz (ed.), <em>The Greek Magical Papyri in Translation, Including the Demotic Spells</em> (University of Chicago Press, 1986; 2nd ed. 1992) — in copyright. Goodwin, PGM V for the Cambridge Antiquarian Society (1853). Frankfurter, "Ritual Expertise in Roman Egypt and the Problem of the Category 'Magician'" (1997). Segal, "Hellenistic Magic: Some Questions of Definition" (1981). Fowden, <em>The Egyptian Hermes</em> (1986).</p>
+
+    <h2 id="solomonic">Chapter 8: The Solomonic Tradition <span class="difficulty advanced">Advanced</span></h2>
+    <p>If the Greek Magical Papyri are ancient magic without a famous name attached, the Solomonic literature is the reverse: a large, influential and genuinely important body of texts attached to a name that did not write any of them. Every book in this tradition is pseudepigraphic — attributed to King Solomon, composed many centuries after him, by authors who are almost entirely anonymous. That is not a scandal to be exposed. It was a convention of the genre, and a claim about authority rather than a claim about history. But it does mean that the phrase "the magic of Solomon" describes a literary lineage, not a Judaean one.</p>
+
+    <h3>The <em>Key of Solomon</em></h3>
+
+    <p>The <em>Clavicula Salomonis</em>, the <em>Key of Solomon</em>, is the central text. It probably dates to the fourteenth or fifteenth century, in the Italian Renaissance, and it is a model example of Renaissance magic — heavily ceremonial, concerned with purification and consecrated instruments, framed throughout in devotional Christian language. Its introduction supplies the traditional legend: that Solomon wrote the book for his son Rehoboam. That is the document's backstory, not its provenance.</p>
+
+    <p>The manuscript tradition is rich and worth knowing, because "the <em>Key of Solomon</em>" is not one fixed book but a family of related texts that differ from copy to copy. The surviving manuscripts date mostly from the late sixteenth to the eighteenth century. Among the notable witnesses are a fifteenth-century Greek manuscript in the British Library (Harley MS 5596), an important Italian manuscript in the Bodleian (Michael MS 276) of around 1600, and an English translation, "The Clavicle of Solomon, revealed by Ptolomy the Grecian," dated 1572. The Greek text is generally known separately as the <em>Magical Treatise of Solomon</em>, published by Armand Delatte; its contents closely resemble the <em>Clavicula</em>, though which came first is not settled.</p>
+
+    <p>The version most modern readers have met is S. L. MacGregor Mathers's English edition of <strong>1889</strong>, based on manuscripts in the British Library. Mathers's edition is important for a reason beyond its scholarship: he was one of the three founders of the Hermetic Order of the Golden Dawn, and it was largely through him that this medieval and early-modern material entered modern ceremonial practice. Nearly every twentieth-century magical order that uses circles, pentacles and consecrated tools is drawing, at some remove, on Mathers's reading of these manuscripts.</p>
+
+    <p>The practical content of the <em>Key</em> is broadly consistent across versions. It concerns the preparation of the operator through ablution, abstinence and prayer; the drawing of the circle as the defined space of the working; the making and consecration of instruments — knife, wand, censer, parchment — each with its own procedure and timing; the planetary hours governing when a given operation may be attempted; and the pentacles, the engraved figures that give the tradition its visual signature.</p>
+
+    <h3>The <em>Lesser Key</em>, or <em>Lemegeton</em></h3>
+
+    <p>The <em>Lesser Key of Solomon</em> is a separate and later compilation, assembled in the <strong>mid-seventeenth century</strong> from materials several centuries older. Despite the name it is not an abridgement of the <em>Key</em>; it is its own anthology, in five books:</p>
+
+    <ol>
+        <li><strong><em>Ars Goetia</em></strong> — the evocation of seventy-two spirits, each with a name, a rank and a sigil. This is the part of the <em>Lemegeton</em> that everyone has heard of, and the part that has done most to shape the popular idea of grimoire magic.</li>
+        <li><strong><em>Ars Theurgia Goetia</em></strong> — spirit princes organised by the points of the compass.</li>
+        <li><strong><em>Ars Paulina</em></strong> — angels assigned to the hours of the day and to the degrees of the zodiac.</li>
+        <li><strong><em>Ars Almadel</em></strong> — angelic contact by means of a wax tablet and scrying.</li>
+        <li><strong><em>Ars Notoria</em></strong> — prayers to strengthen memory, eloquence and understanding.</li>
+    </ol>
+
+    <p>The layering here is instructive. The <em>Ars Notoria</em> is substantially older than the compilation that contains it, incorporating a fourteenth-century text and the mid-fourteenth-century <em>Ars Brevis</em>; what survives as book five is a seventeenth-century composite of that older material. And the <em>Ars Goetia</em>, the most notorious section, has a traceable and rather deflating immediate source: it derives from Johann Weyer's <em>Pseudomonarchia Daemonum</em>, published within his <em>De praestigiis daemonum</em> in the sixteenth century. The <em>Ars Goetia</em> reorders Weyer's list, adds four spirits and drops one.</p>
+
+    <p>Weyer's own purpose is the sharpest irony in this chapter. He was a physician and a sceptic who catalogued demons in the course of arguing <em>against</em> the witch trials — and who publicly denounced the spurious <em>Fourth Book of Occult Philosophy</em> as a forgery. His catalogue was then lifted, more or less wholesale, into the working grimoire that has carried it ever since.</p>
+
+    <h3>Agrippa and the Renaissance transmission</h3>
+
+    <p>The channel through which all of this reached later practitioners is Heinrich Cornelius Agrippa von Nettesheim (1486–1535), whose <em>De occulta philosophia libri tres</em> is the single most important synthesis of Renaissance magical thought. Book I appeared in 1531, published at Paris, Cologne and Antwerp; the complete three books followed at Cologne in <strong>1533</strong>. The English translation by "J.F." — probably John French, possibly James Freake — appeared in 1651 and is the version through which the work entered the English-speaking tradition.</p>
+
+    <p>The three books ascend deliberately through the levels of a magical cosmos. Book I treats natural or elemental magic: the properties of stones, herbs, animals and the human body, and the "occult virtues" Agrippa held to arise from hidden correspondences between the material world and higher principles. Book II treats celestial magic — stellar and planetary influence, and the construction of talismans to capture it. Book III treats intellectual or divine magic: theurgy, Kabbalah, ceremonial practice. Agrippa insists throughout that the true magus must also be a devout priest-philosopher, and he draws a firm line between holy magic and demonic sorcery, <em>goetia</em>.</p>
+
+    <p>That line is worth holding on to, because the <em>Fourth Book of Occult Philosophy</em> crosses it. It appeared roughly thirty years after Agrippa's death, was falsely attributed to him, and contains explicit spirit-summoning instructions of a kind entirely absent from the authentic three books. Weyer, Agrippa's own former student, identified it as a forgery. Much of what circulates as "Agrippa" in later grimoire literature is in fact this spurious fourth book — which means readers have often taken a pseudonymous appendix for the thing it was attached to.</p>
+
+    <div class="note">
+        <h4>What the datings add up to</h4>
+        <p>Laid end to end, the Solomonic tradition runs: a legend of Solomon; a fourteenth- or fifteenth-century Italian text claiming him as author; a sixteenth-century sceptic's demon catalogue; a seventeenth-century compilation that absorbed it; a spurious fourth book attached to a genuine 1533 masterwork; and a nineteenth-century translation by a founder of the Golden Dawn, through which the whole assemblage reached the modern world. Not one link in that chain is ancient. Every link is real, documented, and has a date. That is a more interesting story than the legend, and it is a true one.</p>
+    </div>
+
+    <p class="sources"><strong>Sources:</strong> <em>Clavicula Salomonis</em> — MSS incl. British Library Harley 5596 (15th c., Greek), Bodleian Michael 276 (c. 1600); Mathers (trans.), <em>The Key of Solomon the King</em> (1889) <span class="pd">public domain</span>. Delatte for the Greek <em>Magical Treatise of Solomon</em>. <em>Lemegeton</em> / <em>Lesser Key of Solomon</em>, mid-17th c.; Mathers and Crowley edition (1904) <span class="pd">public domain</span>. Weyer, <em>Pseudomonarchia Daemonum</em>, in <em>De praestigiis daemonum</em> (16th c.). Agrippa, <em>De occulta philosophia libri tres</em> (Book I 1531; complete Cologne 1533); trans. "J.F." (1651) <span class="pd">public domain</span>. <em>Fourth Book of Occult Philosophy</em> — spurious.</p>
+
+    <h2 id="rosicrucian">Chapter 9: Rosicrucian Mysteries <span class="difficulty reference">Reference</span></h2>
+    <p>The Rosicrucian tradition is the most influential body of Western esoteric thought whose founding organisation probably never existed. That sentence needs stating plainly at the outset, because almost everything written about the Rosicrucians for four hundred years has depended on which half of it the writer chose to emphasise. The manifestos are real, dated and enormously consequential. The Brotherhood they describe cannot be shown to have existed at all.</p>
+
+    <h3>The three manifestos</h3>
+
+    <p>Three anonymous texts appeared in Germany and then across Europe in quick succession:</p>
+
+    <ul>
+        <li><strong><em>Fama Fraternitatis Rosae Crucis</em></strong> (The Fame of the Brotherhood of the Rosy Cross) — circulating in manuscript among German occultists from around 1610, and published at Cassel in <strong>1614</strong>. It announces the existence of a secret brotherhood and narrates the travels, education and death of a figure called "Father Brother C.R.C."</li>
+        <li><strong><em>Confessio Fraternitatis</em></strong> (The Confession of the Brotherhood of R.C.) — published at Frankfurt in <strong>1615</strong>, responding to the confusion and criticism the <em>Fama</em> had provoked, and elaborating the programme further.</li>
+        <li><strong><em>The Chymical Wedding of Christian Rosenkreutz</em></strong> — published in <strong>1616</strong>: an allegorical romance in seven days, structurally quite unlike the two documents preceding it.</li>
+    </ul>
+
+    <p>What they promised was a universal reformation of humanity, by means of a science built on esoteric truths of the ancient past — knowledge concealed from ordinary understanding that offered insight into nature, the physical universe and the spiritual realm, and which had supposedly been kept secret until the intellectual climate was ready for it. The programme was set out extensively but cryptically, in the languages of Qabalah, Hermeticism, alchemy and Christian mysticism — precisely the subjects the learned readership of the period was studying most avidly. The stated aims were the ones the earlier version of this chapter listed, and they are worth keeping: universal reformation, the advance of spiritual and scientific knowledge, the healing of the sick, and the teaching of divine wisdom.</p>
+
+    <h3>The legend of C.R.C.</h3>
+
+    <p>As the manifestos tell it, Christian Rosenkreuz was born in 1378 and lived 106 years. He studied in the Middle East under a succession of masters — a detail that has invited speculation about Sufi influence, which shaped a number of Western esoteric currents. During his lifetime the order was said to comprise no more than eight members, each of them a physician and all "bachelors of vowed virginity." Each swore to heal the sick without accepting payment, to keep the fellowship secret, and to find a replacement for himself before he died. Three such generations were said to have passed between about 1500 and about 1600 — by which time, the <em>Fama</em> claims, scientific, philosophical and religious liberty had grown enough that the public might finally benefit, and the brotherhood was now seeking good men.</p>
+
+    <p>Read as literature this is superb: a lineage, a rediscovered tomb, a sealed vault of knowledge, and an open invitation the reader has no way to accept. Read as history it has no corroboration of any kind.</p>
+
+    <h3>The furore</h3>
+
+    <p>The reception is the part of this story that actually happened, and it was extraordinary. Europe in 1614 was sliding toward the Thirty Years' War; the promise of a spiritual and intellectual transformation landed in a continent primed for it. Between 1614 and 1620 roughly <strong>four hundred</strong> books, pamphlets and manuscripts were published discussing the Rosicrucian documents, favourably and otherwise. Serious philosophers took up the worldview — Michael Maier, Robert Fludd, Thomas Vaughan, later Elias Ashmole. The manifestos drew on Heinrich Khunrath's <em>Amphitheatrum Sapientiae Aeternae</em> (1609), itself indebted to John Dee's <em>Monas Hieroglyphica</em> (1564); the invitation that opens the <em>Chymical Wedding</em> is marked with Dee's Monas symbol.</p>
+
+    <p>The peak came in <strong>1622</strong>, when two mysterious posters appeared on walls in Paris within days of each other. The first began: "We, the Deputies of the Higher College of the Rose-Croix, do make our stay, visibly and invisibly, in this city." The second closed: "The thoughts attached to the real desire of the seeker will lead us to him and him to us." Nobody has ever established who put them up.</p>
+
+    <p>One consequence outlived all the others. The idea of an invisible college of natural philosophers, corresponding across borders and pooling discoveries, was taken up by the network around Kepler, Dee, Rheticus and Tycho Brahe, and passed into the group that met weekly in London from about 1645 to conduct experiments. Robert Boyle wrote of "the cornerstones of the Invisible (or as they term themselves the Philosophical) College." That body became the Royal Society in <strong>1660</strong>. The Rosicrucian manifestos are, by a genuinely traceable route, among the ancestors of the modern scientific academy.</p>
+
+    <h3>Who wrote them</h3>
+
+    <p>The attribution is now reasonably settled, and it is not what the manifestos claim. Roland Edighoffer, writing in the Brill <em>Dictionary of Gnosis &amp; Western Esotericism</em> (2005), traces them to the "Learned and Christian Society" that Johann Valentin Andreae established at Tübingen in 1610 — a small circle of close friends, notably Christoph Besold and Tobias Hess, who together "conceived of and constructed the Rosicrucian myth."</p>
+
+    <p>Andreae (1586–1654) went further than being suspected. In his posthumously published autobiography he acknowledged the <em>Chymical Wedding</em> as his own work — a romance he had written before he was sixteen, in 1602, and later reworked in response to the <em>Fama</em> and <em>Confessio</em>. And he was withering about it. He called it a <em>ludibrium</em>, a lampoon, and wrote that the <em>Chymical Wedding</em>, "with its fertile brood of monsters, a <em>ludibrium</em> which surprisingly some esteem and explicate with subtle investigations, is plainly futile and betrays the vanity of the curious." In his later writings he made alchemy an object of ridicule, filing it with music, art, theatre and astrology among the less serious pursuits. A. E. Waite's judgement, from the 1924 study, is that "it is clear from his <em>Turris Babel</em>, <em>Mythologia Christiana</em>, and other works, that he considered the manifestos a reprehensible hoax."</p>
+
+    <p>Some scholars of esotericism have suggested Andreae disowned the movement to protect a clerical career from the religious and political authorities of the day, and that reading cannot be ruled out. But it is special pleading unless there is evidence for it, and there is not much.</p>
+
+    <div class="note">
+        <h4>When did real Rosicrucians appear?</h4>
+        <p>Edighoffer is blunt on the central question: "there is no proof that the Brotherhood of the Rose Cross described in the <em>Fama Fraternitatis</em> ever existed, and it is only in the 18th century that actual organizations calling themselves 'rosicrucian' first come into existence." The first such body is generally dated to about 1763. Every Rosicrucian order that has ever operated — the Order of the Golden and Rosy Cross from the 1750s, the Societas Rosicruciana in Anglia from the 1860s, the Hermetic Order of the Golden Dawn (1888), the Rosicrucian Fellowship (1909), AMORC (incorporated 1915) — postdates the manifestos by at least 140 years. They are its descendants, not its survivors.</p>
+    </div>
+
+    <h3>What survives the correction</h3>
+
+    <p>Almost everything of value, as it happens. A literary invention that produced four hundred books in six years, drew in Fludd, Maier and Ashmole, seeded the Invisible College, and still animates active orders four centuries later is not diminished by being an invention — it is one of the most productive fictions in European intellectual history. Andreae's contempt for what he had started is a fact about Andreae, not a verdict on what his readers built.</p>
+
+    <p>There is also a specific and useful point buried in the alchemical writing of the Rosicrucian circle. Researchers have noted that neither Maier nor Khunrath nor any of the other defenders of the brotherhood ever claimed to have produced gold. Their writings point toward a symbolic and spiritual alchemy rather than an operative one: Maier's firm statement was that the Brothers of the Rose Cross existed to advance the inspired arts and sciences, and his subject was the transmutation of the human being in body, soul and spirit. That is the reading of alchemy this book takes in <a href="#alchemy">Chapter 4</a>, and it is the reading the Rosicrucian authors themselves took.</p>
+
+    <p class="sources"><strong>Sources:</strong> <em>Fama Fraternitatis</em> (Cassel, 1614); <em>Confessio Fraternitatis</em> (Frankfurt, 1615); <em>Chymische Hochzeit Christiani Rosencreutz</em> (1616). Gorceix, <em>La Bible des Rose-Croix</em> (1970) — translations of all three. Edighoffer, "Rosicrucianism I: First half of the 17th Century," in Hanegraaff et al. (eds), <em>Dictionary of Gnosis &amp; Western Esotericism</em> (Brill, 2005), pp. 1009, 1014–15. Waite, <em>The Real History of the Rosicrucians</em> (1887) <span class="pd">public domain</span>; <em>The Brotherhood of the Rosy Cross</em> (1924), pp. 226, 231–42. Yates, <em>The Rosicrucian Enlightenment</em> (1972) — in copyright; see also Vickers's critique (1979). Khunrath, <em>Amphitheatrum Sapientiae Aeternae</em> (1609). Dee, <em>Monas Hieroglyphica</em> (1564). Maier, <em>Silentium Post Clamores</em> (1617).</p>
+
+    <h2 id="advanced">Chapter 10: Advanced Practices <span class="difficulty advanced">Advanced</span></h2>
+    <p>Advanced practice in this tradition means sustained work with techniques that assume the foundations are already in place — a stable attention, a reliable ritual frame, and enough self-knowledge to notice when you are deceiving yourself. What follows is descriptive: these are the practices the sources contain, with their actual provenance, so that a reader can tell what they are looking at and decide what is worth pursuing under proper guidance.</p>
+
+    <p>One general observation belongs first, and it reorganises this whole chapter. Most of what circulates as "advanced Hermetic practice" is not ancient. It was systematised by the <strong>Hermetic Order of the Golden Dawn</strong>, founded in 1887–88 by three Freemasons — William Robert Woodman, William Wynn Westcott and Samuel Liddell MacGregor Mathers — with the Isis-Urania Temple formally established in London in 1888. The order's foundational documents, the Cipher Manuscripts, were written in English in Trithemius cipher; Westcott decoded them in 1887 after receiving them from A. F. A. Woodford the previous year. Those manuscripts "give the specific outlines of the Grade Rituals of the Order and prescribe a curriculum of graduated teachings that encompass the Hermetic Qabalah, astrology, occult tarot, geomancy, and alchemy." That curriculum is, in substance, the modern Western magical syllabus.</p>
+
+    <h3>The grade structure</h3>
+
+    <p>The Golden Dawn organised its teaching into ten grades across three tiers, each grade mapped to a sephirah of the Tree of Life:</p>
+
+    <ul>
+        <li><strong>First Order:</strong> Neophyte (0=0), Zelator (1=10), Theoricus (2=9), Practicus (3=8), Philosophus (4=7)</li>
+        <li><strong>Second Order:</strong> Adeptus Minor (5=6), Adeptus Major (6=5), Adeptus Exemptus (7=4)</li>
+        <li><strong>Third Order:</strong> Magister Templi (8=3), Magus (9=2), Ipsissimus (10=1)</li>
+    </ul>
+
+    <p>The First Order taught theory — correspondence, symbolism, divinatory systems — and the Second Order taught magic proper, including scrying, astral travel and alchemy. The Third Order was, in practice, understood as belonging to those beyond ordinary membership. The graduated structure is itself the point: material was withheld until earlier material had been demonstrated, which is a pedagogical judgement this book endorses even where it declines to reproduce the content.</p>
+
+    <h3>The practices</h3>
+
+    <p><strong>Scrying.</strong> Sustained soft-focus attention on a reflective or featureless surface — black mirror, bowl of water, crystal — until imagery arises. The <em>Ars Almadel</em> of the <em>Lemegeton</em> uses a wax tablet for a related purpose, and scrying is among the techniques the Golden Dawn's Second Order explicitly taught. What the technique actually reliably produces is the mind's own imagery under conditions of reduced sensory input; whether it produces more than that is the question the tradition exists to ask, and it is not answerable by assertion in either direction. The discipline is to record what arises before interpreting it.</p>
+
+    <p><strong>Assumption of godforms.</strong> Building the image of a deity around oneself in visualisation and speaking or acting from within it. This has a genuine ancient parallel — the Greek Magical Papyri contain rituals in which the practitioner assumes the identity of a deity through invocation and visualisation, as part of an ascent or operation (see <a href="#papyri">Chapter 7</a>) — which makes it one of the few advanced techniques here with attested antiquity behind it, even if its modern form is a Golden Dawn reconstruction rather than a continuous inheritance.</p>
+
+    <p><strong>The Middle Pillar and pathworking.</strong> The Middle Pillar exercise circulates energy through the central sephiroth of the Tree; pathworking traverses the twenty-two paths in structured visualisation, using the correspondences described in <a href="#geometry">Chapter 3</a>. Both belong to the modern Qabalistic system rather than to any ancient source. Their fullest published form comes through Israel Regardie, whose <em>The Golden Dawn: The Original Account of the Teachings, Rites and Ceremonies of the Hermetic Order</em> appeared in four volumes between <strong>1937 and 1940</strong> — the publication that broke the order's secrecy and made this entire body of technique publicly available. It remains in print.</p>
+
+    <p><strong>The Enochian material.</strong> The system of angelic communication and language recorded by John Dee and Edward Kelley in the 1580s, subsequently reworked by the Golden Dawn into something considerably more systematic than Dee left it. Anyone working with Enochian material should know which layer they are handling — Dee's diaries and the Golden Dawn's redaction are different objects.</p>
+
+    <div class="note">
+        <h4>A note on what is and is not attributed</h4>
+        <p>The Golden Dawn's founding, dates, grade structure, Cipher Manuscripts and curriculum are well documented, as is Regardie's publication. What is <em>not</em> settled — and this book will not pretend otherwise — is exactly which of these techniques the order invented outright and which it inherited or adapted from earlier sources. The scholarly record establishes that the Second Order taught scrying, astral travel and alchemy; it does not cleanly establish the origin of each individual exercise. Where this chapter says "Golden Dawn," read it as "systematised and transmitted by the Golden Dawn," which is defensible, rather than "invented there," which in several cases is not yet demonstrated.</p>
+    </div>
 
     <div class="warning">
         <h3>⚠️ Advanced Practice Warning</h3>
-        <p>Advanced practices require extensive preparation, proper guidance, and years of foundational work. Do not attempt these practices without proper training and protection.</p>
+        <p>These practices assume extensive preparation and, in their original setting, years of graded work under supervision. The graded structure existed for a reason and its removal by publication was not an unmixed improvement. Two specific cautions. Sustained visualisation and evocatory work can be genuinely destabilising, and the tradition's own literature contains ample evidence of practitioners who came apart; if you have a history of psychosis, dissociation or mania, this material is not for solitary work. And the commonest failure here is not dramatic — it is the slow inflation of the practitioner's sense of their own significance, which the grade systems were partly designed to check.</p>
     </div>
 
-    <h2 id="protection">Chapter 9: Protection & Banishing</h2>
-    
-    <p>Protection and banishing are essential skills for any practitioner. These techniques help maintain spiritual hygiene and protect against negative influences.</p>
+    <div class="modern">
+        <h4>Modern Practice</h4>
+        <p>Regardie's publication changed this material permanently: what was once transmitted in a temple over years is now available in a single volume, and every modern practitioner is in some sense working from a leaked syllabus. Contemporary orders descended from the Golden Dawn still use graded curricula, while a large majority of practitioners now work solo from published sources. The honest assessment is that solitary work loses the two things the original structure supplied — pacing, and someone else's eyes on your conclusions — and that practitioners who compensate deliberately, through written records and a peer or teacher who will disagree with them, do markedly better than those who do not.</p>
+    </div>
 
-    <h3>Basic Protection Techniques</h3>
-    
+    <p class="sources"><strong>Sources:</strong> Hermetic Order of the Golden Dawn, founded 1887–88 (Woodman, Westcott, Mathers); Isis-Urania Temple, London, 1888; order dissolved 1903. Cipher Manuscripts (Trithemius cipher; decoded by Westcott 1887). Regardie, <em>The Golden Dawn</em>, 4 vols (1937–40) — in copyright. Dee and Kelley's Enochian diaries (1580s). PGM for the ancient parallel to godform assumption (Betz, 1986).</p>
+
+    <h2 id="protection">Chapter 11: Protection &amp; Banishing <span class="difficulty adept">Adept</span></h2>
+    <p>Protection and banishing are the practical hygiene of this tradition. Their function is to clear a space before work and to close it afterwards, and in ordinary use they have less to do with repelling hostile forces than with establishing a definite beginning and end. A practitioner who banishes reliably is a practitioner who does not carry the residue of one working into the next, or into the rest of their life.</p>
+
+    <h3>Basic techniques</h3>
+
     <ol>
-        <li><strong>Visualization:</strong> Imagine yourself surrounded by white light</li>
-        <li><strong>Prayer:</strong> Call upon divine protection</li>
-        <li><strong>Salt:</strong> Use salt for purification and protection</li>
-        <li><strong>Herbs:</strong> Use protective herbs like sage and rosemary</li>
+        <li><strong>Visualisation</strong> — establish an image of light surrounding you, bounded and complete. Simple, portable, and requires nothing.</li>
+        <li><strong>Prayer</strong> — call upon whatever you understand the divine to be, in your own words or a traditional form. The overwhelming majority of historical protective practice is prayer.</li>
+        <li><strong>Salt</strong> — used across many traditions for purification and boundary-marking, whether scattered, dissolved in water, or laid at a threshold.</li>
+        <li><strong>Herbs</strong> — sage and rosemary are the most commonly used in this tradition, burned or hung. Ventilate if burning, and note that white sage in particular is both ecologically pressured and culturally specific to practices this book does not claim; garden sage and rosemary do the same work in a Hermetic frame.</li>
     </ol>
 
-    <h2 id="healing">Chapter 10: Healing & Wellness</h2>
-    
-    <p>Hermetic healing involves working with the subtle energies of the body and spirit to restore balance and health.</p>
+    <p>These four are genuinely sufficient for ordinary purposes, and a practitioner who does them consistently is better protected than one who performs an elaborate ceremony occasionally.</p>
 
-    <h3>Principles of Hermetic Healing</h3>
-    
-    <ul>
-        <li>All healing comes from the divine source</li>
-        <li>The healer is a channel for divine energy</li>
-        <li>Healing involves the whole person - body, mind, and spirit</li>
-        <li>Prevention is better than cure</li>
-    </ul>
+    <h3>The Lesser Banishing Ritual of the Pentagram</h3>
 
-    <h2 id="prosperity">Chapter 11: Prosperity & Abundance</h2>
-    
-    <p>Prosperity in the Hermetic tradition is not merely material wealth, but the abundance of all good things - health, wisdom, love, and spiritual growth.</p>
+    <p>The most widely used banishing in Western ceremonial practice is the LBRP, and it comes from the original Golden Dawn — which places it in the late nineteenth century, not antiquity. Its structure has four movements:</p>
 
-    <h3>Principles of Prosperity</h3>
-    
-    <ul>
-        <li>Prosperity flows from alignment with divine will</li>
-        <li>Service to others creates abundance</li>
-        <li>Gratitude attracts more blessings</li>
-        <li>Generosity multiplies prosperity</li>
-    </ul>
+    <ol>
+        <li><strong>The Qabalistic Cross.</strong> The practitioner traces a cross on the body, touching forehead, breast and each shoulder while vibrating Hebrew words drawn from the doxology of the Lord's Prayer, each position corresponding to a location on the Tree of Life.</li>
+        <li><strong>Formulation of the pentagrams.</strong> Beginning in the east and proceeding around the quarters, a pentagram is drawn at each cardinal point while a divine name is vibrated: YHVH in the east, Adonai in the south, Eheieh in the west, AGLA in the north.</li>
+        <li><strong>Evocation of the archangels.</strong> Four archangels are called at the quarters — Raphael in the east, Michael in the south, Gabriel in the west, Uriel in the north — with protective imagery held for each.</li>
+        <li><strong>The Qabalistic Cross repeated</strong>, closing the ritual as it opened.</li>
+    </ol>
 
-    <h2 id="seasonal">Chapter 12: Seasonal Celebrations</h2>
-    
-    <p>Seasonal celebrations connect us with the natural rhythms of the earth and the cycles of the cosmos. These celebrations honor the changing seasons and the divine forces at work in nature.</p>
+    <p>The ritual's stated purpose is to banish chaotic or impure forms of the elements from the working space. Its components are plainly Christian and Qabalistic: the Lord's Prayer doxology, Hebrew divine names, the four archangels, and an association of the quarters with the classical elements by way of the biblical four living creatures.</p>
 
-    <h3>Major Seasonal Festivals</h3>
-    
-    <ul>
-        <li><strong>Spring Equinox:</strong> Renewal and new beginnings</li>
-        <li><strong>Summer Solstice:</strong> Peak of solar energy</li>
-        <li><strong>Autumn Equinox:</strong> Harvest and gratitude</li>
-        <li><strong>Winter Solstice:</strong> Inner light and contemplation</li>
-    </ul>
-
-    <h2 id="mysteries">Chapter 13: Greater Mysteries</h2>
-    
-    <p>The Greater Mysteries represent the highest levels of Hermetic knowledge and practice. These mysteries are revealed only to those who have prepared themselves through years of dedicated study and practice.</p>
-
-    <div class="warning">
-        <h3>⚠️ Greater Mysteries Warning</h3>
-        <p>The Greater Mysteries are not to be taken lightly. They require complete dedication, proper initiation, and years of preparation. These teachings are sacred and should be approached with the utmost respect and reverence.</p>
+    <div class="note">
+        <h4>What is documented and what is not</h4>
+        <p>The LBRP is attributed to the original order of the Golden Dawn, and its structure and content are well attested. What is <em>not</em> clearly established is who first assembled this particular formula, exactly when it was codified, or which earlier magical texts directly shaped it. Claims that it descends from ancient Egyptian or Solomonic practice are common and unsupported; claims tracing each element to a specific precursor in Agrippa or in Jewish liturgy are plausible but, on the present record, not demonstrated. The honest statement is: a Golden Dawn ritual, assembled from Christian and Qabalistic materials, whose precise compositional history is unresolved.</p>
     </div>
 
+    <h3>Grounding</h3>
+
+    <p>The most useful protective skill is also the least ceremonial: the ability to return deliberately to ordinary awareness. Eat something. Wash your hands and face. Put your attention on physical sensation — feet on the floor, weight in the chair. Write down what happened and then stop. Speak to someone about something unrelated.</p>
+
+    <p>Practitioners who neglect this are the ones who get into difficulty, and the difficulty is nearly always the same: not an external attack but a failure to fully come back, accumulating over weeks into distraction, poor sleep, and a steadily thinner grip on ordinary priorities. If that is happening, the correct response is to stop practising for a while. That option is always available and using it is not a failure.</p>
+
+    <div class="modern">
+        <h4>Modern Practice</h4>
+        <p>Most contemporary practitioners use the LBRP or an abbreviated version of it as a daily practice rather than reserving it for ceremonial occasions, which is a departure from its original place in a graded curriculum and generally a productive one — done daily it becomes a reliable frame rather than a special event. Practitioners uncomfortable with the ritual's explicitly Judaeo-Christian content have developed numerous adaptations substituting other divine names or dispensing with them; these work, and their existence is worth knowing about, though the version above is the documented one. The broader modern shift is a demystified reading of what banishing accomplishes: many practitioners now describe it frankly as a psychological boundary-setting technique, and find that describing it that way does not reduce its usefulness in the least.</p>
+    </div>
+
+    <p class="sources"><strong>Sources:</strong> Lesser Banishing Ritual of the Pentagram — attributed to the original Hermetic Order of the Golden Dawn (founded 1887–88); published in Regardie, <em>The Golden Dawn</em> (1937–40). Precise compositional history unresolved; see note above.</p>
+
+    <h2 id="healing">Chapter 12: Healing &amp; Wellness <span class="difficulty adept">Adept</span></h2>
+    <p>Healing occupies a central and honourable place in this tradition. It is worth remembering that the Rosicrucian manifestos made it the first practical commitment of the brotherhood they described: each member was sworn to heal the sick <em>without accepting payment</em>. Of everything those documents promised, this is the part that has aged best, and it sets the tone for the chapter.</p>
+
+    <h3>Principles of Hermetic healing</h3>
+
+    <ul>
+        <li>All healing is understood to come from the divine source; the practitioner does not generate it</li>
+        <li>The healer functions as a channel rather than an originator — which is also a safeguard against self-importance</li>
+        <li>Healing addresses the whole person: body, mind and spirit, none of them treated in isolation</li>
+        <li>Prevention is better than cure, and regimen matters more than intervention</li>
+    </ul>
+
+    <p>The fourth of these is worth dwelling on, because it is where the historical tradition and modern medicine agree most completely. The Hermetic and Paracelsian writers took sleep, diet, air, exercise, work and companionship to be the substance of health rather than its background. That is an unglamorous position and it was correct.</p>
+
+    <h3>The historical practice</h3>
+
+    <p>Historically, healing in this tradition drew on several strands. Herbalism, systematised through the doctrine of correspondences that assigned plants to planets and planets to organs — the material of Agrippa's first book. Astrological medicine, timing treatment by the heavens and reading the chart for constitutional tendency. Amulets and charms, ubiquitous in the ancient evidence: a substantial portion of the Greek Magical Papyri consists of remedies and phylacteries for entirely ordinary complaints, alongside the grander material. Prayer and laying on of hands, the oldest and most widespread element. And Paracelsian iatrochemistry, which took the alchemical tradition into medicine and, for all its errors, moved European practice toward specific remedies for specific conditions.</p>
+
+    <p>The physicians of the Rosicrucian legend were, in the setting of the manifestos, ordinary doctors — the healing described was practical care given freely, not miracle-working. That framing is a useful corrective to how the subject is often presented now.</p>
+
+    <h3>Energetic work</h3>
+
+    <p>Contemporary practice in this area centres on directing attention and intention toward another person, whether by laying on of hands, at a distance, or through visualisation of light. If you do this work, a few things follow from the tradition's own commitments. Ask permission — working on someone without their knowledge violates the ethical position of <a href="#introduction">Chapter 1</a> whatever the intention behind it. Ground afterwards, as in <a href="#protection">Chapter 11</a>. Make no diagnostic or prognostic claims. And attend to your own state: practitioners who do this work while depleted tend to make it about themselves.</p>
+
+    <div class="warning">
+        <h3>⚠️ On Health and Medicine</h3>
+        <p><strong>Nothing in this chapter is a substitute for medical care.</strong> Do not delay diagnosis or treatment, and do not discontinue prescribed medication, in favour of any practice in this book. Do not offer prognoses, discourage anyone from seeing a doctor, or represent spiritual practice as treatment for a serious condition — the historical record of harm here is extensive and it falls hardest on the frightened and the desperate.</p>
+        <p>Herbal preparations are not exempt from this: plants contain active pharmacology, several traditional remedies are outright toxic, and interactions with prescribed drugs are common and sometimes severe. Consult a physician or pharmacist before combining them with medication, and treat historical herbals as history rather than as dosing guidance.</p>
+        <p>Used as a complement to proper care — for calm, for meaning, for the considerable value of attentive presence — this material has a real contribution to make. Used as a replacement, it kills people.</p>
+    </div>
+
+    <div class="modern">
+        <h4>Modern Practice</h4>
+        <p>Responsible contemporary practitioners position this work explicitly as complementary, and many now work alongside conventional care rather than in competition with it — in hospice and chaplaincy settings, in pain management, in support of patients under active treatment. That represents a genuine and fairly recent maturation of the field. Practitioners also now have research literature on placebo effects, therapeutic presence and the measurable value of unhurried attention, which offers a plausible and unembarrassing account of why sitting with a frightened person helps. Where the historical tradition claimed to cure, the honest modern claim is narrower and more defensible: this work can reliably reduce suffering, and it does not treat disease.</p>
+    </div>
+
+    <p class="sources"><strong>Sources:</strong> <em>Fama Fraternitatis</em> (1614) on healing the sick without payment. Agrippa, <em>De occulta philosophia</em> (1533), Book I, on herbal and planetary correspondence. PGM for ancient remedies, amulets and phylacteries (Betz, 1986). Paracelsus (1493–1541) for iatrochemistry.</p>
+
+    <h2 id="prosperity">Chapter 13: Prosperity &amp; Abundance <span class="difficulty beginner">Beginner</span></h2>
+    <p>Prosperity in the Hermetic tradition is not merely material wealth but the sufficiency of all good things — health, wisdom, love, competence, and spiritual growth. That definition is not a euphemism for having less money; it is a claim that money is one good among several and behaves badly when treated as the only one.</p>
+
+    <h3>Principles of prosperity</h3>
+
+    <ul>
+        <li>Prosperity follows from alignment with the order of things rather than from force applied against it</li>
+        <li>Service to others creates abundance — a claim about how goods actually circulate, not only a moral instruction</li>
+        <li>Gratitude reorients attention toward what is present rather than what is absent</li>
+        <li>Generosity multiplies prosperity, and hoarding reliably impoverishes the hoarder in the ways that matter</li>
+    </ul>
+
+    <h3>Where this chapter has to be careful</h3>
+
+    <p>This is the subject on which the tradition has been most thoroughly commercialised, and the dating work of this book bears directly on it. The modern "law of attraction" — the doctrine that thought directly produces material circumstance — is not ancient Hermeticism. It comes from the same New Thought movement of the late nineteenth and early twentieth centuries that produced <em>The Kybalion</em> in 1908, and its lineage runs from there through twentieth-century positive-thinking literature to the contemporary prosperity-teaching industry. Recognising that lineage is useful, because it explains why the doctrine feels Hermetic while sitting awkwardly with the actual texts.</p>
+
+    <p>The ancient Hermetica are not about acquisition. Their concern is the ascent of the soul and the shedding of what binds it — and among the things to be shed, in the <em>Poimandres</em>'s account, is greed. A tradition whose foundational vision treats acquisitiveness as an impediment cannot straightforwardly be made into a wealth technique, and the attempt requires quietly dropping most of what the source says.</p>
+
+    <p>The practical harm is specific and worth naming. Doctrines that make prosperity a direct product of correct thinking imply, unavoidably, that poverty is a product of incorrect thinking — which blames the poor for structural conditions and lands hardest on people already in difficulty. It is also the mechanism by which a great deal of money is extracted from desperate people by teachers selling the technique. Where a practice in this area asks for significant payment on the promise of return, that is the point to stop.</p>
+
+    <h3>Practice</h3>
+
+    <p>What the tradition genuinely supports here is modest and useful. A gratitude practice — the deliberate daily enumeration of what is actually present — reliably shifts attention, and attention shapes judgement. Clarity of intention: writing plainly what you are working toward and what you are prepared to do for it, which is more often revealing than motivating. Regular generosity, fixed in advance rather than decided by mood. And the discipline of examining what you actually want, since a good deal of what presents itself as a desire for money is a desire for security, or standing, or the freedom to stop doing something — all of which have more direct routes.</p>
+
+    <p>None of this is a technique for obtaining money without working, and the tradition never claimed otherwise. What it offers is a defensible relationship to material things: enough is a real quantity, it is generally nearer than it appears, and the pursuit of more than enough has a documented history of costing people the other goods on the list.</p>
+
+    <p class="sources"><strong>Sources:</strong> <em>Corpus Hermeticum</em> I (<em>Poimandres</em>) on the shedding of greed in the soul's ascent. <em>The Kybalion</em> (1908) and the New Thought movement as the origin of modern attraction doctrine — cf. Ch. 1.</p>
+
+    <h2 id="seasonal">Chapter 14: Seasonal Celebrations <span class="difficulty beginner">Beginner</span></h2>
+    <p>Seasonal observance connects practice to something outside the practitioner's own schedule. The solstices and equinoxes are astronomical facts — the actual turning points of the year, determined by the tilt of the planet — and marking them anchors a practice to a cycle that does not care whether you are enthusiastic this month. That is precisely their value: they arrive on time regardless.</p>
+
+    <h3>The four solar stations</h3>
+
+    <ul>
+        <li><strong>Spring Equinox</strong> (around 20 March in the northern hemisphere) — renewal and new beginnings. Light and dark in balance, with light increasing. Traditionally a point for starting work and for setting intentions that will be tested over the growing season.</li>
+        <li><strong>Summer Solstice</strong> (around 21 June) — the peak of solar energy, the longest day. A point of fullness, and, in most traditional readings, of recognition that fullness is also a turning: the light begins to withdraw from here.</li>
+        <li><strong>Autumn Equinox</strong> (around 22 September) — harvest and gratitude. Balance again, with dark increasing. A point for assessment: what actually came of the year's work, honestly counted.</li>
+        <li><strong>Winter Solstice</strong> (around 21 December) — inner light and contemplation, the longest night. Traditionally the most inward of the four, and the one most widely marked across cultures, since the return of the light after the longest night is the most reliably consoling fact available to people without calendars.</li>
+    </ul>
+
+    <p>Practitioners in the southern hemisphere should reverse these: the astronomical events are shared but the seasons are not, and observing a "spring" equinox in March in Australia inverts the meaning of the whole cycle. A surprising amount of published material silently assumes the northern hemisphere.</p>
+
+    <h3>The cross-quarters</h3>
+
+    <p>Many practitioners also mark the four midpoints between the solar stations, falling around the beginning of February, May, August and November. These are commonly given Gaelic names — Imbolc, Beltane, Lughnasadh, Samhain — and it should be said plainly that the eightfold "Wheel of the Year" combining solar and cross-quarter festivals is a <strong>twentieth-century construction</strong>, assembled within modern Pagan revival movements from a mixture of Celtic, Germanic and reconstructed sources. The individual festivals have genuine historical antecedents of varying strength; the eightfold wheel as a unified system does not, and it is not Hermetic in origin at all.</p>
+
+    <p>This is worth stating because the wheel is frequently presented as an unbroken ancient inheritance. It is a good framework — genuinely useful, well balanced, and now the practice of a great many people — and it is recent. Both things are true and neither needs hiding.</p>
+
+    <h3>Observance</h3>
+
+    <p>What to actually do is simple, and the tradition's own emphasis falls on regularity rather than elaboration. Mark the day. Note where the sun rises and sets, which is the observation the whole system rests on and which almost nobody makes. Review the season that is ending and name what you are carrying into the next. Eat something appropriate to the time of year. If you keep the record recommended in <a href="#meditation">Chapter 5</a>, read back to the previous station — four entries a year, read in sequence, will tell you more about your own development than any amount of daily introspection.</p>
+
+    <p>The deeper purpose of seasonal practice is the correspondence of <a href="#introduction">Chapter 1</a> put to use: the cycles of the year, of a life, and of the alchemical work of <a href="#alchemy">Chapter 4</a> are held to be the same pattern at different scales. Winter is <em>nigredo</em>. Whether one takes that as metaphysics or as metaphor, it is a genuinely steadying thing to have available in February.</p>
+
+    <p class="sources"><strong>Sources:</strong> Solstices and equinoxes — astronomical. The eightfold Wheel of the Year: 20th-century construction within modern Pagan revival movements; individual festivals have antecedents of varying documentation, the unified system does not.</p>
+
+    <h2 id="mysteries">Chapter 15: Greater Mysteries <span class="difficulty advanced">Advanced</span></h2>
+    <p>Every tradition in this book claims a summit — a body of knowledge reserved for those who have prepared for it, spoken of in the sources with deliberate reticence. This chapter is about what that reticence has actually meant historically, and what it means for a reader holding a book that claims to contain the whole thing.</p>
+
     <h3>The Path of Initiation</h3>
-    
-    <p>The path to the Greater Mysteries involves:</p>
-    
+
+    <p>The path to the Greater Mysteries, as the tradition describes it, involves:</p>
+
     <ol>
         <li>Mastery of the foundational practices</li>
-        <li>Purification of body, mind, and spirit</li>
-        <li>Development of spiritual faculties</li>
+        <li>Purification of body, mind and spirit</li>
+        <li>Development of the spiritual faculties</li>
         <li>Service to humanity</li>
         <li>Direct experience of the divine</li>
     </ol>
 
-    <hr>
-    
-    <div class="warning">
-        <h3>Final Warning</h3>
-        <p>This grimoire contains powerful knowledge that should be used responsibly and ethically. Always approach these practices with respect, humility, and proper preparation. The path of Hermetic wisdom is a lifelong journey that requires dedication, patience, and wisdom.</p>
+    <p>Two features of that list deserve notice. It is sequential, and the sequence is not decorative: nothing in the tradition suggests the later items are available to someone who has skipped the earlier. And service sits fourth — before the culmination, not after it. Whatever else the Greater Mysteries were held to be, they were not understood as a private attainment.</p>
+
+    <h3>What "mystery" meant</h3>
+
+    <p>The word carries a specific historical sense that has largely been lost. In the ancient mystery cults — Eleusis, Samothrace, the Mithraic grades — a <em>mystery</em> was not a puzzle or a secret doctrine but something <em>undergone</em>. The initiate at Eleusis was not told a fact; they were put through an experience, and the prohibition on disclosure concerned that experience rather than any proposition about it. This is why ancient sources can be simultaneously insistent about secrecy and unembarrassed about publishing their philosophy: the philosophy was never the secret.</p>
+
+    <p>The Hermetic texts inherit this structure. The <em>Poimandres</em> reports a vision rather than arguing a case, and its claim that knowledge of the divine comes through direct experience and not through belief is a statement about method. What cannot be transmitted in writing is not information being withheld; it is an experience that writing cannot contain. Michael Maier, defending the Rosicrucians in 1617, placed their origins in exactly this lineage — "the mysteries of Eleusis and Samothrace, the Magi of Persia, the Pythagoreans" — a genealogy that says more about how the seventeenth century understood itself than about actual descent, but which locates the aspiration accurately.</p>
+
+    <h3>Grades and the structure of withholding</h3>
+
+    <p>The organisational expression of all this is the graded system: the ten Golden Dawn grades of <a href="#advanced">Chapter 10</a>, the Rosicrucian degrees, the Masonic rites. Their logic is pedagogical before it is dramatic. Material is withheld until earlier material has been demonstrated, because the earlier work is what makes the later work legible — and because a technique reached too early tends to be absorbed into whatever the practitioner already wanted to believe.</p>
+
+    <p>The systems also functioned, less admirably, as instruments of authority. Grades create hierarchy, hierarchy creates deference, and the history of esoteric orders is substantially a history of schism over who held which grade legitimately. The Golden Dawn itself dissolved in 1903 in exactly this manner, fifteen years after its founding. A reader encountering claims of high initiatory rank is entitled to notice that such claims have a poor historical record and are unfalsifiable by design.</p>
+
+    <div class="note">
+        <h4>The honest position of this chapter</h4>
+        <p>A book cannot confer initiation, and this one does not claim to. What has actually happened over the last century is that nearly all of the material formerly reserved to the grades has been published — Regardie's four volumes of Golden Dawn ritual between 1937 and 1940, Mathers's editions of the Solomonic texts, Betz's translation of the Papyri, critical editions of the Hermetica. The secrets are in print. Anyone can read them today.</p>
+        <p>And the result is instructive: the availability of the material turned out not to be the thing that mattered. What the grade systems supplied was not information but sequence, supervision, and other people who would tell you when you were wrong. Those remain scarce, and they were never in the books to begin with. The genuine Greater Mystery, on the evidence of the century since publication, is that reading the syllabus and doing the work are entirely different activities.</p>
     </div>
 
-    <p><em>May this grimoire serve as your guide to authentic Hermetic wisdom and Rosicrucian practice. Use it wisely and with pure intention.</em></p>
+    <div class="warning">
+        <h3>⚠️ Greater Mysteries Warning</h3>
+        <p>This material is not to be taken lightly. It assumes dedication, preparation and — in every historical setting — guidance. Approach it with respect, and with a working suspicion of your own conclusions. The characteristic failure at this level is not danger but self-deception: the practitioner who has read everything, experienced something, and concluded that they have arrived. The tradition's own remedy is the fourth item on the list above, which is difficult to fake and tends to correct the rest.</p>
+    </div>
 
+    <p class="sources"><strong>Sources:</strong> Ancient mystery cults — Eleusis, Samothrace, Mithraic grades. <em>Corpus Hermeticum</em> I on direct experience over belief. Maier, <em>Silentium Post Clamores</em> (1617) for the claimed genealogy. Golden Dawn grade structure (1888–1903); Regardie, <em>The Golden Dawn</em> (1937–40) for the publication of the reserved material.</p>
+
+    <h2 id="sources">Sources &amp; Bibliography <span class="difficulty reference">Reference</span></h2>
+    <p>Every source cited in this grimoire is listed below with its date, its author or translator where known, and its copyright status where that affects availability. Entries are grouped by period so that the shape of the tradition's actual chronology is visible at a glance — which is, in itself, the argument of this book.</p>
+
+    <div class="note">
+        <h4>On what "verified" means here</h4>
+        <p>Each entry below was checked against reference scholarship for author, date and status before being included. Where the record is unsettled — the compositional history of the Lesser Banishing Ritual, the precise origin of individual Golden Dawn exercises, the relative priority of the Greek and Latin Solomonic texts — the relevant chapter says so rather than choosing a convenient answer. Claims in the body text that carry no citation are ones where a specific attribution could not be verified; they are written as general statements for that reason. A bibliography's usefulness depends entirely on the reader being able to trust that nothing was added to make it look longer.</p>
+    </div>
+
+    <h3>Ancient: the primary material (c. 100 BCE – c. 400 CE)</h3>
+
+    <ul class="bib">
+        <li><em>Corpus Hermeticum</em> — seventeen Greek treatises, composed c. 100–300 CE; compiled as a collection by Byzantine editors.</li>
+        <li>Nag Hammadi Hermetica — three treatises attributed to Hermes Trismegistus, including fragments of the <em>Asclepius</em>, the Prayer of Thanksgiving, and <em>The Discourse on the Eighth and Ninth</em>.</li>
+        <li><em>Asclepius</em> — surviving mainly in Latin translation, with Greek and Coptic fragments.</li>
+        <li><em>Papyri Graecae Magicae</em> (PGM) — materials dating from the 100s BCE to the 400s CE, in Greek, Demotic and Old Coptic. Provenance largely the Theban "Anastasi" cache, acquired c. 1827 and dispersed to the British Museum, the Louvre, the Bibliothèque Nationale, Berlin and Leiden.</li>
+        <li>Leyden papyrus X and the Stockholm papyrus — alchemical texts from the same Theban cache.</li>
+        <li><em>Defixiones</em> (curse and binding tablets) — the earliest from the 500s BCE, recovered from Athens, Asia Minor, Rome, Sicily and Egypt.</li>
+        <li>Zosimos of Panopolis; pseudo-Democritus, <em>Physika kai mystika</em> — Greco-Egyptian alchemy.</li>
+    </ul>
+
+    <h3>Medieval and Arabic (8th – 15th centuries)</h3>
+
+    <ul class="bib">
+        <li><em>Sirr al-khalīqa wa-ṣanʿat al-ṭabīʿa</em> (The Secret of Creation) — late 8th or early 9th century; the earliest attestation of the Emerald Tablet, in Arabic.</li>
+        <li>Jābir ibn Ḥayyān; Ibn Umayl; Abū Bakr al-Rāzī — the Arabic-Islamic alchemical tradition through which much of this material reached Latin Europe.</li>
+        <li><em>Ars Notoria</em> — 14th century, with the mid-14th-century <em>Ars Brevis</em>; later absorbed as book five of the <em>Lemegeton</em>.</li>
+        <li><em>Clavicula Salomonis</em> (<em>Key of Solomon</em>) — probably 14th or 15th century, Italian. Surviving MSS chiefly late 16th–18th century; notable witnesses include British Library Harley MS 5596 (15th c., Greek) and Bodleian Michael MS 276 (c. 1600). Pseudepigraphic.</li>
+        <li><em>Magical Treatise of Solomon</em> — the Greek text, published by Armand Delatte; closely related to the <em>Clavicula</em>, priority unsettled.</li>
+    </ul>
+
+    <h3>Renaissance and early modern (15th – 17th centuries)</h3>
+
+    <ul class="bib">
+        <li>Marsilio Ficino (1433–1499) — Latin translation of the <em>Corpus Hermeticum</em>, begun 1462, completed 1471. Lodovico Lazzarelli (1447–1500).</li>
+        <li>Heinrich Cornelius Agrippa von Nettesheim (1486–1535), <em>De occulta philosophia libri tres</em> — Book I 1531 (Paris, Cologne, Antwerp); complete three books Cologne 1533. English translation by "J.F." (probably John French), 1651. <span class="pd">public domain</span></li>
+        <li><em>Fourth Book of Occult Philosophy</em> — appeared c. 30 years after Agrippa's death; <strong>spurious</strong>, denounced as a forgery by Johann Weyer.</li>
+        <li>John Dee, <em>Monas Hieroglyphica</em> (1564). Dee and Kelley's Enochian diaries (1580s).</li>
+        <li>Johann Weyer, <em>Pseudomonarchia Daemonum</em>, in <em>De praestigiis daemonum</em> (16th century) — the immediate source of the <em>Ars Goetia</em>.</li>
+        <li>Paracelsus (1493–1541) — iatrochemistry and the medical application of alchemy.</li>
+        <li>Heinrich Khunrath, <em>Amphitheatrum Sapientiae Aeternae</em> (1609).</li>
+        <li>Isaac Casaubon (1559–1614) — demonstrated in the early 17th century that the Greek Hermetica "must rather date from the early Christian period."</li>
+        <li><em>Fama Fraternitatis Rosae Crucis</em> — MS circulating c. 1610; published Cassel, <strong>1614</strong>. <span class="pd">public domain</span></li>
+        <li><em>Confessio Fraternitatis</em> — Frankfurt, <strong>1615</strong>. <span class="pd">public domain</span></li>
+        <li><em>Chymische Hochzeit Christiani Rosencreutz</em> (<em>Chymical Wedding</em>) — <strong>1616</strong>; acknowledged by Johann Valentin Andreae (1586–1654) in his posthumous autobiography, and described by him as a <em>ludibrium</em>. <span class="pd">public domain</span></li>
+        <li>Michael Maier (1568–1622), <em>Atalanta fugiens</em> (Oppenheim, 1617; 2nd ed. 1618); <em>Silentium Post Clamores</em> (1617). Robert Fludd (1574–1637); Elias Ashmole (1617–1692).</li>
+        <li><em>Lemegeton</em> (<em>Lesser Key of Solomon</em>) — compiled mid-17th century from older materials; five books: <em>Ars Goetia</em>, <em>Ars Theurgia Goetia</em>, <em>Ars Paulina</em>, <em>Ars Almadel</em>, <em>Ars Notoria</em>.</li>
+    </ul>
+
+    <h3>Modern: orders, editions and interpretation (19th – 21st centuries)</h3>
+
+    <ul class="bib">
+        <li>A. E. Waite, <em>The Real History of the Rosicrucians</em> (1887) <span class="pd">public domain</span>; <em>The Brotherhood of the Rosy Cross</em> (1924).</li>
+        <li>S. L. MacGregor Mathers (trans.), <em>The Key of Solomon the King</em> (1889), from British Library manuscripts. <span class="pd">public domain</span></li>
+        <li>Hermetic Order of the Golden Dawn — founded 1887–88 by William Robert Woodman, William Wynn Westcott and S. L. MacGregor Mathers; Isis-Urania Temple, London, 1888; dissolved 1903. Cipher Manuscripts in Trithemius cipher, decoded by Westcott in 1887.</li>
+        <li>Mathers and Crowley (eds), <em>The Lesser Key of Solomon</em> / <em>Goetia</em> (1904). <span class="pd">public domain</span></li>
+        <li>G. R. S. Mead, <em>Thrice-Greatest Hermes</em> (1906) — Theosophically inflected; superseded scholarly. <span class="pd">public domain</span></li>
+        <li>Three Initiates [William Walker Atkinson, 1862–1932], <em>The Kybalion</em> (Chicago, <strong>1908</strong>) — New Thought; source of the Seven Hermetic Principles. <span class="pd">public domain</span></li>
+        <li>Karl Preisendanz, <em>Papyri Graecae Magicae. Die Griechischen Zauberpapyri</em>, 2 vols (1928, 1931) — the critical edition; vol. 1 available at the Internet Archive. Projected vol. 3 destroyed in the bombing of Leipzig, 1941. 2nd edition with Albert Henrichs, 1973–74.</li>
+        <li>Walter Scott, <em>Hermetica</em>, 4 vols (1924–36) — foundational; editorial choices now contested.</li>
+        <li>Israel Regardie, <em>The Golden Dawn: The Original Account of the Teachings, Rites and Ceremonies of the Hermetic Order</em>, 4 vols (<strong>1937–40</strong>) — the publication of the order's reserved material. <span class="pd">in copyright</span></li>
+        <li>Bernard Gorceix, <em>La Bible des Rose-Croix</em> (1970) — translations and commentary on all three manifestos.</li>
+        <li>Frances A. Yates, <em>The Rosicrucian Enlightenment</em> (1972) — the standard modern treatment; see Brian Vickers's critique, <em>Journal of Modern History</em> 51:2 (1979). <span class="pd">in copyright</span></li>
+        <li>Alan F. Segal, "Hellenistic Magic: Some Questions of Definition" (1981).</li>
+        <li>Garth Fowden, <em>The Egyptian Hermes: A Historical Approach to the Late Pagan Mind</em> (1986).</li>
+        <li>Hans Dieter Betz (ed.), <em>The Greek Magical Papyri in Translation, Including the Demotic Spells</em> (University of Chicago Press, <strong>1986</strong>; 2nd ed. 1992) — the standard English translation. <span class="pd">in copyright</span></li>
+        <li>Brian P. Copenhaver, <em>Hermetica: The Greek Corpus Hermeticum and the Latin Asclepius</em> (Cambridge, <strong>1992</strong>) — the standard modern scholarly translation. <span class="pd">in copyright</span></li>
+        <li>David Frankfurter, "Ritual Expertise in Roman Egypt and the Problem of the Category 'Magician'" (1997).</li>
+        <li>Roland Edighoffer, "Rosicrucianism I: First half of the 17th Century," in Hanegraaff, Faivre, van den Broek and Brach (eds), <em>Dictionary of Gnosis &amp; Western Esotericism</em> (Brill, <strong>2005</strong>), pp. 1009, 1014–15. <span class="pd">in copyright</span></li>
+        <li>M. David Litwa, <em>Hermetica II: The Excerpts of Stobaeus, Papyrus Fragments, and Ancient Testimonies</em> (2018). <span class="pd">in copyright</span></li>
+        <li>Nicholas E. Chapel — on the relation of <em>The Kybalion</em> to the historical Hermetica.</li>
+        <li>C. G. Jung — the reading of the alchemical corpus as a symbolic account of individuation; 20th-century interpretation. <span class="pd">in copyright</span></li>
+    </ul>
+
+    <h3>Where to begin</h3>
+
+    <p>A reader who wants to go to the primary sources rather than to summaries should start with Copenhaver for the Hermetica, Betz for the Papyri, Gorceix or a modern edition for the manifestos, and Yates for the historical context of the Rosicrucian episode. Of the public-domain texts, Mathers's <em>Key of Solomon</em> (1889) and Waite's <em>Real History</em> (1887) are freely available and remain worth reading, with the caveat that both are over a century old and neither reflects current scholarship. Preisendanz's first volume is on the Internet Archive for anyone who reads Greek.</p>
+
+    <p>The single most useful habit, in this field more than most: when a source tells you a text is ancient, check the date yourself. It is often findable in a few minutes, and it is frequently not what you were told.</p>
+
+    <hr>
+
+    <div class="warning">
+        <h3>Final Warning</h3>
+        <p>This grimoire contains material that should be used responsibly and ethically. Approach these practices with respect, humility and proper preparation. The path of Hermetic study is a long one, and it rewards patience far more than enthusiasm.</p>
+    </div>
+
+    <p class="colophon">May this grimoire serve as a guide to Hermetic wisdom and Rosicrucian practice — and to the histories from which both were made. Use it wisely and with pure intention.</p>
+
+    </main>
+    </div>
+
+    <a class="totop" id="totop" href="#top" aria-label="Back to top">↑</a>
+
+    <script>
+    (function () {
+        var toTop = document.getElementById('totop');
+        var links = Array.prototype.slice.call(
+            document.querySelectorAll('#toc a[href^="#"]')
+        );
+        var targets = links.map(function (a) {
+            return document.getElementById(a.getAttribute('href').slice(1));
+        });
+
+        function onScroll() {
+            if (window.scrollY > 400) {
+                toTop.classList.add('visible');
+            } else {
+                toTop.classList.remove('visible');
+            }
+
+            var current = -1;
+            for (var i = 0; i < targets.length; i++) {
+                if (targets[i] && targets[i].getBoundingClientRect().top <= 120) {
+                    current = i;
+                }
+            }
+            links.forEach(function (a, i) {
+                if (i === current) {
+                    a.classList.add('current');
+                } else {
+                    a.classList.remove('current');
+                }
+            });
+        }
+
+        var queued = false;
+        window.addEventListener('scroll', function () {
+            if (queued) { return; }
+            queued = true;
+            window.requestAnimationFrame(function () {
+                queued = false;
+                onScroll();
+            });
+        }, { passive: true });
+
+        onScroll();
+    }());
+    </script>
 </body>
 </html>
