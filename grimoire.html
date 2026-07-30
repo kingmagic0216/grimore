@@ -224,6 +224,68 @@
         }
         .modern p:last-child { margin-bottom: 0; }
 
+        .rite {
+            background: var(--note-bg);
+            border-left: 4px solid var(--accent);
+            padding: 1em 1.2em;
+            margin: 1.6em 0;
+            border-radius: 3px;
+        }
+
+        .rite h4 {
+            margin-top: 0;
+            color: var(--accent);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 0.82em;
+        }
+
+        .rite ol { margin: 0.6em 0 0.2em 1.1em; }
+        .rite li { margin-bottom: 0.9em; }
+
+        .say {
+            display: block;
+            margin: 0.35em 0 0.35em 0;
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .say .heb {
+            font-style: normal;
+            font-weight: bold;
+            margin-right: 0.45em;
+        }
+
+        .say .pron {
+            font-style: normal;
+            font-size: 0.85em;
+            color: var(--muted);
+            margin-left: 0.45em;
+        }
+
+        .tblwrap { overflow-x: auto; margin: 1.4em 0; }
+
+        table.tbl {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 0.92em;
+        }
+
+        table.tbl th, table.tbl td {
+            border: 1px solid var(--rule);
+            padding: 0.45em 0.6em;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        table.tbl th {
+            background: var(--note-bg);
+            color: var(--accent);
+            font-size: 0.86em;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
         .sources {
             font-size: 0.88em;
             color: var(--muted);
@@ -354,7 +416,7 @@
             h1, h2, h3, h4 { color: #000; page-break-after: avoid; break-after: avoid; }
             h2 { page-break-before: always; break-before: page; }
             h2#introduction { page-break-before: avoid; break-before: avoid; }
-            .warning, .note, .modern, blockquote, .sources {
+            .warning, .note, .modern, .rite, .tblwrap, blockquote, .sources {
                 page-break-inside: avoid;
                 break-inside: avoid;
                 border-color: #666;
@@ -388,6 +450,7 @@
             <li><a href="#prosperity">Prosperity &amp; Abundance</a></li>
             <li><a href="#seasonal">Seasonal Celebrations</a></li>
             <li><a href="#mysteries">Greater Mysteries</a></li>
+            <li><a href="#practicum">Correspondences, Timing &amp; Materials</a></li>
         </ol>
         <div class="extra">
             <a href="#sources">Sources &amp; Bibliography</a>
@@ -714,6 +777,27 @@
 
     <p>A widely used progression takes the elements of <a href="#alchemy">Chapter 4</a> as meditative subjects in turn: sitting with earth as solidity and weight, water as flow and receptivity, air as movement and mediation, fire as transformation. Each is held for a period of days or weeks before moving on. The value of the exercise is diagnostic as much as devotional — most people find one of the four significantly harder than the others, and that difficulty is generally informative.</p>
 
+    <h3>Vibration</h3>
+
+    <p>One technique deserves its own heading because everything ceremonial in this book depends on it, and because it is almost always taught badly. To <em>vibrate</em> a divine name is not to say it loudly. It is to sound it so that the body itself carries the sound — chest, throat, the bones of the face — and to hold the meaning of the name in attention while doing so.</p>
+
+    <p>The clearest published instruction is also one of the oldest available in English, from Crowley's <em>Liber O</em> of 1909, which prints it as a preliminary to assuming a godform:</p>
+
+    <div class="rite">
+        <h4>Vibrating a divine name — Liber O (1909)</h4>
+        <ol>
+            <li>Stand with arms outstretched.</li>
+            <li>Breathe in deeply through the nostrils, <em>imagining the name of the God desired entering with the breath</em>.</li>
+            <li>Let that name descend slowly from the lungs to the heart, the solar plexus, the navel, and so to the feet.</li>
+            <li>The moment it appears to touch the feet, advance the left foot, throw the body forward, and let the hands shoot out from beside the eyes, breathing the name out through the nostrils with all the force of which you are capable.</li>
+            <li>Withdraw the left foot and place the right forefinger upon the lips.</li>
+        </ol>
+    </div>
+
+    <p>The text adds two tests, and they are worth quoting because they set an unusually concrete standard for a spiritual exercise. The first: it is a sign the student is doing it correctly "when a single 'Vibration' entirely exhausts his physical strength." The second, a sign of success perceptible only to the practitioner, is when the name is heard "vehemently roared forth, as if by the concourse of ten thousand thunders," and appears to proceed "from the Universe, and not from himself."</p>
+
+    <p>That is the ceremonial maximum. For ordinary daily practice, a great deal less will do: sound the name on a single sustained out-breath, low in the chest, until the breath runs out, and feel where in the body it resonates. The rest of this book assumes you can do that much. The full form is worth attempting occasionally, if only because it makes the difference between vibrating a name and merely pronouncing one impossible to miss.</p>
+
     <h3>Recording the work</h3>
 
     <p>Keep a record. Date each session, note its length, and write a sentence or two on what happened without embellishing it. The reason is practical rather than ceremonial: memory is unreliable about interior states, and it edits in the direction of a good story. A written record is the only means you have of distinguishing genuine development from the impression of it, and it is the closest thing this tradition has to an experimental notebook.</p>
@@ -722,6 +806,8 @@
         <h4>Modern Practice</h4>
         <p>The technique above is essentially what the sources describe, and it needs little updating — but the surrounding context has changed in ways worth naming. Contemporary practitioners have access to a large body of clinical research on meditation that no historical author had, and it broadly supports the basic claims about attention, stress response and emotional regulation while saying nothing either way about the metaphysics. Many now use timers or apps for the practical business of sitting, which is a straightforward improvement over guessing. The one genuinely modern caution: intensive practice can destabilise people with certain psychiatric histories, a risk the historical literature does not discuss because it had no framework for it. If you have a history of dissociation, psychosis or severe trauma, extend the timelines and work with a professional rather than alone.</p>
     </div>
+
+    <p class="sources"><strong>Sources:</strong> The vibration exercise is Aleister Crowley, <em>Liber O vel Manus et Sagittae sub figura VI</em>, section III, first printed in <em>The Equinox</em> I, no. 2 (1909) <span class="pd">public domain</span>; the quoted phrases are his. The remaining practices in this chapter are described rather than quoted, and are common to the contemplative literature of several traditions; no single historical source is claimed for them.</p>
 
     <h2 id="rituals">Chapter 7: Ritual Foundations <span class="difficulty beginner">Beginner</span></h2>
     <p>Ritual is structured action undertaken to mark, focus and contain a piece of inner work. Its function is to establish a boundary in time and space: within these words and this hour, attention is on one thing only. That framing is what does the work, and it is why ritual structure is remarkably consistent across traditions that share no content at all.</p>
@@ -747,6 +833,69 @@
 
     <p>Two practical notes. First, tools are not required to begin; a clear space, an hour and a stated intention are sufficient, and every historical tradition contains practitioners who worked with almost nothing. Second, where the historical instructions call for animal sacrifice, blood, or materials obtained by harming anything, they should be read as history and not followed — the ethical position set out in <a href="#introduction">Chapter 1</a> takes precedence over textual fidelity, and no serious modern practice depends on those elements.</p>
 
+    <h3>Washing, and what it is for</h3>
+
+    <p>Nearly every operative text in this tradition begins with a bath. The <em>Key of Solomon</em> devotes a chapter to it: go to running water, or have warm water ready in a private room, and recite psalms while undressing — Psalm 27, <em>The Lord is my light and my salvation</em>, among them. The garments are then linen, or silk if you can afford it, and white; the book specifies that linen thread should have been spun by a young woman, which is the sort of detail that tells you the text is early modern rather than ancient.</p>
+
+    <p>What the washing is <em>for</em> is worth stating without mystification, because the tradition is not consistent about it and the modern practitioner has to decide. Read one way it is purification in a literal sense. Read another it is a boundary marker: the point at which ordinary time stops. The second reading is the one that survives translation into a life with plumbing, and it is the reason the instruction is worth keeping even if you do not believe the first. Wash, deliberately, before you begin. Put on something you wear for nothing else.</p>
+
+    <h3>Consecrating water and salt</h3>
+
+    <p>This is the most useful single operation in the grimoire literature, because the result — a bowl of salted water — is what every subsequent purification uses. The <em>Key of Solomon</em> gives it in Book II, and what follows is that procedure, with the text as Mathers printed it in 1889.</p>
+
+    <div class="rite">
+        <h4>The consecration of water and salt</h4>
+        <ol>
+            <li>Prepare the censer in the day and hour of Mercury, with the incense of the art (see <a href="#practicum">Chapter 17</a> for reckoning the hour).</li>
+            <li>Take a vessel of tin or earthenware and fill it with clear spring water. Have salt ready.</li>
+            <li>Say over the salt:
+                <span class="say">TZABAOTH, MESSIACH, EMANUEL, ELOHIM GIBOR, YOD HE VAU HE; O God, who art the Truth and the Life, deign to bless and sanctify this creature of salt, to serve unto us for help, protection and assistance in this art, experiment and operation, and may it be a succour unto us.</span>
+            </li>
+            <li>Cast the salt into the water, and say Psalms 102, 54, 6 and 51.</li>
+            <li>Make a sprinkler of vervain, fennel, periwinkle, sage, valerian, mint, marjoram, basil and rosemary, gathered in the day and hour of Mercury with the Moon increasing, and bind it with thread spun for the purpose.</li>
+        </ol>
+    </div>
+
+    <p>Two notes on the text. The divine names in step three vary considerably between manuscripts — Mathers's reading is given above; other witnesses have <em>Zeuaod, Messiah, Jehova, Nghimanuel, Nghelion, Gibor</em> and several further variants, which is characteristic of this literature and a reminder that no single wording is <em>the</em> wording. And the psalm numbers are given here in the English numbering; the manuscripts use the Vulgate numbering, which runs one lower through most of the Psalter.</p>
+
+    <p>If you keep nothing else from the operative tradition, keep this: consecrated water, made deliberately, sprinkled at the start of a working and used to close it. It costs a bowl and five minutes and it does the work that elaborate ceremony is usually reaching for.</p>
+
+    <h3>The circle</h3>
+
+    <p>The <em>Key of Solomon</em>'s circle is a construction of some complexity, and it is worth seeing in full before deciding what to do with it. Book II, chapter 9: drive the knife into the centre of the working place; take a cord of nine feet; describe the circumference. Mark four regions within it, east, west, south and north. Beyond that circle describe another, leaving an opening toward the north to enter and leave by; beyond that a third at a foot's distance, with the same opening; and beyond these, pentagrams with the names of the Creator, surrounding the whole. Then a square outside the circles, and a second square set at forty-five degrees to the first so that its angles point to the four quarters, with a censer of lighted charcoal at each of the eight corners.</p>
+
+    <p>That is a nine-foot radius, an eighteen-foot circle, and eight burning censers. Almost nobody has ever done it. What the description does establish is the <em>logic</em> of a circle in this tradition: a marked centre, a definite boundary, a controlled point of entry, the quarters distinguished, and the names of God at the perimeter. Every practical modern circle is an abbreviation of that logic, and the abbreviation is legitimate as long as you know which parts you are abbreviating.</p>
+
+    <h3>A working rite you can actually perform</h3>
+
+    <p>What follows is <strong>this book's own synthesis</strong>, not a historical text — assembled from the elements above and from the banishing of <a href="#protection">Chapter 12</a>, and offered because a grimoire that describes procedures without ever putting one together is not much use. Every component is dated in the sources line; the arrangement is modern and is mine.</p>
+
+    <div class="rite">
+        <h4>Opening</h4>
+        <ol>
+            <li><strong>Prepare.</strong> Wash. Put on the garment. Clear the space and set out what the working needs — no more than that.</li>
+            <li><strong>Set the centre.</strong> Stand where the work will be done. Three slow breaths. Say, aloud, in your own words, what this hour is for. Aloud matters; the difference between a stated intention and a held one is most of what ritual is doing.</li>
+            <li><strong>Purify.</strong> Sprinkle the consecrated water at the four quarters and over yourself, beginning in the east and moving sunwise.</li>
+            <li><strong>Mark the boundary.</strong> Walk the circle sunwise, tracing it with the hand or the knife, returning to where you began. See it as a boundary of light, closed and complete.</li>
+            <li><strong>Banish.</strong> Perform the Lesser Banishing Ritual of the Pentagram (<a href="#protection">Chapter 12</a>), or, if you do not use it, name the four quarters in turn and ask that the space be clear.</li>
+            <li><strong>Light and incense.</strong> Kindle the lamp, then the censer. The <em>Key of Solomon</em> exorcises the fire before the incense goes on it; the practical residue is that you light the fire attentively rather than absently.</li>
+        </ol>
+    </div>
+
+    <div class="rite">
+        <h4>Closing</h4>
+        <ol>
+            <li><strong>Finish the work.</strong> Stop before you are tired, not after.</li>
+            <li><strong>Give thanks</strong>, in whatever terms you honestly hold — to the source of the work, and to anything you called on.</li>
+            <li><strong>Banish again.</strong> The same rite as at the opening. The closing banishing is the one practitioners skip and the one that matters: it is what returns the space to ordinary use.</li>
+            <li><strong>Open the circle.</strong> Walk it widdershins, or simply declare it open, and mean it.</li>
+            <li><strong>Extinguish</strong> the lamp and the coals. Check them.</li>
+            <li><strong>Ground.</strong> Eat something. Write down what happened before you interpret it. See <a href="#protection">Chapter 12</a>.</li>
+        </ol>
+    </div>
+
+    <p>Twenty minutes, and it is a complete ceremonial frame. Elaboration is available in every direction — a longer purification, a full Solomonic circle, planetary timing, consecrated instruments — and none of it is a substitute for having done the short form regularly.</p>
+
     <div class="warning">
         <h3>⚠️ Ritual Safety</h3>
         <p>Begin with simple rituals and work up gradually. Do not attempt advanced or evocatory rituals without proper preparation and grounding. Practical matters deserve equal attention: open flames and candles want a stable surface and a clear space above them, incense wants ventilation, and long periods kneeling or standing in one position want a realistic assessment of your own body. The commonest injuries in ceremonial practice are burns and falls, not spiritual ones.</p>
@@ -757,7 +906,7 @@
         <p>Where the historical sources assume a private room, a full night, and access to consecrated ground, most contemporary practitioners have a bedroom and forty minutes. The adaptations are sensible and near-universal: shortened forms of the longer rituals, electric light where open flame is unsafe or prohibited, substituted materials where the traditional ones are unobtainable, protected or endangered. Many practitioners now work seasonally rather than by planetary hour, simply because a calendar is easier to keep than an ephemeris. What has not changed — and what the modern shortcuts most often lose — is the deliberate closing. Practitioners who abbreviate a ritual almost always abbreviate the end of it, and that is the one part the sources treat as non-negotiable.</p>
     </div>
 
-    <p class="sources"><strong>Sources:</strong> <em>Clavicula Salomonis</em> (14th–15th c.; Mathers trans. 1889) for preparation, instruments and planetary hours. Agrippa, <em>De occulta philosophia</em> (1533), Book III, for ceremonial framing.</p>
+    <p class="sources"><strong>Sources:</strong> <em>Clavicula Salomonis</em> (16th c., possibly 15th; see <a href="#solomonic">Chapter 9</a>), trans. S. L. MacGregor Mathers as <em>The Key of Solomon the King</em> (1889) <span class="pd">public domain</span> — Book II, ch. 5 for the bath and its psalms, ch. 6 for the garments, ch. 8 for the instruments, ch. 9 for the circle, ch. 10 for the incense and the exorcism of fire, ch. 11 for the consecration of water and salt and for the sprinkler. Manuscript variants of the divine names in the salt formula are recorded in Joseph H. Peterson's edition of Mathers's text. Agrippa, <em>De occulta philosophia</em> (1533), Book III, for ceremonial framing. The opening and closing rite given above is this book's own arrangement of those elements and is not a historical text.</p>
 
     <h2 id="papyri">Chapter 8: The Greek Magical Papyri <span class="difficulty advanced">Advanced</span></h2>
     <p>Everything else in this book is a reconstruction, an interpretation, or a tradition about a tradition. This chapter is different. The Greek Magical Papyri are the working papers of practising magicians of the Graeco-Roman world, written on papyrus in their own hands, surviving in museum cases in London, Paris, Berlin and Leiden. They are not a later account of what ancient magic might have been. They are ancient magic, in its own words, with the abbreviations and marginal notes still in place.</p>
@@ -943,6 +1092,54 @@
 
     <p><strong>The Enochian material.</strong> The system of angelic communication and language recorded by John Dee and Edward Kelley in the 1580s, subsequently reworked by the Golden Dawn into something considerably more systematic than Dee left it. Anyone working with Enochian material should know which layer they are handling — Dee's diaries and the Golden Dawn's redaction are different objects.</p>
 
+    <h3>Working the practices</h3>
+
+    <p>Descriptions are of limited use without procedure, so three of the above are given here as procedures. All three are modern &mdash; that is the finding of this chapter, not a caveat bolted onto it.</p>
+
+    <div class="rite">
+        <h4>The Middle Pillar</h4>
+        <ol>
+            <li>Stand or sit upright. Perform the banishing of <a href="#protection">Chapter 12</a>. Breathe evenly until the breath is regular.</li>
+            <li><strong>Above the head</strong>, formulate a sphere of brilliant white light, and vibrate <em>Eheieh</em> (eh-heh-YEH) &mdash; the name of Kether. Hold it until it is steady.</li>
+            <li><strong>At the throat</strong>, a sphere of soft grey. Vibrate <em>YHVH Elohim</em> (ye-ho-WAU e-loh-HEEM) &mdash; the name of Daath.</li>
+            <li><strong>At the heart</strong>, a sphere of gold. Vibrate <em>YHVH Eloah ve-Daath</em> (ye-ho-WAU e-LOH-ah ve-DAH-ath) &mdash; Tiphareth.</li>
+            <li><strong>At the groin</strong>, a sphere of violet. Vibrate <em>Shaddai El Chai</em> (shah-DYE el KHYE) &mdash; Yesod.</li>
+            <li><strong>At the feet</strong>, a sphere of olive, russet, citrine and black. Vibrate <em>Adonai ha-Aretz</em> (ah-doh-NYE ha-AH-retz) &mdash; Malkuth.</li>
+            <li>When all five stand, circulate: bring the light down the left side of the body on the out-breath, up the right on the in-breath, several times; then up the front and down the back; then draw it from the feet up the central column and let it fountain from the crown to fall around you.</li>
+            <li>Let the images go. Ground as in <a href="#protection">Chapter 12</a>.</li>
+        </ol>
+    </div>
+
+    <p>A word on provenance, since this book insists on it. The Middle Pillar in this form was published by Israel Regardie in <em>The Middle Pillar</em> (1938) and his text is in copyright; what is given above is a description of the procedure rather than his wording. The divine names are the standard Qabalistic names of the sephiroth concerned and are much older than the exercise that arranges them.</p>
+
+    <div class="rite">
+        <h4>Scrying</h4>
+        <ol>
+            <li>Work at night or in low, even light, with the speculum &mdash; black mirror, dark bowl of water, crystal &mdash; at a comfortable distance, angled so that it reflects nothing in particular. A reflection of your own face defeats the exercise.</li>
+            <li>Banish. State what you are seeking, once, aloud, and then set the question down.</li>
+            <li>Rest the eyes on the surface with the focus slightly soft. Blink normally. Do not stare: staring produces eye strain and afterimages, which are the commonest thing mistaken for a vision.</li>
+            <li>Wait. Twenty minutes is a session. Cloudiness, dimming or a sense of depth usually precede imagery, and often nothing else follows, which is normal.</li>
+            <li>When imagery arises, <strong>do not interpret it in the moment</strong>. Note it. If it is a figure, it is legitimate to ask it to name itself and to test whether it remains consistent; inconsistency under questioning is information.</li>
+            <li>Close deliberately: cover the speculum, banish, write the record, then eat something.</li>
+        </ol>
+    </div>
+
+    <p>The reason for the discipline in step five is not superstition about spirits. It is that the material is generated at least partly by you, and interpretation offered while the imagery is still arriving contaminates what arrives next. Record first, interpret later &mdash; days later, for preference.</p>
+
+    <div class="rite">
+        <h4>Assumption of a godform</h4>
+        <ol>
+            <li>Choose the form before you begin, and know its attributes, its posture and its name. Do not improvise this.</li>
+            <li>Banish. Stand in the posture of the form.</li>
+            <li>Build the image around you, not in front of you: the size, the headdress, the colours, the weight of it. Take the time this needs &mdash; it is the whole exercise.</li>
+            <li>Vibrate the name as set out in <a href="#meditation">Chapter 6</a>, feeling it fill the form rather than the body.</li>
+            <li>Speak or act from within it, briefly. Brevity is a safety measure, not modesty.</li>
+            <li><strong>Take it off.</strong> Let the image dissolve deliberately; state your own name aloud; banish; ground. This step is not optional and is the one that gets skipped.</li>
+        </ol>
+    </div>
+
+    <p>The ancient parallel noted above is real &mdash; the papyri contain rituals of exactly this shape &mdash; but the modern form is a Golden Dawn reconstruction, and the Egyptian godforms it uses are the Egypt of the nineteenth-century imagination as much as of the monuments.</p>
+
     <div class="note">
         <h4>A note on what is and is not attributed</h4>
         <p>The Golden Dawn's founding, dates, grade structure, Cipher Manuscripts and curriculum are well documented, as is Regardie's publication. What is <em>not</em> settled — and this book will not pretend otherwise — is exactly which of these techniques the order invented outright and which it inherited or adapted from earlier sources. The scholarly record establishes that the Second Order taught scrying, astral travel and alchemy; it does not cleanly establish the origin of each individual exercise. Where this chapter says "Golden Dawn," read it as "systematised and transmitted by the Golden Dawn," which is defensible, rather than "invented there," which in several cases is not yet demonstrated.</p>
@@ -958,7 +1155,7 @@
         <p>Regardie's publication changed this material permanently: what was once transmitted in a temple over years is now available in a single volume, and every modern practitioner is in some sense working from a leaked syllabus. Contemporary orders descended from the Golden Dawn still use graded curricula, while a large majority of practitioners now work solo from published sources. The honest assessment is that solitary work loses the two things the original structure supplied — pacing, and someone else's eyes on your conclusions — and that practitioners who compensate deliberately, through written records and a peer or teacher who will disagree with them, do markedly better than those who do not.</p>
     </div>
 
-    <p class="sources"><strong>Sources:</strong> Hermetic Order of the Golden Dawn, founded 1887–88 (Woodman, Westcott, Mathers); Isis-Urania Temple, London, 1888; the original order fractured in 1903. Cipher Manuscripts (Trithemius cipher; decoded by Westcott 1887). Ellic Howe, <em>The Magicians of the Golden Dawn</em> (1972), for the grade numbering — the descending 10–1 series maps the ten sephiroth, with a preliminary 0=0 outside it. Regardie, <em>The Golden Dawn</em>, 4 vols (1937–40) — in copyright; note that Regardie was not first into print, Crowley having published order material in <em>The Equinox</em> (1909–13). Dee and Kelley's Enochian diaries (1580s). PGM for the ancient parallel to godform assumption (Betz, 1986).</p>
+    <p class="sources"><strong>Sources:</strong> Hermetic Order of the Golden Dawn, founded 1887–88 (Woodman, Westcott, Mathers); Isis-Urania Temple, London, 1888; the original order fractured in 1903. Cipher Manuscripts (Trithemius cipher; decoded by Westcott 1887). Ellic Howe, <em>The Magicians of the Golden Dawn</em> (1972), for the grade numbering — the descending 10–1 series maps the ten sephiroth, with a preliminary 0=0 outside it. Regardie, <em>The Golden Dawn</em>, 4 vols (1937–40) — in copyright; note that Regardie was not first into print, Crowley having published order material in <em>The Equinox</em> (1909–13). Dee and Kelley's Enochian diaries (1580s) &mdash; BL Sloane MS 3188 runs 22 December 1581 to 23 May 1583 and opens with Barnabas Saul, not Kelley, as scryer. PGM for the ancient parallel to godform assumption (Betz, 1986). The Middle Pillar exercise as given here follows the procedure published by Israel Regardie, <em>The Middle Pillar</em> (1938) <span class="pd">in copyright</span> &mdash; described, not quoted; the sephirotic divine names are older than the exercise. The scrying and godform procedures are this book's own arrangement of practices the order's published papers describe.</p>
 
     <h2 id="protection">Chapter 12: Protection &amp; Banishing <span class="difficulty adept">Adept</span></h2>
     <p>Protection and banishing are the practical hygiene of this tradition. Their function is to clear a space before work and to close it afterwards, and in ordinary use they have less to do with repelling hostile forces than with establishing a definite beginning and end. A practitioner who banishes reliably is a practitioner who does not carry the residue of one working into the next, or into the rest of their life.</p>
@@ -984,6 +1181,44 @@
         <li><strong>Evocation of the archangels.</strong> Standing with arms outstretched in the form of a cross — the posture the Golden Dawn called the Calvary Cross, and the position of the godform "Osiris Slain" — four archangels are named at the quarters: Raphael before (east), Gabriel behind (west), Michael at the right hand (south), Auriel at the left (north). The declaration continues in the same breath: "Before me flames the pentagram, behind me shines the six-rayed star," locating the magician between the pentagram of the microcosm and the hexagram of the macrocosm.</li>
         <li><strong>The Qabalistic Cross repeated</strong>, closing the ritual as it opened.</li>
     </ol>
+
+    <p>Set out in full, and in a form you can work from, it runs as follows. The Hebrew is given unpointed, the pronunciation as the earliest printed version gives it.</p>
+
+    <div class="rite">
+        <h4>The Lesser Banishing Ritual of the Pentagram</h4>
+        <ol>
+            <li><strong>The Qabalistic Cross.</strong> Face east. Touch the forehead, then the breast, then the right shoulder, then the left, then clasp the hands at the breast, vibrating at each:
+                <span class="say"><span class="heb">&#1488;&#1514;&#1492;</span> Ateh <span class="pron">ah-TAH &mdash; "unto Thee"</span></span>
+                <span class="say"><span class="heb">&#1502;&#1500;&#1499;&#1493;&#1514;</span> Malkuth <span class="pron">mal-KOOTH &mdash; "the Kingdom"</span></span>
+                <span class="say"><span class="heb">&#1493;&#1490;&#1489;&#1493;&#1512;&#1492;</span> ve-Geburah <span class="pron">ve-ge-boo-RAH &mdash; "and the Power"</span></span>
+                <span class="say"><span class="heb">&#1493;&#1490;&#1491;&#1493;&#1500;&#1492;</span> ve-Gedulah <span class="pron">ve-ge-doo-LAH &mdash; "and the Glory"</span></span>
+                <span class="say"><span class="heb">&#1500;&#1506;&#1493;&#1500;&#1501; &#1488;&#1502;&#1503;</span> le-Olahm, Amen <span class="pron">le-oh-LAHM, ah-MEN &mdash; "to the ages, amen"</span></span>
+            </li>
+            <li><strong>The pentagram in the east.</strong> Trace a banishing earth pentagram in the air &mdash; beginning at the lower left point, up to the top, and round &mdash; with the extended fingers or the wand. Bring the point of the wand to the centre and vibrate:
+                <span class="say"><span class="heb">&#1497;&#1492;&#1493;&#1492;</span> YHVH <span class="pron">ye-ho-WAU</span></span>
+            </li>
+            <li><strong>South.</strong> Turn sunwise, carrying a line of light at shoulder height from the centre of the eastern pentagram. Trace the same figure and vibrate:
+                <span class="say"><span class="heb">&#1488;&#1491;&#1504;&#1497;</span> Adonai <span class="pron">ah-doh-NYE</span></span>
+            </li>
+            <li><strong>West.</strong> The same, and vibrate:
+                <span class="say"><span class="heb">&#1488;&#1492;&#1497;&#1492;</span> Eheieh <span class="pron">eh-heh-YEH</span></span>
+            </li>
+            <li><strong>North.</strong> The same, and vibrate:
+                <span class="say"><span class="heb">&#1488;&#1490;&#1500;&#1488;</span> AGLA <span class="pron">ah-goo-LAH</span></span>
+            </li>
+            <li><strong>Close the circle.</strong> Complete the line back to the east, so that the four pentagrams stand joined in a ring of light at shoulder height.</li>
+            <li><strong>The archangels.</strong> Return to face east. Extend the arms sideways in the form of a cross &mdash; the posture the order called the Calvary Cross, and the godform of Osiris Slain &mdash; and say:
+                <span class="say">Before me Raphael. Behind me Gabriel. On my right hand Michael. On my left hand Auriel. For before me flames the pentagram, and behind me shines the six-rayed star.</span>
+            </li>
+            <li><strong>The Qabalistic Cross repeated</strong>, exactly as at the opening.</li>
+        </ol>
+    </div>
+
+    <div class="note">
+        <h4>Two textual points, since this book is about texts</h4>
+        <p>The wording of the archangel declaration is not stable. The Golden Dawn form is the one given above, and Graham Wheeler notes that "behind me shines the six-rayed star" is regularly altered in modern versions to "in the column shines the six-rayed star" &mdash; the column being the middle pillar of the Tree, with which the magician is identifying. Wheeler dates that variant to Crowley's "Star Ruby" of 1913. The text of <em>Liber O</em> as it now circulates online in fact reads <em>"For about me flames the Pentagram, and in the Column stands the six-rayed Star,"</em> which would push the variant back to 1909 &mdash; but this book has not checked that text against the 1909 printing of <em>The Equinox</em>, and an online transcription may carry a later editor's emendation. The point is recorded here unresolved rather than smoothed over.</p>
+        <p>The pronunciations are those printed in <em>Liber O</em>: "Ye-ho-wau, Adonai, Eheieh, Agla." They represent one nineteenth-century English convention, not Hebrew as spoken anywhere. YHVH is not pronounced at all in Jewish practice, and a reader who finds the convention uncomfortable is in good company; substituting <em>Adonai</em> or a silent intention is a recognised solution and the ritual does not stop working.</p>
+    </div>
 
     <p>The ritual's stated purpose is to banish chaotic or impure forms of the elements from the working space. Its components are plainly Christian and Qabalistic: the Lord's Prayer doxology, Hebrew divine names, the four archangels, and an association of the quarters with the classical elements by way of the biblical four living creatures.</p>
 
@@ -1101,6 +1336,43 @@
 
     <p>What to actually do is simple, and the tradition's own emphasis falls on regularity rather than elaboration. Mark the day. Note where the sun rises and sets, which is the observation the whole system rests on and which almost nobody makes. Review the season that is ending and name what you are carrying into the next. Eat something appropriate to the time of year. If you keep the record recommended in <a href="#meditation">Chapter 6</a>, read back to the previous station — four entries a year, read in sequence, will tell you more about your own development than any amount of daily introspection.</p>
 
+    <p>A single structure serves all eight stations, which is the practical advantage of an eightfold wheel over eight unrelated festivals. What changes between them is the question asked, not the form.</p>
+
+    <div class="rite">
+        <h4>An observance for any of the eight</h4>
+        <ol>
+            <li><strong>Observe first.</strong> Go outside near sunrise or sunset and note where on the horizon the sun stands. Write it down. Over a year these notes become the only part of this that is not interpretation.</li>
+            <li><strong>Open</strong> as in <a href="#rituals">Chapter 7</a> &mdash; the short form is sufficient and appropriate here.</li>
+            <li><strong>Light</strong> one candle for the season closing and one for the season opening. At the winter solstice, light the second from the first.</li>
+            <li><strong>Read back</strong> to your record from the previous station. Read it aloud. This is the heart of the practice and it takes five minutes.</li>
+            <li><strong>Name</strong>, aloud, one thing the closing season completed and one thing it did not. Neither needs to be significant.</li>
+            <li><strong>Ask the question of the station</strong> (below), and write the answer without editing it.</li>
+            <li><strong>Eat</strong> something of the season, deliberately, as part of the rite rather than after it.</li>
+            <li><strong>Close</strong> as in <a href="#rituals">Chapter 7</a>. Extinguish the first candle; let the second burn down safely.</li>
+        </ol>
+    </div>
+
+    <div class="tblwrap">
+    <table class="tbl">
+        <caption class="sources" style="caption-side:bottom;text-align:left;border-top:none;margin-top:0.6em;padding-top:0.4em;">The questions are this book's own, not traditional. The dates are for the northern hemisphere; in the southern, the solar stations shift by six months and the quarter days conventionally follow them.</caption>
+        <thead>
+            <tr><th>Station</th><th>Approx. date</th><th>The question</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Winter solstice</strong> (Yule)</td><td>21 Dec</td><td>What is worth carrying through the dark?</td></tr>
+            <tr><td><strong>Imbolc</strong></td><td>1&ndash;2 Feb</td><td>What has begun that is not yet visible?</td></tr>
+            <tr><td><strong>Spring equinox</strong></td><td>20 Mar</td><td>Where am I out of balance, and in which direction?</td></tr>
+            <tr><td><strong>Beltane</strong></td><td>1 May</td><td>What am I willing to commit to in public?</td></tr>
+            <tr><td><strong>Summer solstice</strong></td><td>21 Jun</td><td>What is at its height, and what does that cost?</td></tr>
+            <tr><td><strong>Lughnasadh</strong> (Lammas)</td><td>1 Aug</td><td>What is ready to be harvested, and what am I refusing to cut?</td></tr>
+            <tr><td><strong>Autumn equinox</strong></td><td>22 Sep</td><td>What is finished? Say it plainly.</td></tr>
+            <tr><td><strong>Samhain</strong></td><td>1 Nov</td><td>Who and what am I carrying that is no longer here?</td></tr>
+        </tbody>
+    </table>
+    </div>
+
+    <p>The names <em>Ostara</em>, <em>Litha</em> and <em>Mabon</em> are deliberately absent from that table: as the dating above establishes, they were applied to the solar stations in California in the 1970s. Use them if you like them &mdash; many practitioners do, and nothing depends on it &mdash; but the solstices and equinoxes had no such names before then, and the table above says only what can be dated.</p>
+
     <p>The deeper purpose of seasonal practice is the correspondence of <a href="#introduction">Chapter 1</a> put to use: the cycles of the year, of a life, and of the alchemical work of <a href="#alchemy">Chapter 4</a> are held to be the same pattern at different scales. Winter is <em>nigredo</em>. Whether one takes that as metaphysics or as metaphor, it is a genuinely steadying thing to have available in February.</p>
 
     <p class="sources"><strong>Sources:</strong> Solstices and equinoxes — astronomical. Ronald Hutton, "Modern Pagan Festivals: A Study in the Nature of Tradition," <em>Folklore</em> 119, no. 3 (2008), 251–74 — for the staged assembly of the cycle (quarter days 1940s, solstices c. 1953, equinoxes after 1954, equal status early 1958), the "two equal-armed crosses" geometry, Nichols's 1964 adoption, and Aidan Kelly's application of Ostara, Litha and Mabon in the 1970s. Kelly's own account dates his calendar to 1974. Ethan Doyle White, <em>Wicca: History, Belief, and Community in Modern Pagan Witchcraft</em> (Sussex Academic, 2015), ch. 13. Individual festivals have antecedents of varying documentation; the unified eightfold system does not.</p>
@@ -1146,6 +1418,131 @@
     </div>
 
     <p class="sources"><strong>Sources:</strong> Ancient mystery cults — Eleusis, Samothrace, Mithraic grades. <em>Corpus Hermeticum</em> I on direct experience over belief. Maier, <em>Silentium Post Clamores</em> (1617) for the claimed genealogy. Golden Dawn grade structure (1888–1903); Regardie, <em>The Golden Dawn</em> (1937–40) for the publication of the reserved material.</p>
+
+    <h2 id="practicum">Chapter 17: Correspondences, Timing &amp; Materials <span class="difficulty adept">Adept</span></h2>
+
+    <p>Everything operative in this book eventually needs three things the earlier chapters have only gestured at: <em>when</em> to work, <em>what to work with</em>, and <em>how to make the object</em>. This chapter supplies them. It draws almost entirely on one source &mdash; the <em>Key of Solomon</em> in Mathers's 1889 translation, out of copyright and freely available &mdash; because a single coherent system used consistently is worth more than a synthesis assembled from six systems that disagree.</p>
+
+    <p>One caution before the tables. Correspondence tables have a way of acquiring an authority they have not earned. As <a href="#geometry">Chapter 3</a> notes, the elaborate tables in modern handbooks are largely Golden Dawn constructions of the late nineteenth century, and even the older material below varies between manuscripts. These are the attributions of a tradition, recorded and dated. They are not laws of nature, and a practitioner who cannot say where a correspondence comes from is not using a tradition but repeating one.</p>
+
+    <h3>The planetary hours</h3>
+
+    <p>This is the oldest and most useful piece of magical timekeeping, and it is genuinely simple once the one counter-intuitive part is understood: <strong>a planetary hour is not sixty minutes.</strong></p>
+
+    <p>The <em>Key of Solomon</em> sets out the doctrine directly. The hours of day and night together are twenty-four, and each is governed by one of the seven planets "in regular order, commencing at the highest and descending to the lowest." The order it gives is the Chaldean order, by apparent speed, slowest first &mdash; and it gives the Hebrew names with them:</p>
+
+    <div class="tblwrap">
+    <table class="tbl">
+        <thead><tr><th>Order</th><th>Hebrew</th><th>Planet</th><th>Metal</th><th>Day ruled</th></tr></thead>
+        <tbody>
+            <tr><td>1</td><td>Shabbathai</td><td>Saturn</td><td>Lead</td><td>Saturday</td></tr>
+            <tr><td>2</td><td>Tzedeq</td><td>Jupiter</td><td>Tin</td><td>Thursday</td></tr>
+            <tr><td>3</td><td>Madim</td><td>Mars</td><td>Iron</td><td>Tuesday</td></tr>
+            <tr><td>4</td><td>Shemesh</td><td>Sun</td><td>Gold</td><td>Sunday</td></tr>
+            <tr><td>5</td><td>Nogah</td><td>Venus</td><td>Copper</td><td>Friday</td></tr>
+            <tr><td>6</td><td>Kokav</td><td>Mercury</td><td>Mixed metal</td><td>Wednesday</td></tr>
+            <tr><td>7</td><td>Levanah</td><td>Moon</td><td>Silver</td><td>Monday</td></tr>
+        </tbody>
+    </table>
+    </div>
+
+    <p>The rule of the planets "begins from the dawn at the rising of the Sun on the day which takes its name from such planet," and each following hour goes to the next planet in the order, returning to the top of the list after the seventh. So on Saturday, Saturn rules the first hour, Jupiter the second, Mars the third, the Sun the fourth, Venus the fifth, Mercury the sixth, the Moon the seventh &mdash; and Saturn the eighth, and so on round.</p>
+
+    <div class="rite">
+        <h4>Reckoning the hour</h4>
+        <ol>
+            <li>Find today's <strong>sunrise and sunset</strong> for your location, and tomorrow's sunrise.</li>
+            <li><strong>Daylight length &divide; 12</strong> = the length of one hour of the day. <strong>Night length &divide; 12</strong> = one hour of the night. In London in June the day-hour runs to about eighty-two minutes and the night-hour to about thirty-eight; at the equinoxes both are sixty. This is what "unequal hours" means and it is why the reckoning has to be done afresh each time.</li>
+            <li>The <strong>first hour of the day begins at sunrise</strong> and is ruled by the planet of the weekday.</li>
+            <li>Count forward through the Chaldean order, one planet per hour, wrapping round after the Moon.</li>
+            <li>The <strong>first hour of the night begins at sunset</strong> and simply continues the count &mdash; hour 13 of the day-and-night sequence.</li>
+        </ol>
+        <p><strong>Worked example.</strong> A Wednesday on which the sun rises at 06:00 and sets at 18:00. Daylight is twelve hours, so each day-hour is sixty minutes. Wednesday is Mercury's, so 06:00&ndash;07:00 is Mercury; 07:00&ndash;08:00 the Moon; 08:00&ndash;09:00 Saturn; 09:00&ndash;10:00 Jupiter; 10:00&ndash;11:00 Mars; 11:00&ndash;12:00 the Sun; 12:00&ndash;13:00 Venus; and 13:00&ndash;14:00 Mercury again. The eighth hour of any day returns to the day's own planet, which is a useful check on your arithmetic.</p>
+    </div>
+
+    <p>A consequence worth noticing, because it is the elegant part of the system: count twenty-four hours forward from sunrise on any day and you land on the planet that rules the <em>next</em> day of the week, in exactly the order the week actually runs. The seven-day week and the Chaldean order generate each other.</p>
+
+    <h3>What each planet is held to govern</h3>
+
+    <p>The <em>Key of Solomon</em>'s own list, condensed. It is given here as the text gives it, including the parts a modern practitioner will decline to use &mdash; the book's position on those is set out below the table.</p>
+
+    <div class="tblwrap">
+    <table class="tbl">
+        <thead><tr><th>Planet</th><th>Proper to</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Saturn</strong></td><td>Summoning the souls of those who died naturally; fortune good or ill to buildings; familiar spirits in sleep; success or failure in business, possessions, goods, seeds and fruits; acquiring learning; and &mdash; the text is candid &mdash; destruction, death, hatred and discord.</td></tr>
+            <tr><td><strong>Jupiter</strong></td><td>Obtaining honours; acquiring riches; contracting friendships; preserving health; "arriving at all that thou canst desire."</td></tr>
+            <tr><td><strong>Mars</strong></td><td>War; military honour; courage; overthrowing enemies; and ruin, slaughter, cruelty and discord.</td></tr>
+            <tr><td><strong>Sun</strong></td><td>Temporal wealth, hope, gain, fortune, divination, the favour of princes; dissolving hostility and making friends.</td></tr>
+            <tr><td><strong>Venus</strong></td><td>Forming friendships; kindness and love; "joyous and pleasant undertakings"; travelling.</td></tr>
+            <tr><td><strong>Mercury</strong></td><td>Eloquence and intelligence; promptitude in business; science and divination; apparitions; answers about the future; also thefts, writings, deceit and merchandise.</td></tr>
+            <tr><td><strong>Moon</strong></td><td>Embassies, voyages, envoys, messages, navigation; reconciliation; love; acquiring merchandise by water.</td></tr>
+        </tbody>
+    </table>
+    </div>
+
+    <p>Roughly a fifth of that list is for harming people. The book prints it because a source should be reported as it stands rather than tidied, and because pretending the grimoire tradition was uniformly benign is its own kind of falsification &mdash; this is a literature that contains cursing, and <a href="#papyri">Chapter 8</a> has already shown the same range in the ancient material. The ethical position of <a href="#introduction">Chapter 1</a> is not suspended for interesting sources. Read those entries; do not work them.</p>
+
+    <h3>Planetary herbs</h3>
+
+    <p>The standard English source for this is Nicholas Culpeper's <em>The Complete Herbal</em> of 1653, which assigns nearly every plant it treats to a planet in the opening line of its "Government and virtues" section &mdash; "It is an herb of Mercury," "under the dominion of the Moon." Culpeper is worth using rather than a modern table for three reasons: he is out of copyright, he states the attribution for each plant individually so it can be checked, and he is arguing a case rather than reciting one. He was a radical who translated the College of Physicians' Latin pharmacopoeia into English against their wishes, and the astrology is load-bearing in his medicine, not decorative.</p>
+
+    <p>The table below was compiled by reading his attributions directly, plant by plant, and is a selection rather than the whole herbal.</p>
+
+    <div class="tblwrap">
+    <table class="tbl">
+        <thead><tr><th>Planet</th><th>Herbs, as Culpeper assigns them</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Saturn</strong></td><td>Comfrey, crosswort, mullein, black hellebore, amaranthus, wintergreen, polypody of the oak, mosses</td></tr>
+            <tr><td><strong>Jupiter</strong></td><td>Agrimony, houseleek (sengreen), liverwort, scurvygrass, samphire, dandelion, costmary, clove gilliflowers, roses, chicory, henbane</td></tr>
+            <tr><td><strong>Mars</strong></td><td>Anemone, masterwort, mustard, hyssop, barberry, sweet basil, carduus benedictus, gentian, madder, all-heal, crowfoot, horseradish, savine</td></tr>
+            <tr><td><strong>Sun</strong></td><td>Angelica, marigold, celandine, saffron, garden rue, peony, centaury, lovage, tormentil, mistletoe, butterbur, holly</td></tr>
+            <tr><td><strong>Venus</strong></td><td>Alkanet, mugwort, daisy, coltsfoot, ground ivy (alehoof), columbine, foxglove, herb Robert, catmint, pennyroyal, parsnip, wood sage, dwarf elder, filipendula</td></tr>
+            <tr><td><strong>Mercury</strong></td><td>Fennel, parsley, horehound, liquorice, sweet marjoram, wild marjoram, calamint, elecampane, eyebright, germander, lily of the valley, wall rue, smallage, pellitory of the wall, honeysuckle</td></tr>
+            <tr><td><strong>Moon</strong></td><td>Chickweed, cleavers, watercress, white lily, water lily, purslane, cucumber, clary, wild clary, coralwort, lady's smock, water caltrops, rattle grass</td></tr>
+        </tbody>
+    </table>
+    </div>
+
+    <p>Three cautions, and they matter more than the table does.</p>
+
+    <p><strong>Culpeper is not always consistent with himself.</strong> Plantain, for instance, is assigned to different planets in different places in the herbal, and where his own text disagrees it has been left out above rather than resolved by picking a favourite. Where other writers disagree with Culpeper &mdash; and they frequently do &mdash; there is no adjudicating authority. That is a fact about the tradition, not a defect in this table.</p>
+
+    <p><strong>These attributions are for ritual correspondence, not for medicine.</strong> That distinction is not one Culpeper drew, and it matters here. Several plants in the table are seriously poisonous: black hellebore, henbane, foxglove and savine are all capable of killing an adult, and savine was used as an abortifacient at doses close to lethal ones. Others interact dangerously with prescribed drugs. Use them as symbols, as things to have on the altar or in the incense, and treat any suggestion in a seventeenth-century herbal about taking a plant internally as a historical statement rather than a dosage.</p>
+
+    <p><strong>A herb chosen for correspondence is a mnemonic and a focus.</strong> It ties a working to a planet, a day, an hour and a metal in a coherent set, and coherence is most of what a correspondence system is for. Nothing in this book claims the plant acts on the working by an occult virtue of its own; the tradition does claim that, and the reader is at liberty to. What is not at liberty is the pharmacology.</p>
+
+    <h3>Making a talisman</h3>
+
+    <p>A talisman &mdash; the grimoires say <em>pentacle</em> or <em>medal</em> &mdash; is a physical object carrying names, figures or characters, made under specific conditions. The <em>Key of Solomon</em> is unambiguous about how much weight it puts on these: "the whole science and understanding of our Key dependeth upon the operation, knowledge, and use of pentacles."</p>
+
+    <div class="rite">
+        <h4>The procedure, from the Key of Solomon</h4>
+        <ol>
+            <li><strong>Timing.</strong> Make them "in the days and hours of Mercury, when the Moon is in an aerial or terrestrial sign" &mdash; Gemini, Libra or Aquarius; Taurus, Virgo or Capricorn &mdash; "she should also be in her increase."</li>
+            <li><strong>Place.</strong> A room set apart and newly cleaned, where you will not be interrupted, incensed beforehand. The text asks for a clear sky.</li>
+            <li><strong>Material.</strong> Either the metal proper to the planet (see the table above), or virgin paper &mdash; paper used for nothing else and handled by nobody else.</li>
+            <li><strong>Colours.</strong> "Gold, cinnabar or vermilion red, and celestial or brilliant azure blue." Where the metal itself is used, the text says the colour rule need not be observed.</li>
+            <li><strong>Completion.</strong> Finish within the hour you began in if you possibly can. If you must break off, wait for the proper day and hour to resume &mdash; do not simply carry on.</li>
+            <li><strong>Consecration.</strong> Wrap the finished pentacle in fine silk. Set a censer of charcoal with frankincense, mastic and aloes. Standing in a circle with the names of God written between its two rims, face east and hold the pentacle in the smoke, reciting Psalms 8, 19, 27, 22, 32, 51, 29, 72, 54 and 134.</li>
+            <li><strong>Keeping.</strong> Keep it in the silk. The tradition treats a consecrated object as spent if it is handled carelessly, which is a practice worth keeping whatever one thinks of the metaphysics.</li>
+        </ol>
+    </div>
+
+    <p>Two remarks. First, the psalm numbers above are the English numbering; Mathers gives eight of them and the manuscripts give ten, which is a fair illustration of how much a "standard" grimoire text can vary. Second, notice what the procedure actually consists of: a defined material, a defined window, a requirement of unbroken attention, and a rule that a lapse means starting again at the proper time. Whatever else it is doing, it is an unusually well-designed instrument for making a person concentrate.</p>
+
+    <h3>Incense</h3>
+
+    <p>The <em>Key of Solomon</em> divides perfumes simply &mdash; "those which are of sweet odour are for the good, those which are of evil savour are for the evil" &mdash; and for the good gives incense, aloes, nutmeg, gum benjamin and musk, with the manuscripts adding saffron, myrrh, costus and nard. Frankincense, mastic and aloes are named for consecrating pentacles.</p>
+
+    <p>The fire is kindled fresh, with flint and steel, in a newly glazed earthen vessel, and both fire and spices are blessed before use. For a modern practitioner the durable elements are: charcoal in a heatproof vessel on a stable surface, resins rather than perfumed sticks if you want the historical thing, and a window open. See the safety note in <a href="#rituals">Chapter 7</a>; incense in an unventilated room is a genuine respiratory hazard and the tradition, which worked in larger and draughtier rooms than yours, is no guide here.</p>
+
+    <div class="modern">
+        <h4>Modern Practice</h4>
+        <p>Most contemporary practitioners keep the planetary hours and drop nearly everything else in this chapter, and that is a defensible reading of what the system is for. The hours cost nothing but arithmetic &mdash; there are calculators everywhere, though doing it by hand once is worth the twenty minutes &mdash; and they supply the thing the tradition is really offering: a reason to begin at a particular moment rather than whenever you get round to it. Talismans are made now in paper and ink far more often than in engraved metal, which the text itself permits. And the requirement to finish within the hour, or else wait for the next proper one, turns out to be the single most useful instruction in the chapter for anyone whose difficulty is not belief but consistency.</p>
+    </div>
+
+    <p class="sources"><strong>Sources:</strong> <em>Clavicula Salomonis</em> (16th c., possibly 15th), trans. S. L. MacGregor Mathers, <em>The Key of Solomon the King</em> (London: George Redway, 1889) <span class="pd">public domain</span>. Book I, ch. 2 for the hours, the Chaldean order with its Hebrew names, the day rulerships and the operations proper to each planet; Book I, ch. 8 for the construction of pentacles, their timing, colours, consecration and psalms; Book I, ch. 18 for the planetary metals; Book II, ch. 10 for the incense and the exorcism of fire. Quotations are Mathers's wording. Manuscript variants throughout are recorded in Joseph H. Peterson's edition of that translation. Nicholas Culpeper, <em>The Complete Herbal</em> (London, 1653) <span class="pd">public domain</span> &mdash; the planetary herbs, compiled by reading his "Government and virtues" attributions plant by plant rather than from a secondary table; the selection is this book's, the assignments are his. The unequal-hour arithmetic, the worked example and the seasonal questions of <a href="#seasonal">Chapter 15</a> are this book's own; the remaining tables are the sources'.</p>
 
     <h2 id="sources">Sources &amp; Bibliography <span class="difficulty reference">Reference</span></h2>
     <p>Every source cited in this grimoire is listed below with its date, its author or translator where known, and its copyright status where that affects availability. Entries are grouped by period so that the shape of the tradition's actual chronology is visible at a glance — which is, in itself, the argument of this book.</p>
