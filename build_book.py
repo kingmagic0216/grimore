@@ -250,17 +250,13 @@ FOLIO_JS = u"""
     return true;
   }
 
-  var last = -1, stable = 0;
-  var timer = setInterval(function () {
-    var n = document.querySelectorAll('.pagedjs_page').length;
-    if (n && n === last) {
-      if (++stable >= 3) {
-        clearInterval(timer);
-        if (fill()) { window.__grimoireFolios = true; }
-      }
-    } else { stable = 0; }
-    last = n;
-  }, 400);
+  // Paged.js calls this once the whole flow is laid out. Watching the page
+  // count instead snapshots early: on a large document the count plateaus
+  // mid-render and any stability heuristic fires while text is still flowing.
+  window.PagedConfig = window.PagedConfig || {};
+  window.PagedConfig.after = function () {
+    try { fill(); } finally { window.__grimoireFolios = true; }
+  };
 })();
 """
 
@@ -297,7 +293,7 @@ def build_print(html):
     # front matter, then the print contents page, then the chapters
     newbody = front + printtoc + u''.join(c['html'] for c in chs)
 
-    paged = ensure_pagedjs() + u'\n' + FOLIO_JS
+    paged = FOLIO_JS + u'\n' + ensure_pagedjs()
     out = html
     out = out.replace(u'<main id="content">' + body + u'</main>',
                       u'<main id="content">' + newbody + u'</main>')
@@ -394,32 +390,24 @@ def build_pdf(book_html):
         cmd('Page.enable')
         cmd('Page.navigate', {'url': 'file:///' + book_html.replace('\\', '/')})
 
-        # Wait for Paged.js: poll the page count until it stops growing.
-        stable, last = 0, -1
-        for _ in range(240):
+        # Wait for the `after` hook, which the folio pass turns into
+        # window.__grimoireFolios. That is the real completion signal;
+        # page-count polling produced a 26-page PDF from a 139-page document
+        # once the plates made layout slow enough to plateau mid-render.
+        last = 0
+        for _ in range(600):
             time.sleep(0.5)
             try:
-                r = cmd('Runtime.evaluate',
-                        {'expression': 'document.querySelectorAll(".pagedjs_page").length',
-                         'returnByValue': True})
-                count = r.get('result', {}).get('value', 0) or 0
+                done = cmd('Runtime.evaluate',
+                           {'expression': '!!window.__grimoireFolios',
+                            'returnByValue': True}).get('result', {}).get('value')
+                last = cmd('Runtime.evaluate',
+                           {'expression': 'document.querySelectorAll(".pagedjs_page").length',
+                            'returnByValue': True}).get('result', {}).get('value', 0) or 0
             except Exception:
-                count = 0
-            if count > 0 and count == last:
-                stable += 1
-                if stable >= 4:
-                    # wait for the folio pass to finish too
-                    for _ in range(30):
-                        f = cmd('Runtime.evaluate',
-                                {'expression': '!!window.__grimoireFolios',
-                                 'returnByValue': True})
-                        if f.get('result', {}).get('value'):
-                            break
-                        time.sleep(0.5)
-                    break
-            else:
-                stable = 0
-            last = count
+                done = False
+            if done:
+                break
         sys.stderr.write('    paginated: %d pages\n' % last)
         if not last:
             sys.stderr.write('  ! Paged.js produced no pages; skipping PDF\n')
@@ -459,7 +447,7 @@ def xhtmlify(frag):
         frag = frag.replace('&%s;' % name, '&#%s;' % num)
         frag = frag.replace('&%s' % name, '&#%s;' % num)
     frag = re.sub(r'&(?!(?:amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);)', '&amp;', frag)
-    frag = re.sub(r'<(br|hr|img|meta|link|input|col)\b([^>/]*)>', r'<\1\2 />', frag)
+    frag = re.sub('<(br|hr|img|meta|link|input|col)\\b((?:[^>"\']|"[^"]*"|\'[^\']*\')*?)/?>', '<\\1\\2 />', frag)
     frag = re.sub(r'\s+/>', ' />', frag)
     return frag
 
