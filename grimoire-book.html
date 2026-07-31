@@ -610,8 +610,14 @@
     size: 6in 9in;
     margin: 0.8in 0.7in 0.9in 0.7in;
 
+    /* No `content:` here. Paged.js resolves counter(page)/string() itself, and it
+       counts front matter and flattens the whole <h2> (chapter number and
+       difficulty badge included) into the running head. FOLIO_JS below fills
+       these boxes instead. The single space is deliberate: with no `content:`
+       at all Paged.js omits the margin boxes entirely and there is nothing left
+       to fill. */
     @bottom-center {
-        content: counter(page);
+        content: " ";
         font-family: Georgia, "Times New Roman", serif;
         font-size: 9pt;
         color: #555;
@@ -620,7 +626,7 @@
 
 @page :left {
     @top-left {
-        content: "The Complete Hermetic & Rosicrucian Grimoire";
+        content: " ";
         font-family: Georgia, "Times New Roman", serif;
         font-size: 8pt;
         letter-spacing: 0.09em;
@@ -631,7 +637,7 @@
 
 @page :right {
     @top-right {
-        content: string(chaptitle);
+        content: " ";
         font-family: Georgia, "Times New Roman", serif;
         font-size: 8pt;
         letter-spacing: 0.09em;
@@ -651,8 +657,6 @@ body { background: #fff; color: #1a1a1a; font-size: 10.5pt; line-height: 1.42; }
 .layout { display: block; }
 .toc, .totop, .skip, .legend { display: none !important; }
 main { max-width: none; padding: 0; margin: 0; }
-
-h2 { string-set: chaptitle content(text); }
 
 h2 {
     break-before: page;
@@ -1156,6 +1160,46 @@ a { color: inherit; text-decoration: none; }
 
     <p>Everything else follows cheaply. Keep stepping the same radius around the first circle and it divides the circumference into exactly six — the hexagon, and the six-petalled rosette that fills the pattern the popular literature calls the Flower of Life. The tradition read enormous significance into the fact that the radius measures its own circle six times. It is a fact about circles. Whether it is more than that is a question this chapter cannot settle, but the fact itself is free, checkable in two minutes, and genuinely surprising the first time.</p>
 
+    <figure class="fig">
+        <svg viewBox="0 0 620 176" role="img" aria-label="Four panels showing the vesica piscis built from two circles, then the triangle, then the hexagon">
+            <text x="76" y="20" text-anchor="middle" class="lbl">1</text>
+            <circle cx="60" cy="86" r="46" class="hi"/>
+            <circle cx="60" cy="86" r="2.5" class="solid"/>
+            <text x="224" y="20" text-anchor="middle" class="lbl">2</text>
+            <circle cx="208" cy="86" r="46" class="faint"/>
+            <circle cx="208" cy="86" r="2.5" class="solid"/>
+            <circle cx="254" cy="86" r="46" class="hi"/>
+            <circle cx="254" cy="86" r="2.5" class="solid"/>
+            <text x="372" y="20" text-anchor="middle" class="lbl">3</text>
+            <circle cx="356" cy="86" r="46" class="faint"/>
+            <circle cx="356" cy="86" r="2.5" class="solid"/>
+            <circle cx="402" cy="86" r="46" class="faint"/>
+            <circle cx="402" cy="86" r="2.5" class="solid"/>
+            <circle cx="379" cy="46.2" r="3" class="solid"/>
+            <circle cx="379" cy="125.8" r="3" class="solid"/>
+            <path d="M 356,86 L 379,46.2 L 402,86 Z" class="hi"/>
+            <text x="520" y="20" text-anchor="middle" class="lbl">4</text>
+            <circle cx="504" cy="86" r="46" class="faint"/>
+            <circle cx="504" cy="86" r="2.5" class="solid"/>
+            <circle cx="550" cy="86" r="46" class="faint"/>
+            <circle cx="550" cy="86" r="2.5" class="solid"/>
+            <circle cx="527" cy="46.2" r="3" class="solid"/>
+            <circle cx="527" cy="125.8" r="3" class="solid"/>
+            <path d="M 550.0,86.0 L 527.0,125.8 L 481.0,125.8 L 458.0,86.0 L 481.0,46.2 L 527.0,46.2 Z" class="hi"/>
+            <circle cx="550.0" cy="86.0" r="2.6" class="solid"/>
+            <circle cx="527.0" cy="125.8" r="2.6" class="solid"/>
+            <circle cx="481.0" cy="125.8" r="2.6" class="solid"/>
+            <circle cx="458.0" cy="86.0" r="2.6" class="solid"/>
+            <circle cx="481.0" cy="46.2" r="2.6" class="solid"/>
+            <circle cx="527.0" cy="46.2" r="2.6" class="solid"/>
+            <text x="83" y="162" text-anchor="middle" class="tiny">one circle</text>
+            <text x="231" y="162" text-anchor="middle" class="tiny">second, centre on the rim</text>
+            <text x="379" y="162" text-anchor="middle" class="tiny">the vesica, and the triangle</text>
+            <text x="527" y="162" text-anchor="middle" class="tiny">step the radius: six</text>
+        </svg>
+        <figcaption><b>Fig. 3 — The construction, step by step.</b> Compass and straightedge only. The equilateral triangle in the third panel was not drawn — it was already implied by two circles of the same radius, which is Euclid’s first proposition and the reason the <em>Elements</em> opens with it. In the fourth, the radius stepped round its own circle meets exactly six times. Drawn for this book.</figcaption>
+    </figure>
+
     <div class="rite">
         <h4>The construction, as a contemplation</h4>
         <ol>
@@ -1391,6 +1435,37 @@ a { color: inherit; text-decoration: none; }
 
     <p>There is one laboratory operation this book can give in full, because every step of it is kitchen-safe: the <em>spagyric</em> preparation of a plant — the three principles of this chapter applied to the one kingdom where separating them harms nobody. The word is Paracelsus’s coinage, from the Greek <em>spao</em> and <em>ageiro</em>: to separate and to recombine. That pair of verbs is the whole of alchemy in miniature, and this is the honest way to experience the structure of the work with your own hands.</p>
 
+    <figure class="fig">
+        <svg viewBox="0 0 560 144" role="img" aria-label="Five-stage flow: herb, tincture, separate, calcine, reunite">
+            <rect x="18" y="40" width="96" height="58" rx="4" class="ink"/>
+            <text x="66" y="64" text-anchor="middle" class="lbl">HERB</text>
+            <text x="66" y="80" text-anchor="middle" class="tiny">dried, cut</text>
+            <path d="M 116,69 L 124,69 M 119,64 L 124,69 L 119,74" class="faint"/>
+            <rect x="126" y="40" width="96" height="58" rx="4" class="hi"/>
+            <text x="174" y="64" text-anchor="middle" class="lbl">TINCTURE</text>
+            <text x="174" y="80" text-anchor="middle" class="tiny">spirit, 28 days</text>
+            <path d="M 224,69 L 232,69 M 227,64 L 232,69 L 227,74" class="faint"/>
+            <rect x="234" y="40" width="96" height="58" rx="4" class="ink"/>
+            <text x="282" y="64" text-anchor="middle" class="lbl">SEPARATE</text>
+            <text x="282" y="80" text-anchor="middle" class="tiny">strain</text>
+            <path d="M 332,69 L 340,69 M 335,64 L 340,69 L 335,74" class="faint"/>
+            <rect x="342" y="40" width="96" height="58" rx="4" class="hi"/>
+            <text x="390" y="64" text-anchor="middle" class="lbl">CALCINE</text>
+            <text x="390" y="80" text-anchor="middle" class="tiny">ash: black → white</text>
+            <path d="M 440,69 L 448,69 M 443,64 L 448,69 L 443,74" class="faint"/>
+            <rect x="450" y="40" width="96" height="58" rx="4" class="ink"/>
+            <text x="498" y="64" text-anchor="middle" class="lbl">REUNITE</text>
+            <text x="498" y="80" text-anchor="middle" class="tiny">circulate</text>
+            <text x="174" y="118" text-anchor="middle" class="tiny">MERCURY + SULFUR</text>
+            <text x="174" y="132" text-anchor="middle" class="tiny">spirit draws soul</text>
+            <text x="390" y="118" text-anchor="middle" class="tiny">SALT</text>
+            <text x="390" y="132" text-anchor="middle" class="tiny">the fixed body</text>
+            <text x="498" y="118" text-anchor="middle" class="tiny">the three, rejoined</text>
+            <text x="18" y="22" class="tiny">gathered in its planet’s day and hour (Ch. 17)</text>
+        </svg>
+        <figcaption><b>Fig. 5 — The spagyric sequence.</b> The whole alchemical grammar in five steps, at kitchen scale: one thing divided into three, each purified in its own way, then rejoined. The two highlighted stages are where the colour changes of Fig. 2 actually become visible — the black ash whitening in the dish is <em>nigredo</em> giving way to <em>albedo</em>, happening in front of you. Drawn for this book.</figcaption>
+    </figure>
+
     <div class="rite">
         <h4>The separation of the three principles in a plant</h4>
         <ol>
@@ -1603,6 +1678,36 @@ a { color: inherit; text-decoration: none; }
 
     <p>The clearest published instruction is also one of the oldest available in English, from Crowley's <em>Liber O</em> of 1909, which prints it as a preliminary to assuming a godform:</p>
 
+    <figure class="fig">
+        <svg viewBox="0 0 580 288" role="img" aria-label="The path of a vibrated divine name through the body, and the breath timing it follows">
+            <rect x="162" y="18" width="76" height="186" rx="38" class="faint"/>
+            <circle cx="238" cy="44" r="5" class="solid"/>
+            <text x="254" y="48" class="lbl">CROWN</text>
+            <text x="254" y="62" class="tiny">the name begins</text>
+            <circle cx="238" cy="86" r="5" class="solid"/>
+            <text x="254" y="90" class="lbl">THROAT</text>
+            <text x="254" y="104" class="tiny">it takes voice</text>
+            <circle cx="238" cy="128" r="5" class="solid"/>
+            <text x="254" y="132" class="lbl">CHEST</text>
+            <text x="254" y="146" class="tiny">it is felt</text>
+            <circle cx="238" cy="178" r="5" class="solid"/>
+            <text x="254" y="182" class="lbl">THE WHOLE FRAME</text>
+            <text x="254" y="196" class="tiny">it goes out</text>
+            <path d="M 128,28 L 128,192" class="faint" stroke-dasharray="4 4"/>
+            <path d="M 124,184 L 128,196 L 132,184" class="faint"/>
+            <text x="112" y="98" text-anchor="end" class="tiny">the breath carries</text>
+            <text x="112" y="112" text-anchor="end" class="tiny">the name downward</text>
+            <rect x="60" y="228" width="460" height="18" class="faint"/>
+            <path d="M 200,228 L 200,246" class="ink"/>
+            <path d="M 272,228 L 272,246" class="ink"/>
+            <text x="130" y="266" text-anchor="middle" class="tiny">inhale</text>
+            <text x="236" y="266" text-anchor="middle" class="tiny">hold</text>
+            <text x="396" y="266" text-anchor="middle" class="tiny">vibrate — long, on one note</text>
+            <text x="60" y="220" class="lbl">THE BREATH</text>
+        </svg>
+        <figcaption><b>Fig. 2 — Vibrating a name.</b> The sound is not shouted; it is placed. <em>Liber O</em> gives the breath and the direction, and the four stations are where the instruction says the name should be felt in turn as it descends and then goes out. The timing strip is the same operation seen as duration: a short inhale, a held pause, and a long single-note utterance which is the part that matters. Diagram drawn for this book from the 1909 text; the stations are its words, the proportions of the strip are not.</figcaption>
+    </figure>
+
     <div class="rite">
         <h4>Vibrating a divine name — Liber O (1909)</h4>
         <ol>
@@ -1658,6 +1763,52 @@ a { color: inherit; text-decoration: none; }
     <p>Nearly every operative text in this tradition begins with a bath. The <em>Key of Solomon</em> devotes a chapter to it: go to running water, or have warm water ready in a private room, and recite psalms while undressing — Psalm 27, <em>The Lord is my light and my salvation</em>, among them. The garments are then linen, or silk if you can afford it, and white; the book specifies that linen thread should have been spun by a young woman, which is the sort of detail that tells you the text is early modern rather than ancient.</p>
 
     <p>What the washing is <em>for</em> is worth stating without mystification, because the tradition is not consistent about it and the modern practitioner has to decide. Read one way it is purification in a literal sense. Read another it is a boundary marker: the point at which ordinary time stops. The second reading is the one that survives translation into a life with plumbing, and it is the reason the instruction is worth keeping even if you do not believe the first. Wash, deliberately, before you begin. Put on something you wear for nothing else.</p>
+
+    <figure class="fig">
+        <svg viewBox="0 0 620 236" role="img" aria-label="The eight preparatory steps of a Solomonic working in the order the Key of Solomon gives them">
+            <rect x="20" y="36" width="130" height="44" rx="3" class="ink"/>
+            <text x="28" y="52" class="tiny">1</text>
+            <text x="85" y="64" text-anchor="middle" class="lbl">bathe</text>
+            <rect x="170" y="36" width="130" height="44" rx="3" class="ink"/>
+            <text x="178" y="52" class="tiny">2</text>
+            <text x="235" y="64" text-anchor="middle" class="lbl">vest in linen</text>
+            <rect x="320" y="36" width="130" height="44" rx="3" class="ink"/>
+            <text x="328" y="52" class="tiny">3</text>
+            <text x="385" y="64" text-anchor="middle" class="lbl">set the place</text>
+            <rect x="470" y="36" width="130" height="44" rx="3" class="ink"/>
+            <text x="478" y="52" class="tiny">4</text>
+            <text x="535" y="64" text-anchor="middle" class="lbl">draw the circle</text>
+            <rect x="470" y="146" width="130" height="44" rx="3" class="ink"/>
+            <text x="478" y="162" class="tiny">5</text>
+            <text x="535" y="174" text-anchor="middle" class="lbl">water and salt</text>
+            <rect x="320" y="146" width="130" height="44" rx="3" class="ink"/>
+            <text x="328" y="162" class="tiny">6</text>
+            <text x="385" y="174" text-anchor="middle" class="lbl">asperge</text>
+            <rect x="170" y="146" width="130" height="44" rx="3" class="ink"/>
+            <text x="178" y="162" class="tiny">7</text>
+            <text x="235" y="174" text-anchor="middle" class="lbl">cense</text>
+            <rect x="20" y="146" width="130" height="44" rx="3" class="ink"/>
+            <text x="28" y="162" class="tiny">8</text>
+            <text x="85" y="174" text-anchor="middle" class="lbl">the sword</text>
+            <path d="M 150,58 L 170,58" class="faint"/>
+            <path d="M 164,54 L 170,58 L 164,62" class="faint"/>
+            <path d="M 300,58 L 320,58" class="faint"/>
+            <path d="M 314,54 L 320,58 L 314,62" class="faint"/>
+            <path d="M 450,58 L 470,58" class="faint"/>
+            <path d="M 464,54 L 470,58 L 464,62" class="faint"/>
+            <path d="M 170,168 L 150,168" class="faint"/>
+            <path d="M 156,164 L 150,168 L 156,172" class="faint"/>
+            <path d="M 320,168 L 300,168" class="faint"/>
+            <path d="M 306,164 L 300,168 L 306,172" class="faint"/>
+            <path d="M 470,168 L 450,168" class="faint"/>
+            <path d="M 456,164 L 450,168 L 456,172" class="faint"/>
+            <path d="M 600,80 L 600,146" class="faint"/>
+            <path d="M 596,140 L 600,146 L 604,140" class="faint"/>
+            <text x="20" y="24" class="lbl">THE ORDER OF PREPARATION</text>
+            <text x="20" y="216" class="tiny">Nothing is conjured until every one of these is done. The order is the instruction.</text>
+        </svg>
+        <figcaption><b>Fig. 1 — The order of preparation.</b> The rites printed below this figure are not alternatives; they are consecutive, and the <em>Key of Solomon</em> is emphatic that the sequence is itself part of the operation. Read serpentine — left to right along the top, then right to left along the bottom. The three consecrations that follow (the water for the bath, the water and salt, the sword) occupy steps 1, 5 and 8. Drawn for this book from the order Mathers 1889 sets out.</figcaption>
+    </figure>
 
     <div class="rite">
         <h4>The exorcism of the water, for the bath</h4>
@@ -1755,14 +1906,87 @@ a { color: inherit; text-decoration: none; }
             <text x="352" y="142" class="tiny">names of God between the rims</text>
             <text x="352" y="160" class="tiny">one opening, to the north</text>
         </svg>
-        <figcaption><b>Fig. 1 &#8212; The circle of the <em>Key of Solomon</em>.</b> Book II, chapter 9, drawn to the text’s own specification. The figure is included not because anyone is likely to build it but because it makes the logic visible: a marked centre, a bounded interior, a single controlled entrance, the quarters distinguished, and divine names at the perimeter. Every practical modern circle abbreviates this. Drawn for this book.</figcaption>
+        <figcaption><b>Fig. 2 &#8212; The circle of the <em>Key of Solomon</em>.</b> Book II, chapter 9, drawn to the text’s own specification. The figure is included not because anyone is likely to build it but because it makes the logic visible: a marked centre, a bounded interior, a single controlled entrance, the quarters distinguished, and divine names at the perimeter. Every practical modern circle abbreviates this. Drawn for this book.</figcaption>
     </figure>
 
     <p>That is a nine-foot radius, an eighteen-foot circle, and eight burning censers. Almost nobody has ever done it. What the description does establish is the <em>logic</em> of a circle in this tradition: a marked centre, a definite boundary, a controlled point of entry, the quarters distinguished, and the names of God at the perimeter. Every practical modern circle is an abbreviation of that logic, and the abbreviation is legitimate as long as you know which parts you are abbreviating.</p>
 
+    <figure class="fig">
+        <svg viewBox="-34 -6 706 358" role="img" aria-label="Plan view of a working circle with altar, four quarter-points, lamp, censer, water and knife">
+            <circle cx="176" cy="168" r="118" class="hi"/>
+            <circle cx="176" cy="168" r="102" class="faint" stroke-dasharray="3 4"/>
+            <circle cx="176" cy="50" r="4" class="solid"/>
+            <text x="176" y="20" text-anchor="middle" class="lbl">EAST</text>
+            <text x="176" y="34" text-anchor="middle" class="tiny">air</text>
+            <circle cx="176" cy="286" r="4" class="solid"/>
+            <text x="176" y="326" text-anchor="middle" class="lbl">WEST</text>
+            <text x="176" y="340" text-anchor="middle" class="tiny">water</text>
+            <circle cx="58" cy="168" r="4" class="solid"/>
+            <text x="28" y="160" text-anchor="end" class="lbl">NORTH</text>
+            <text x="28" y="174" text-anchor="end" class="tiny">earth</text>
+            <circle cx="294" cy="168" r="4" class="solid"/>
+            <text x="324" y="160" text-anchor="start" class="lbl">SOUTH</text>
+            <text x="324" y="174" text-anchor="start" class="tiny">fire</text>
+            <rect x="133" y="141" width="86" height="54" rx="3" class="ink"/>
+            <text x="176" y="160" text-anchor="middle" class="lbl">ALTAR</text>
+            <text x="176" y="178" text-anchor="middle" class="tiny">facing east</text>
+            <circle cx="104" cy="114" r="5" fill="var(--bg)" class="ink"/>
+            <text x="104" y="133" text-anchor="middle" class="tiny">lamp</text>
+            <circle cx="248" cy="114" r="5" fill="var(--bg)" class="ink"/>
+            <text x="248" y="133" text-anchor="middle" class="tiny">censer</text>
+            <circle cx="104" cy="222" r="5" fill="var(--bg)" class="ink"/>
+            <text x="104" y="241" text-anchor="middle" class="tiny">water &amp; salt</text>
+            <circle cx="248" cy="222" r="5" fill="var(--bg)" class="ink"/>
+            <text x="248" y="241" text-anchor="middle" class="tiny">knife</text>
+            <path d="M 69,118 L 29,136" class="ink" stroke-dasharray="4 3"/>
+            <text x="25" y="140" text-anchor="end" class="tiny">enter</text>
+            <text x="400" y="72" class="lbl">THE MINIMUM</text>
+            <text x="400" y="96" class="tiny">&#183; a marked centre</text>
+            <text x="400" y="116" class="tiny">&#183; a bounded circle</text>
+            <text x="400" y="136" class="tiny">&#183; the four quarters kept</text>
+            <text x="400" y="156" class="tiny">&#183; one way in and out</text>
+            <text x="400" y="176" class="tiny">&#183; light, smoke, water, edge</text>
+            <text x="400" y="226" class="tiny">Everything else in Chapter 7’s</text>
+            <text x="400" y="243" class="tiny">Solomonic circle is elaboration</text>
+            <text x="400" y="260" class="tiny">of these five things.</text>
+        </svg>
+        <figcaption><b>Fig. 3 — The working laid out.</b> A plan view of the short rite below: the circle, the four quarters marked, the altar at the centre facing east, and the four implements the opening actually uses. This is the practical reduction of the nine-foot Solomonic circle in Fig. 2 — same logic, one room. Drawn for this book.</figcaption>
+    </figure>
+
     <h3>A working rite you can actually perform</h3>
 
     <p>What follows is <strong>this book's own synthesis</strong>, not a historical text — assembled from the elements above and from the banishing of <a href="#protection">Chapter 12</a>, and offered because a grimoire that describes procedures without ever putting one together is not much use. Every component is dated in the sources line; the arrangement is modern and is mine.</p>
+
+    <figure class="fig">
+        <svg viewBox="0 0 560 264" role="img" aria-label="The opening and the closing as mirror images of one another, with the work between them">
+            <text x="40" y="24" class="lbl">OPENING</text>
+            <text x="520" y="24" text-anchor="end" class="lbl">CLOSING</text>
+            <circle cx="52" cy="54" r="4" class="solid"/>
+            <text x="66" y="58" class="tiny">banish</text>
+            <circle cx="52" cy="90" r="4" class="solid"/>
+            <text x="66" y="94" class="tiny">purify and consecrate</text>
+            <circle cx="52" cy="126" r="4" class="solid"/>
+            <text x="66" y="130" class="tiny">invoke</text>
+            <circle cx="52" cy="162" r="4" class="solid"/>
+            <text x="66" y="166" class="tiny">declare the intention</text>
+            <circle cx="508" cy="162" r="4" class="solid"/>
+            <text x="494" y="166" text-anchor="end" class="tiny">give thanks</text>
+            <circle cx="508" cy="126" r="4" class="solid"/>
+            <text x="494" y="130" text-anchor="end" class="tiny">license to depart</text>
+            <circle cx="508" cy="90" r="4" class="solid"/>
+            <text x="494" y="94" text-anchor="end" class="tiny">banish</text>
+            <circle cx="508" cy="54" r="4" class="solid"/>
+            <text x="494" y="58" text-anchor="end" class="tiny">declare it closed</text>
+            <path d="M 34,40 L 34,178" class="faint" stroke-dasharray="4 4"/>
+            <path d="M 30,170 L 34,182 L 38,170" class="faint"/>
+            <path d="M 526,178 L 526,40" class="faint" stroke-dasharray="4 4"/>
+            <path d="M 522,48 L 526,36 L 530,48" class="faint"/>
+            <rect x="40" y="198" width="480" height="34" rx="3" class="hi"/>
+            <text x="280" y="220" text-anchor="middle" class="lbl">THE WORK ITSELF</text>
+            <text x="280" y="254" text-anchor="middle" class="tiny">The close is the open, run backwards. A circle you do not close is not a rite you finished.</text>
+        </svg>
+        <figcaption><b>Fig. 4 — Opening and closing.</b> The two halves are deliberately symmetrical, and reading them side by side is the fastest way to learn either. Everything raised on the left is dismissed on the right, in reverse order, so that the last thing done is the undoing of the first. The arrangement below is this book’s own, assembled from dated components; the mirror principle is common to every ceremonial source in this chapter.</figcaption>
+    </figure>
 
     <div class="rite">
         <h4>Opening</h4>
@@ -1926,6 +2150,34 @@ a { color: inherit; text-decoration: none; }
     <h3>An inquiry of the god, without a medium</h3>
 
     <p>One further operation from the wider corpus shows what a working manual looks like when it is describing a private rite rather than a public one. It is from the <em>Demotic Magical Papyrus of London and Leiden</em> — the PGM’s bilingual sister, the same Theban material of this chapter, published by Griffith and Thompson in 1904. Most of the papyrus’s divinations require a boy as medium; this one the operator performs alone, and sleeps.</p>
+
+    <figure class="fig">
+        <svg viewBox="0 0 560 214" role="img" aria-label="A draped four-footed table with bricks beneath and a censer before it, beside a sleeping figure">
+            <rect x="70" y="96" width="150" height="12" class="ink"/>
+            <path d="M 80,108 L 80,168" class="ink"/>
+            <path d="M 94,108 L 94,168" class="ink"/>
+            <path d="M 206,108 L 206,168" class="ink"/>
+            <path d="M 220,108 L 220,168" class="ink"/>
+            <path d="M 70,96 L 70,84 L 220,84 L 220,96" class="faint" stroke-dasharray="3 3"/>
+            <text x="145" y="78" text-anchor="middle" class="tiny">covered head to foot with a tunic</text>
+            <rect x="112" y="124" width="66" height="11" class="faint"/>
+            <rect x="112" y="136" width="66" height="11" class="faint"/>
+            <rect x="112" y="148" width="66" height="11" class="faint"/>
+            <rect x="112" y="160" width="66" height="11" class="faint"/>
+            <text x="145" y="186" text-anchor="middle" class="tiny">four bricks, one above another</text>
+            <circle cx="266" cy="150" r="15" class="hi"/>
+            <path d="M 260,134 q 4,-10 -1,-18 M 266,134 q 5,-11 0,-20 M 272,134 q 4,-10 -1,-18" class="faint"/>
+            <text x="266" y="182" text-anchor="middle" class="tiny">censer of clay</text>
+            <text x="266" y="196" text-anchor="middle" class="tiny">olive charcoal</text>
+            <path d="M 330,150 l 74,0" class="faint"/>
+            <ellipse cx="452" cy="150" rx="46" ry="17" class="ink"/>
+            <text x="452" y="155" text-anchor="middle" class="tiny">the operator, lying</text>
+            <text x="452" y="184" text-anchor="middle" class="tiny">table near the head</text>
+            <text x="452" y="118" text-anchor="middle" class="lbl">AND SPEAK TO NO ONE</text>
+            <text x="452" y="134" text-anchor="middle" class="tiny">until morning</text>
+        </svg>
+        <figcaption><b>Fig. 2 — The incubation setup.</b> The arrangement the papyrus specifies: a four-footed table nobody has sat on, draped, with four bricks stacked beneath it and a clay censer of olive charcoal before it, standing beside the sleeper’s head. Every element is a condition rather than an instrument — the operation is the silence and the sleep. Drawn for this book from the description in the text.</figcaption>
+    </figure>
 
     <div class="rite">
         <h4>Inquiry of the god by a table and a dream</h4>
@@ -2289,6 +2541,40 @@ a { color: inherit; text-decoration: none; }
 
     <p>A word on provenance, since this book insists on it. The Middle Pillar in this form was published by Israel Regardie in <em>The Middle Pillar</em> (1938) and his text is in copyright; what is given above is a description of the procedure rather than his wording. The divine names are the standard Qabalistic names of the sephiroth concerned and are much older than the exercise that arranges them.</p>
 
+    <figure class="fig">
+        <svg viewBox="0 0 566 264" role="img" aria-label="A scrying setup seen from the side: lamp behind and above the operator, vessel on a table at arm and a half length">
+            <path d="M 40,196 L 520,196" class="faint"/>
+            <rect x="268" y="140" width="160" height="6" class="ink"/>
+            <path d="M 282,146 L 282,196 M 414,146 L 414,196" class="ink"/>
+            <path d="M 316,140 a 32,20 0 0 0 64,0" class="hi"/>
+            <path d="M 316,140 a 32,8 0 0 0 64,0" class="faint"/>
+            <text x="348" y="112" text-anchor="middle" class="lbl">THE VESSEL</text>
+            <text x="348" y="126" text-anchor="middle" class="tiny">dark, filled to the brim</text>
+            <circle cx="150" cy="126" r="18" class="ink"/>
+            <path d="M 150,144 L 150,190" class="ink"/>
+            <path d="M 122,190 L 122,150 L 150,150" class="faint"/>
+            <text x="150" y="216" text-anchor="middle" class="tiny">seated, still, at ease</text>
+            <circle cx="86" cy="50" r="9" class="solid"/>
+            <path d="M 99,50 L 105,50" class="faint"/>
+            <path d="M 95,59 L 99,63" class="faint"/>
+            <path d="M 86,63 L 86,69" class="faint"/>
+            <path d="M 77,59 L 73,63" class="faint"/>
+            <path d="M 73,50 L 67,50" class="faint"/>
+            <path d="M 77,41 L 73,37" class="faint"/>
+            <path d="M 86,37 L 86,31" class="faint"/>
+            <path d="M 95,41 L 99,37" class="faint"/>
+            <text x="112" y="42" class="lbl">ONE LOW LIGHT</text>
+            <text x="112" y="56" class="tiny">behind you and above — never in view</text>
+            <path d="M 96,58 Q 210,74 330,120" class="faint" stroke-dasharray="3 4"/>
+            <path d="M 170,206 L 330,206" class="faint"/>
+            <path d="M 176,202 L 170,206 L 176,210 M 324,202 L 330,206 L 324,210" class="faint"/>
+            <text x="250" y="242" text-anchor="middle" class="tiny">a little beyond reading distance</text>
+            <text x="440" y="176" class="tiny">no reflection</text>
+            <text x="440" y="190" class="tiny">may fall in it</text>
+        </svg>
+        <figcaption><b>Fig. 2 — The scrying arrangement.</b> Almost every practical difficulty beginners report with this exercise is a lighting problem, and the geometry above solves it: a single dim source set behind and above the operator lights the room without appearing anywhere in the dark surface. Put the lamp in front and you spend the session looking at a lamp. The distance is set so the eyes cannot comfortably focus on the surface, which is the point. Drawn for this book.</figcaption>
+    </figure>
+
     <div class="rite">
         <h4>Scrying</h4>
         <ol>
@@ -2302,6 +2588,71 @@ a { color: inherit; text-decoration: none; }
     </div>
 
     <p>The reason for the discipline in step five is not superstition about spirits. It is that the material is generated at least partly by you, and interpretation offered while the imagery is still arriving contaminates what arrives next. Record first, interpret later &mdash; days later, for preference.</p>
+
+    <figure class="fig">
+        <svg viewBox="0 0 604 234" role="img" aria-label="Five stages in building up an assumed godform, from a bare outline to a completed figure">
+            <ellipse cx="64" cy="100" rx="42" ry="72" class="faint" stroke-dasharray="5 4"/>
+            <text x="64" y="196" text-anchor="middle" class="lbl">1 outline</text>
+            <text x="64" y="212" text-anchor="middle" class="tiny">size and place</text>
+            <ellipse cx="180" cy="100" rx="42" ry="72" class="faint"/>
+            <path d="M 157,44 L 203,44" class="faint"/>
+            <path d="M 149,58 L 211,58" class="faint"/>
+            <path d="M 144,72 L 216,72" class="faint"/>
+            <path d="M 142,86 L 218,86" class="faint"/>
+            <path d="M 141,100 L 219,100" class="faint"/>
+            <path d="M 142,114 L 218,114" class="faint"/>
+            <path d="M 144,128 L 216,128" class="faint"/>
+            <path d="M 149,142 L 211,142" class="faint"/>
+            <path d="M 157,156 L 203,156" class="faint"/>
+            <text x="180" y="196" text-anchor="middle" class="lbl">2 colour</text>
+            <text x="180" y="212" text-anchor="middle" class="tiny">fill it through</text>
+            <ellipse cx="296" cy="100" rx="42" ry="72" class="faint"/>
+            <path d="M 273,44 L 319,44" class="faint"/>
+            <path d="M 265,58 L 327,58" class="faint"/>
+            <path d="M 260,72 L 332,72" class="faint"/>
+            <path d="M 258,86 L 334,86" class="faint"/>
+            <path d="M 257,100 L 335,100" class="faint"/>
+            <path d="M 258,114 L 334,114" class="faint"/>
+            <path d="M 260,128 L 332,128" class="faint"/>
+            <path d="M 265,142 L 327,142" class="faint"/>
+            <path d="M 273,156 L 319,156" class="faint"/>
+            <circle cx="296" cy="62" r="9" class="solid"/>
+            <path d="M 276,120 L 316,120" class="hi"/>
+            <text x="296" y="196" text-anchor="middle" class="lbl">3 insignia</text>
+            <text x="296" y="212" text-anchor="middle" class="tiny">the marks proper to it</text>
+            <ellipse cx="412" cy="100" rx="42" ry="72" class="faint"/>
+            <path d="M 389,44 L 435,44" class="faint"/>
+            <path d="M 381,58 L 443,58" class="faint"/>
+            <path d="M 376,72 L 448,72" class="faint"/>
+            <path d="M 374,86 L 450,86" class="faint"/>
+            <path d="M 373,100 L 451,100" class="faint"/>
+            <path d="M 374,114 L 450,114" class="faint"/>
+            <path d="M 376,128 L 448,128" class="faint"/>
+            <path d="M 381,142 L 443,142" class="faint"/>
+            <path d="M 389,156 L 435,156" class="faint"/>
+            <circle cx="412" cy="62" r="9" class="solid"/>
+            <path d="M 392,120 L 432,120" class="hi"/>
+            <text x="412" y="104" text-anchor="middle" class="lbl">IAO</text>
+            <text x="412" y="196" text-anchor="middle" class="lbl">4 the name</text>
+            <text x="412" y="212" text-anchor="middle" class="tiny">vibrated within</text>
+            <ellipse cx="528" cy="100" rx="42" ry="72" class="hi"/>
+            <path d="M 505,44 L 551,44" class="faint"/>
+            <path d="M 497,58 L 559,58" class="faint"/>
+            <path d="M 492,72 L 564,72" class="faint"/>
+            <path d="M 490,86 L 566,86" class="faint"/>
+            <path d="M 489,100 L 567,100" class="faint"/>
+            <path d="M 490,114 L 566,114" class="faint"/>
+            <path d="M 492,128 L 564,128" class="faint"/>
+            <path d="M 497,142 L 559,142" class="faint"/>
+            <path d="M 505,156 L 551,156" class="faint"/>
+            <circle cx="528" cy="62" r="9" class="solid"/>
+            <path d="M 508,120 L 548,120" class="hi"/>
+            <text x="528" y="104" text-anchor="middle" class="lbl">IAO</text>
+            <text x="528" y="196" text-anchor="middle" class="lbl">5 hold</text>
+            <text x="528" y="212" text-anchor="middle" class="tiny">then act from it</text>
+        </svg>
+        <figcaption><b>Fig. 3 — Building a godform.</b> The figure is not imagined all at once. It is assembled in a fixed order, each stage held until it is steady, and the name is not given until there is something to give it to. The outline is deliberately abstract here: what shape you build depends entirely on which form you are assuming, and the sources describe the procedure rather than supply the picture. The letters shown are a placeholder for whatever name the operation names. Drawn for this book.</figcaption>
+    </figure>
 
     <div class="rite">
         <h4>Assumption of a godform</h4>
@@ -2488,6 +2839,33 @@ a { color: inherit; text-decoration: none; }
         <p><strong>To banish rather than invoke</strong>, the ritual is identical except that the direction in which each hexagram is traced is reversed.</p>
     </div>
 
+    <figure class="fig">
+        <svg viewBox="0 0 470 434" role="img" aria-label="The hexagram as two interlocked triangles with the order in which its six lines are traced and the centre reserved for a sigil">
+            <path d="M 230,60 L 343,255 L 117,255 Z" class="hi"/>
+            <path d="M 230,320 L 117,125 L 343,125 Z" class="ink"/>
+            <circle cx="230" cy="60" r="4" class="solid"/>
+            <text x="230" y="38" text-anchor="middle" class="lbl">1</text>
+            <circle cx="343" cy="255" r="4" class="solid"/>
+            <text x="365" y="272" text-anchor="middle" class="lbl">2</text>
+            <circle cx="117" cy="255" r="4" class="solid"/>
+            <text x="95" y="272" text-anchor="middle" class="lbl">3</text>
+            <circle cx="230" cy="320" r="4" class="solid"/>
+            <text x="230" y="350" text-anchor="middle" class="lbl">4</text>
+            <circle cx="117" cy="125" r="4" class="solid"/>
+            <text x="95" y="116" text-anchor="middle" class="lbl">5</text>
+            <circle cx="343" cy="125" r="4" class="solid"/>
+            <text x="365" y="116" text-anchor="middle" class="lbl">6</text>
+            <circle cx="230" cy="190" r="30" class="faint" stroke-dasharray="3 4"/>
+            <text x="230" y="194" text-anchor="middle" class="tiny">sigil</text>
+            <text x="235" y="26" text-anchor="middle" class="lbl">HOW IT IS TRACED</text>
+            <text x="20" y="376" class="tiny">Points 1—3 are the upward triangle, drawn first and closed before the second is begun.</text>
+            <text x="20" y="392" class="tiny">Points 4—6 are the downward triangle. The figure is not a hexagram until both are closed.</text>
+            <text x="20" y="408" class="tiny">To banish rather than invoke, every line is traced in the reverse direction.</text>
+            <text x="20" y="424" class="tiny">The centre carries the sigil of whatever the working concerns; it is drawn last.</text>
+        </svg>
+        <figcaption><b>Fig. 3 — The hexagram, traced.</b> The Greater ritual below differs from the Lesser chiefly in that it is worked for one particular force at a time, and this is the mechanical part of it: two triangles, each completed before the next is begun, and a centre left empty until the end. What goes in that centre, and where on the figure a given force is taken to begin, varies between the published sources and this book does not adjudicate between them — the diagram gives only what the ritual text itself states.</figcaption>
+    </figure>
+
     <div class="rite">
         <h4>The Greater Ritual of the Hexagram</h4>
         <ol>
@@ -2624,6 +3002,39 @@ a { color: inherit; text-decoration: none; }
     <p>Then syrups by decoction, for roots and barks that can stand the boiling; and syrups by juice, for herbs pressed fresh. Behind those stand the rest of the still-room’s repertoire — conserves, distilled waters, oils, ointments and poultices — each with its own directions in the same plain voice. Two things are worth seeing in this. First, the <em>method is the timing</em>: the herb is gathered in its planet’s day and hour, exactly as <a href="#practicum">Chapter 17</a> prescribes, and the preparation is where that timing was supposed to be captured and kept. Second, there is nothing arcane in the procedure itself — it is kitchen technique, and deliberately so; Culpeper’s whole polemical project was to put medicine into the hands of people who could not pay a physician.</p>
 
     <p>The warning below applies with full force: these are seventeenth-century medical directions reproduced as history. The <em>form</em> — infusion, decoction, expression — is simply good extraction technique and is used in every kitchen; the <em>uses</em> Culpeper assigns to the results are pre-modern medicine and are not to be followed against illness.</p>
+
+    <figure class="fig">
+        <svg viewBox="0 0 580 236" role="img" aria-label="Infusion, decoction and expression shown as three extraction methods with their heat and their proper material">
+            <rect x="30" y="34" width="140" height="150" rx="3" class="ink"/>
+            <text x="100" y="58" text-anchor="middle" class="lbl">INFUSION</text>
+            <path d="M 46,72 L 154,72" class="faint"/>
+            <text x="100" y="92" text-anchor="middle" class="tiny">steep in water</text>
+            <text x="100" y="108" text-anchor="middle" class="tiny">just off the boil</text>
+            <path d="M 46,124 L 154,124" class="faint"/>
+            <text x="100" y="146" text-anchor="middle" class="tiny">leaf, flower,</text>
+            <text x="100" y="162" text-anchor="middle" class="tiny">anything aromatic</text>
+            <rect x="220" y="34" width="140" height="150" rx="3" class="ink"/>
+            <text x="290" y="58" text-anchor="middle" class="lbl">DECOCTION</text>
+            <path d="M 236,72 L 344,72" class="faint"/>
+            <text x="290" y="92" text-anchor="middle" class="tiny">simmer in water</text>
+            <text x="290" y="108" text-anchor="middle" class="tiny">held at a low boil</text>
+            <path d="M 236,124 L 344,124" class="faint"/>
+            <text x="290" y="146" text-anchor="middle" class="tiny">root, bark, seed,</text>
+            <text x="290" y="162" text-anchor="middle" class="tiny">anything hard</text>
+            <rect x="410" y="34" width="140" height="150" rx="3" class="ink"/>
+            <text x="480" y="58" text-anchor="middle" class="lbl">EXPRESSION</text>
+            <path d="M 426,72 L 534,72" class="faint"/>
+            <text x="480" y="92" text-anchor="middle" class="tiny">crush and press</text>
+            <text x="480" y="108" text-anchor="middle" class="tiny">no heat at all</text>
+            <path d="M 426,124 L 534,124" class="faint"/>
+            <text x="480" y="146" text-anchor="middle" class="tiny">fresh green herb,</text>
+            <text x="480" y="162" text-anchor="middle" class="tiny">juice wanted whole</text>
+            <text x="30" y="22" class="lbl">THE THREE PREPARATIONS</text>
+            <text x="30" y="206" class="tiny">The choice is made by the material, not by the complaint: soft parts are infused, hard parts are boiled,</text>
+            <text x="30" y="222" class="tiny">and anything whose virtue will not survive heat is pressed cold. This much is ordinary kitchen technique.</text>
+        </svg>
+        <figcaption><b>Fig. 2 — The three preparations.</b> Culpeper’s regimen below turns on this distinction and assumes the reader already has it. The <em>method</em> is sound extraction practice and has not changed; what has changed, entirely, is the seventeenth-century account of what the resulting liquid then does, which is not medicine and is not to be followed as such. Drawn for this book from the distinctions the 1653 text uses throughout.</figcaption>
+    </figure>
 
     <div class="rite">
         <h4>The regimen</h4>
@@ -3071,6 +3482,39 @@ a { color: inherit; text-decoration: none; }
     <h3>Making a talisman</h3>
 
     <p>A talisman &mdash; the grimoires say <em>pentacle</em> or <em>medal</em> &mdash; is a physical object carrying names, figures or characters, made under specific conditions. The <em>Key of Solomon</em> is unambiguous about how much weight it puts on these: "the whole science and understanding of our Key dependeth upon the operation, knowledge, and use of pentacles."</p>
+
+    <figure class="fig">
+        <svg viewBox="0 0 560 312" role="img" aria-label="Seven-step decision chain from purpose through planet, day, hour, moon, making and consecration">
+            <rect x="20" y="12" width="180" height="30" rx="4" class="ink"/>
+            <text x="30" y="32" class="lbl">1. What is it for?</text>
+            <text x="214" y="32" class="tiny">read the planet from the table of offices</text>
+            <path d="M 110,42 L 110,50 M 105,45 L 110,50 L 115,45" class="faint"/>
+            <rect x="20" y="52" width="180" height="30" rx="4" class="ink"/>
+            <text x="30" y="72" class="lbl">2. Which planet?</text>
+            <text x="214" y="72" class="tiny">and so which metal, colour and angel</text>
+            <path d="M 110,82 L 110,90 M 105,85 L 110,90 L 115,85" class="faint"/>
+            <rect x="20" y="92" width="180" height="30" rx="4" class="ink"/>
+            <text x="30" y="112" class="lbl">3. Which day?</text>
+            <text x="214" y="112" class="tiny">the planet’s own weekday</text>
+            <path d="M 110,122 L 110,130 M 105,125 L 110,130 L 115,125" class="faint"/>
+            <rect x="20" y="132" width="180" height="30" rx="4" class="hi"/>
+            <text x="30" y="152" class="lbl">4. Which hour?</text>
+            <text x="214" y="152" class="tiny">compute the unequal hour; check the 8th returns to the day’s planet</text>
+            <path d="M 110,162 L 110,170 M 105,165 L 110,170 L 115,165" class="faint"/>
+            <rect x="20" y="172" width="180" height="30" rx="4" class="ink"/>
+            <text x="30" y="192" class="lbl">5. Is the Moon right?</text>
+            <text x="214" y="192" class="tiny">increasing, in an airy or earthy sign</text>
+            <path d="M 110,202 L 110,210 M 105,205 L 110,210 L 115,205" class="faint"/>
+            <rect x="20" y="212" width="180" height="30" rx="4" class="hi"/>
+            <text x="30" y="232" class="lbl">6. Make it in one sitting</text>
+            <text x="214" y="232" class="tiny">or wait for the next proper hour and begin again</text>
+            <path d="M 110,242 L 110,250 M 105,245 L 110,250 L 115,245" class="faint"/>
+            <rect x="20" y="252" width="180" height="30" rx="4" class="ink"/>
+            <text x="30" y="272" class="lbl">7. Consecrate and wrap</text>
+            <text x="214" y="272" class="tiny">incense, psalms, silk</text>
+        </svg>
+        <figcaption><b>Fig. 2 — Making a talisman: the order of decisions.</b> Each step is fixed by the one above it, which is why the system feels rigid and is in fact simply arithmetic plus a table. The two highlighted rows are where operations most often fail: the hour is computed wrongly, or the work is broken off and resumed out of hour, which the text says means beginning again. Drawn for this book from the procedure below.</figcaption>
+    </figure>
 
     <div class="rite">
         <h4>The procedure, from the Key of Solomon</h4>
@@ -3692,6 +4136,29 @@ a { color: inherit; text-decoration: none; }
 
     <p>These are printed exactly as the 1850 English edition has them, misspellings and all — "firy oven," the mangled names of the three men in the furnace, "Thus they shalt abate." The errors are part of the record: this is a cheap book, set by a jobbing printer, for readers who were not going to check it against a Bible.</p>
 
+    <figure class="fig">
+        <svg viewBox="0 0 580 190" role="img" aria-label="A timeline showing a charm said three times, half an hour apart, with a whole night between the second and the third">
+            <path d="M 40,86 L 540,86" class="ink"/>
+            <path d="M 532,81 L 542,86 L 532,91" class="ink"/>
+            <path d="M 80,72 L 80,100" class="ink"/>
+            <circle cx="80" cy="86" r="5" class="solid"/>
+            <text x="80" y="60" text-anchor="middle" class="lbl">FIRST</text>
+            <path d="M 250,72 L 250,100" class="ink"/>
+            <circle cx="250" cy="86" r="5" class="solid"/>
+            <text x="250" y="60" text-anchor="middle" class="lbl">SECOND</text>
+            <path d="M 470,72 L 470,100" class="ink"/>
+            <circle cx="470" cy="86" r="5" class="solid"/>
+            <text x="470" y="60" text-anchor="middle" class="lbl">THIRD</text>
+            <path d="M 80,120 L 80,128 L 250,128 L 250,120" class="faint"/>
+            <text x="165" y="146" text-anchor="middle" class="tiny">half an hour</text>
+            <path d="M 250,120 L 250,128 L 470,128 L 470,120" class="faint"/>
+            <text x="360" y="146" text-anchor="middle" class="tiny">a whole night between</text>
+            <text x="40" y="30" class="lbl">THE RULE THAT GOVERNS EVERY CHARM BELOW</text>
+            <text x="40" y="176" class="tiny">Three sayings, and the interval is not optional: it is what makes an utterance an operation in this tradition.</text>
+        </svg>
+        <figcaption><b>Fig. 1 — The threefold timing.</b> Hohman states this once, near the front of his book, and then assumes it for everything that follows — which means a reader who meets one of his charms out of context will almost certainly perform it wrongly. It is the exact counterpart of the planetary hour in the ceremonial chapters: the element that turns saying words into working. Drawn for this book from the 1850 English edition.</figcaption>
+    </figure>
+
     <div class="rite">
         <h4>How to cure a Burn</h4>
         <p>Three holy men went out walking,<br>
@@ -3950,8 +4417,13 @@ a { color: inherit; text-decoration: none; }
         chapter = t.textContent.trim();
       }
 
+      // With no `content:` declared, Paged.js leaves both the margin box and its
+      // content div hidden, so each must be forced visible before it is filled.
       var box = function (cls) {
-        var e = page.querySelector('.pagedjs_margin-' + cls + ' .pagedjs_margin-content');
+        var outer = page.querySelector('.pagedjs_margin-' + cls);
+        if (!outer) return null;
+        outer.style.display = 'flex';
+        var e = outer.querySelector('.pagedjs_margin-content');
         if (e) { e.style.display = 'block'; e.style.width = '100%'; }
         return e;
       };

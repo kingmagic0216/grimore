@@ -75,8 +75,14 @@ PRINT_CSS = u"""
     size: 6in 9in;
     margin: 0.8in 0.7in 0.9in 0.7in;
 
+    /* No `content:` here. Paged.js resolves counter(page)/string() itself, and it
+       counts front matter and flattens the whole <h2> (chapter number and
+       difficulty badge included) into the running head. FOLIO_JS below fills
+       these boxes instead. The single space is deliberate: with no `content:`
+       at all Paged.js omits the margin boxes entirely and there is nothing left
+       to fill. */
     @bottom-center {
-        content: counter(page);
+        content: " ";
         font-family: Georgia, "Times New Roman", serif;
         font-size: 9pt;
         color: #555;
@@ -85,7 +91,7 @@ PRINT_CSS = u"""
 
 @page :left {
     @top-left {
-        content: "The Complete Hermetic & Rosicrucian Grimoire";
+        content: " ";
         font-family: Georgia, "Times New Roman", serif;
         font-size: 8pt;
         letter-spacing: 0.09em;
@@ -96,7 +102,7 @@ PRINT_CSS = u"""
 
 @page :right {
     @top-right {
-        content: string(chaptitle);
+        content: " ";
         font-family: Georgia, "Times New Roman", serif;
         font-size: 8pt;
         letter-spacing: 0.09em;
@@ -116,8 +122,6 @@ body { background: #fff; color: #1a1a1a; font-size: 10.5pt; line-height: 1.42; }
 .layout { display: block; }
 .toc, .totop, .skip, .legend { display: none !important; }
 main { max-width: none; padding: 0; margin: 0; }
-
-h2 { string-set: chaptitle content(text); }
 
 h2 {
     break-before: page;
@@ -189,9 +193,12 @@ a { color: inherit; text-decoration: none; }
 """
 
 
-# Paged.js 0.4.3 creates the @page margin boxes but leaves their `content:`
-# unresolved in this build, so the folios and running heads are drawn here
-# instead. Runs once pagination has settled; also sets a flag the PDF step waits on.
+# Paged.js 0.4.3 does resolve `content:` in @page margin boxes, but it resolves
+# it wrongly for this book: counter(page) counts the front matter, and
+# string(chaptitle) flattens the whole <h2>, chapter number and difficulty badge
+# included. Those declarations are therefore gone from PRINT_CSS and the boxes
+# are filled here instead. Runs once pagination has settled; also sets a flag
+# the PDF step waits on.
 FOLIO_JS = u"""
 (function () {
   var BOOK = 'The Complete Hermetic \\u0026 Rosicrucian Grimoire';
@@ -215,8 +222,13 @@ FOLIO_JS = u"""
         chapter = t.textContent.trim();
       }
 
+      // With no `content:` declared, Paged.js leaves both the margin box and its
+      // content div hidden, so each must be forced visible before it is filled.
       var box = function (cls) {
-        var e = page.querySelector('.pagedjs_margin-' + cls + ' .pagedjs_margin-content');
+        var outer = page.querySelector('.pagedjs_margin-' + cls);
+        if (!outer) return null;
+        outer.style.display = 'flex';
+        var e = outer.querySelector('.pagedjs_margin-content');
         if (e) { e.style.display = 'block'; e.style.width = '100%'; }
         return e;
       };
