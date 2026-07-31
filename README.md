@@ -12,7 +12,7 @@ This repository contains the grimoire in HTML format, ready for web viewing and 
 
 ### 📖 Content Overview
 
-The grimoire is a complete 19-chapter system, and includes:
+The grimoire is a complete 20-chapter system, and includes:
 
 - **Complete Hermetic Philosophy** - Authentic principles from ancient sources
 - **The Hermetica and Their Transmission** - The Corpus Hermeticum, Ficino, and Casaubon's redating
@@ -26,6 +26,7 @@ The grimoire is a complete 19-chapter system, and includes:
 - **Correspondences, Timing & Materials** - the planetary hours worked through with an example, planetary metals, colours and operations from the *Key of Solomon*, talisman construction, and planetary herbs read directly out of Culpeper (1653)
 - **Sigils, Seals & Symbols** - how the planetary glyphs are built from circle, crescent and cross; the elemental signs; the magic squares and how a seal is traced on one; and the twentieth-century origin of what most people now call sigil magic
 - **Geomancy** - the complete divination system: the sixteen figures with their planets and meanings, the casting of the shield from Mothers to Judge, and why it is the one method in the book whose working can be checked by anybody
+- **Folk Magic** - the other stream entirely: Pennsylvania Dutch Braucherei from Hohman's Long Lost Friend (1820/1850), charms in the vernacular built on epic precedent, with the three-times rule that governs them
 - **Safety Protocols** - Comprehensive warnings and ethical guidelines
 - **Sources & Bibliography** - Every source dated and attributed, grouped by period
 
