@@ -12,7 +12,7 @@ This repository contains the grimoire in HTML format, ready for web viewing and 
 
 ### 📖 Content Overview
 
-The grimoire is a complete 17-chapter system, and includes:
+The grimoire is a complete 18-chapter system, and includes:
 
 - **Complete Hermetic Philosophy** - Authentic principles from ancient sources
 - **The Hermetica and Their Transmission** - The Corpus Hermeticum, Ficino, and Casaubon's redating
@@ -24,6 +24,7 @@ The grimoire is a complete 17-chapter system, and includes:
 - **Rosicrucian Mysteries** - The three manifestos, the furore, and the question of authorship
 - **Working Ritual Texts** - the Lesser Banishing Ritual of the Pentagram in full with Hebrew and pronunciation, the Middle Pillar, a scrying protocol, godform assumption, and a complete opening and closing rite
 - **Correspondences, Timing & Materials** - the planetary hours worked through with an example, planetary metals, colours and operations from the *Key of Solomon*, talisman construction, and planetary herbs read directly out of Culpeper (1653)
+- **Sigils, Seals & Symbols** - how the planetary glyphs are built from circle, crescent and cross; the elemental signs; the magic squares and how a seal is traced on one; and the twentieth-century origin of what most people now call sigil magic
 - **Safety Protocols** - Comprehensive warnings and ethical guidelines
 - **Sources & Bibliography** - Every source dated and attributed, grouped by period
 
