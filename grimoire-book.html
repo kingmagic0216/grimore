@@ -699,13 +699,14 @@ p  { orphans: 3; widows: 3; text-align: justify; hyphens: auto; }
 .frontmatter { break-after: page; }
 
 /* the contents page, rebuilt for print */
-.printtoc { break-after: page; }
+.printtoc { break-before: page; break-after: page; }
 .printtoc h2 { break-before: avoid; }
 .printtoc ol { list-style: none; padding: 0; margin: 2em 0 0; }
 .printtoc li { margin: 0.55em 0; display: flex; align-items: baseline; }
-.printtoc .n { width: 2.6em; color: #7a7268; font-size: 0.85em; letter-spacing: .1em; }
+.printtoc .n { width: 3.3em; color: #7a7268; font-size: 0.85em; letter-spacing: .1em; }
 .printtoc .t { flex: 1; }
 .printtoc .dots { flex: 1; border-bottom: 1px dotted #bbb; margin: 0 0.5em; transform: translateY(-0.25em); }
+.printtoc .pg { width: 2.2em; text-align: right; font-size: 0.85em; color: #7a7268; }
 
 figure.fig { break-inside: avoid; max-width: 100%; }
 figure.fig svg { max-width: 3.9in; }
@@ -833,7 +834,7 @@ a { color: inherit; text-decoration: none; }
         <span class="difficulty reference">Reference</span> background, not practice
     </p>
 
-    <section class="printtoc"><h2>Contents</h2><ol><li><span class="n">I</span><span class="t">Chapter IIntroduction to Hermetic Philosophy</span><span class="dots"></span></li><li><span class="n">II</span><span class="t">Chapter IIThe Hermetica and Their Transmission</span><span class="dots"></span></li><li><span class="n">III</span><span class="t">Chapter IIISacred Geometry &amp; Symbols</span><span class="dots"></span></li><li><span class="n">IV</span><span class="t">Chapter IVAlchemical Foundations</span><span class="dots"></span></li><li><span class="n">V</span><span class="t">Chapter VThe Emerald Tablet</span><span class="dots"></span></li><li><span class="n">VI</span><span class="t">Chapter VIMeditation Practices</span><span class="dots"></span></li><li><span class="n">VII</span><span class="t">Chapter VIIRitual Foundations</span><span class="dots"></span></li><li><span class="n">VIII</span><span class="t">Chapter VIIIThe Greek Magical Papyri</span><span class="dots"></span></li><li><span class="n">IX</span><span class="t">Chapter IXThe Solomonic Tradition</span><span class="dots"></span></li><li><span class="n">X</span><span class="t">Chapter XRosicrucian Mysteries</span><span class="dots"></span></li><li><span class="n">XI</span><span class="t">Chapter XIAdvanced Practices</span><span class="dots"></span></li><li><span class="n">XII</span><span class="t">Chapter XIIProtection &amp; Banishing</span><span class="dots"></span></li><li><span class="n">XIII</span><span class="t">Chapter XIIIHealing &amp; Wellness</span><span class="dots"></span></li><li><span class="n">XIV</span><span class="t">Chapter XIVProsperity &amp; Abundance</span><span class="dots"></span></li><li><span class="n">XV</span><span class="t">Chapter XVSeasonal Celebrations</span><span class="dots"></span></li><li><span class="n">XVI</span><span class="t">Chapter XVIGreater Mysteries</span><span class="dots"></span></li><li><span class="n">XVII</span><span class="t">Chapter XVIICorrespondences, Timing &amp; Materials</span><span class="dots"></span></li><li><span class="n">XVIII</span><span class="t">Chapter XVIIISigils, Seals &amp; Symbols</span><span class="dots"></span></li><li><span class="n">XIX</span><span class="t">Chapter XIXGeomancy</span><span class="dots"></span></li><li><span class="n">XX</span><span class="t">Chapter XXFolk Magic</span><span class="dots"></span></li><li><span class="n"></span><span class="t">Sources &amp; Bibliography</span><span class="dots"></span></li></ol></section>
+    <section class="printtoc"><h2>Contents</h2><ol><li data-ch="introduction"><span class="n">I</span><span class="t">Introduction to Hermetic Philosophy</span><span class="dots"></span><span class="pg"></span></li><li data-ch="principles"><span class="n">II</span><span class="t">The Hermetica and Their Transmission</span><span class="dots"></span><span class="pg"></span></li><li data-ch="geometry"><span class="n">III</span><span class="t">Sacred Geometry &amp; Symbols</span><span class="dots"></span><span class="pg"></span></li><li data-ch="alchemy"><span class="n">IV</span><span class="t">Alchemical Foundations</span><span class="dots"></span><span class="pg"></span></li><li data-ch="emerald"><span class="n">V</span><span class="t">The Emerald Tablet</span><span class="dots"></span><span class="pg"></span></li><li data-ch="meditation"><span class="n">VI</span><span class="t">Meditation Practices</span><span class="dots"></span><span class="pg"></span></li><li data-ch="rituals"><span class="n">VII</span><span class="t">Ritual Foundations</span><span class="dots"></span><span class="pg"></span></li><li data-ch="papyri"><span class="n">VIII</span><span class="t">The Greek Magical Papyri</span><span class="dots"></span><span class="pg"></span></li><li data-ch="solomonic"><span class="n">IX</span><span class="t">The Solomonic Tradition</span><span class="dots"></span><span class="pg"></span></li><li data-ch="rosicrucian"><span class="n">X</span><span class="t">Rosicrucian Mysteries</span><span class="dots"></span><span class="pg"></span></li><li data-ch="advanced"><span class="n">XI</span><span class="t">Advanced Practices</span><span class="dots"></span><span class="pg"></span></li><li data-ch="protection"><span class="n">XII</span><span class="t">Protection &amp; Banishing</span><span class="dots"></span><span class="pg"></span></li><li data-ch="healing"><span class="n">XIII</span><span class="t">Healing &amp; Wellness</span><span class="dots"></span><span class="pg"></span></li><li data-ch="prosperity"><span class="n">XIV</span><span class="t">Prosperity &amp; Abundance</span><span class="dots"></span><span class="pg"></span></li><li data-ch="seasonal"><span class="n">XV</span><span class="t">Seasonal Celebrations</span><span class="dots"></span><span class="pg"></span></li><li data-ch="mysteries"><span class="n">XVI</span><span class="t">Greater Mysteries</span><span class="dots"></span><span class="pg"></span></li><li data-ch="practicum"><span class="n">XVII</span><span class="t">Correspondences, Timing &amp; Materials</span><span class="dots"></span><span class="pg"></span></li><li data-ch="sigils"><span class="n">XVIII</span><span class="t">Sigils, Seals &amp; Symbols</span><span class="dots"></span><span class="pg"></span></li><li data-ch="geomancy"><span class="n">XIX</span><span class="t">Geomancy</span><span class="dots"></span><span class="pg"></span></li><li data-ch="folk"><span class="n">XX</span><span class="t">Folk Magic</span><span class="dots"></span><span class="pg"></span></li><li data-ch="sources"><span class="n"></span><span class="t">Sources &amp; Bibliography</span><span class="dots"></span><span class="pg"></span></li></ol></section>
 <h2 id="introduction"><span class="chapnum">Chapter I</span>Introduction to Hermetic Philosophy <span class="difficulty beginner">Beginner</span></h2>
     <p>The Hermetic tradition is one of the most enduring systems of spiritual thought in Western history. Rooted in the meeting of Greek philosophy and Egyptian religion in Roman Alexandria, and transmitted through Arabic, Byzantine and Renaissance hands before reaching us, it offers a framework for thinking about the nature of reality, the structure of consciousness, and the relation between the human being and the divine. Its central conviction is that the cosmos is intelligible, that it is ordered by correspondence rather than by accident, and that a person willing to work at it can come to know that order directly rather than on authority.</p>
 
@@ -1679,33 +1680,35 @@ a { color: inherit; text-decoration: none; }
     <p>The clearest published instruction is also one of the oldest available in English, from Crowley's <em>Liber O</em> of 1909, which prints it as a preliminary to assuming a godform:</p>
 
     <figure class="fig">
-        <svg viewBox="0 0 580 288" role="img" aria-label="The path of a vibrated divine name through the body, and the breath timing it follows">
-            <rect x="162" y="18" width="76" height="186" rx="38" class="faint"/>
-            <circle cx="238" cy="44" r="5" class="solid"/>
-            <text x="254" y="48" class="lbl">CROWN</text>
-            <text x="254" y="62" class="tiny">the name begins</text>
-            <circle cx="238" cy="86" r="5" class="solid"/>
-            <text x="254" y="90" class="lbl">THROAT</text>
-            <text x="254" y="104" class="tiny">it takes voice</text>
-            <circle cx="238" cy="128" r="5" class="solid"/>
-            <text x="254" y="132" class="lbl">CHEST</text>
-            <text x="254" y="146" class="tiny">it is felt</text>
-            <circle cx="238" cy="178" r="5" class="solid"/>
-            <text x="254" y="182" class="lbl">THE WHOLE FRAME</text>
-            <text x="254" y="196" class="tiny">it goes out</text>
-            <path d="M 128,28 L 128,192" class="faint" stroke-dasharray="4 4"/>
-            <path d="M 124,184 L 128,196 L 132,184" class="faint"/>
-            <text x="112" y="98" text-anchor="end" class="tiny">the breath carries</text>
-            <text x="112" y="112" text-anchor="end" class="tiny">the name downward</text>
-            <rect x="60" y="228" width="460" height="18" class="faint"/>
-            <path d="M 200,228 L 200,246" class="ink"/>
-            <path d="M 272,228 L 272,246" class="ink"/>
-            <text x="130" y="266" text-anchor="middle" class="tiny">inhale</text>
-            <text x="236" y="266" text-anchor="middle" class="tiny">hold</text>
-            <text x="396" y="266" text-anchor="middle" class="tiny">vibrate — long, on one note</text>
-            <text x="60" y="220" class="lbl">THE BREATH</text>
+        <svg viewBox="0 0 600 322" role="img" aria-label="The six stations Liber O names for a vibrated divine name, its descent to the feet and its return up through the body">
+        <text x="40" y="18" class="lbl">THE DESCENT, AND THE RETURN</text>
+        <rect x="200" y="30" width="76" height="204" rx="38" class="faint"/>
+        <circle cx="276" cy="50" r="4" class="solid"/>
+        <text x="290" y="54" class="tiny">the lungs</text>
+        <circle cx="276" cy="84" r="4" class="solid"/>
+        <text x="290" y="88" class="tiny">the heart</text>
+        <circle cx="276" cy="118" r="4" class="solid"/>
+        <text x="290" y="122" class="tiny">the solar plexus</text>
+        <circle cx="276" cy="152" r="4" class="solid"/>
+        <text x="290" y="156" class="tiny">the navel</text>
+        <circle cx="276" cy="186" r="4" class="solid"/>
+        <text x="290" y="190" class="tiny">the generative organs</text>
+        <circle cx="276" cy="220" r="4" class="solid"/>
+        <text x="290" y="224" class="tiny">the feet</text>
+        <path d="M 170,42 L 170,222" class="faint" stroke-dasharray="4 4"/>
+        <path d="M 166,214 L 170,226 L 174,214" class="faint"/>
+        <path d="M 188,222 L 188,42" class="hi"/>
+        <path d="M 184,50 L 188,38 L 192,50" class="hi"/>
+        <text x="156" y="96" text-anchor="end" class="tiny">(b) breathe in through the</text>
+        <text x="156" y="110" text-anchor="end" class="tiny">nostrils, the name entering</text>
+        <text x="156" y="150" text-anchor="end" class="tiny">(c) let it descend, the</text>
+        <text x="156" y="164" text-anchor="end" class="tiny">breath still held</text>
+        <text x="40" y="258" class="tiny">(d) The moment it appears to touch the feet: advance the left foot, throw the body</text>
+        <text x="40" y="272" class="tiny">forward, and let the hands shoot out from the sides of the eyes. The name rushes up</text>
+        <text x="40" y="286" class="tiny">through the body and is breathed out through the nostrils, with all the force you have.</text>
+        <text x="40" y="306" class="tiny">(e) Then withdraw the foot and set the right forefinger on the lips. Silence.</text>
         </svg>
-        <figcaption><b>Fig. 2 — Vibrating a name.</b> The sound is not shouted; it is placed. <em>Liber O</em> gives the breath and the direction, and the four stations are where the instruction says the name should be felt in turn as it descends and then goes out. The timing strip is the same operation seen as duration: a short inhale, a held pause, and a long single-note utterance which is the part that matters. Diagram drawn for this book from the 1909 text; the stations are its words, the proportions of the strip are not.</figcaption>
+        <figcaption><b>Fig. 2 — The descent, and the return.</b> <em>Liber O</em> names the stations exactly and in order — lungs, heart, solar plexus, navel, generative organs, feet — and the whole operation turns on the name reaching the feet before it is sent back up. The two attitudes it ends in are named for Horus, hands thrust out, and Harpocrates, finger to the lips. The text asks for the outbreath to be made with every bit of force the operator has, and treats being barely able to stand afterwards as the sign that a single vibration was done properly. Drawn for this book from <em>Liber O</em> (1909), section III; the wording in the panel is a compression of its steps (b) to (e), not a quotation.</figcaption>
     </figure>
 
     <div class="rite">
@@ -1765,49 +1768,58 @@ a { color: inherit; text-decoration: none; }
     <p>What the washing is <em>for</em> is worth stating without mystification, because the tradition is not consistent about it and the modern practitioner has to decide. Read one way it is purification in a literal sense. Read another it is a boundary marker: the point at which ordinary time stops. The second reading is the one that survives translation into a life with plumbing, and it is the reason the instruction is worth keeping even if you do not believe the first. Wash, deliberately, before you begin. Put on something you wear for nothing else.</p>
 
     <figure class="fig">
-        <svg viewBox="0 0 620 236" role="img" aria-label="The eight preparatory steps of a Solomonic working in the order the Key of Solomon gives them">
-            <rect x="20" y="36" width="130" height="44" rx="3" class="ink"/>
-            <text x="28" y="52" class="tiny">1</text>
-            <text x="85" y="64" text-anchor="middle" class="lbl">bathe</text>
-            <rect x="170" y="36" width="130" height="44" rx="3" class="ink"/>
-            <text x="178" y="52" class="tiny">2</text>
-            <text x="235" y="64" text-anchor="middle" class="lbl">vest in linen</text>
-            <rect x="320" y="36" width="130" height="44" rx="3" class="ink"/>
-            <text x="328" y="52" class="tiny">3</text>
-            <text x="385" y="64" text-anchor="middle" class="lbl">set the place</text>
-            <rect x="470" y="36" width="130" height="44" rx="3" class="ink"/>
-            <text x="478" y="52" class="tiny">4</text>
-            <text x="535" y="64" text-anchor="middle" class="lbl">draw the circle</text>
-            <rect x="470" y="146" width="130" height="44" rx="3" class="ink"/>
-            <text x="478" y="162" class="tiny">5</text>
-            <text x="535" y="174" text-anchor="middle" class="lbl">water and salt</text>
-            <rect x="320" y="146" width="130" height="44" rx="3" class="ink"/>
-            <text x="328" y="162" class="tiny">6</text>
-            <text x="385" y="174" text-anchor="middle" class="lbl">asperge</text>
-            <rect x="170" y="146" width="130" height="44" rx="3" class="ink"/>
-            <text x="178" y="162" class="tiny">7</text>
-            <text x="235" y="174" text-anchor="middle" class="lbl">cense</text>
-            <rect x="20" y="146" width="130" height="44" rx="3" class="ink"/>
-            <text x="28" y="162" class="tiny">8</text>
-            <text x="85" y="174" text-anchor="middle" class="lbl">the sword</text>
-            <path d="M 150,58 L 170,58" class="faint"/>
-            <path d="M 164,54 L 170,58 L 164,62" class="faint"/>
-            <path d="M 300,58 L 320,58" class="faint"/>
-            <path d="M 314,54 L 320,58 L 314,62" class="faint"/>
-            <path d="M 450,58 L 470,58" class="faint"/>
-            <path d="M 464,54 L 470,58 L 464,62" class="faint"/>
-            <path d="M 170,168 L 150,168" class="faint"/>
-            <path d="M 156,164 L 150,168 L 156,172" class="faint"/>
-            <path d="M 320,168 L 300,168" class="faint"/>
-            <path d="M 306,164 L 300,168 L 306,172" class="faint"/>
-            <path d="M 470,168 L 450,168" class="faint"/>
-            <path d="M 456,164 L 450,168 L 456,172" class="faint"/>
-            <path d="M 600,80 L 600,146" class="faint"/>
-            <path d="M 596,140 L 600,146 L 604,140" class="faint"/>
-            <text x="20" y="24" class="lbl">THE ORDER OF PREPARATION</text>
-            <text x="20" y="216" class="tiny">Nothing is conjured until every one of these is done. The order is the instruction.</text>
+        <svg viewBox="0 0 640 258" role="img" aria-label="The eight preparatory subjects of the Key of Solomon Book II in the order its chapters take them up">
+        <rect x="20" y="38" width="130" height="52" rx="3" class="ink"/>
+        <text x="28" y="52" class="tiny">1</text>
+        <text x="85" y="70" text-anchor="middle" class="lbl">the bath</text>
+        <text x="85" y="84" text-anchor="middle" class="tiny">II.5</text>
+        <rect x="170" y="38" width="130" height="52" rx="3" class="ink"/>
+        <text x="178" y="52" class="tiny">2</text>
+        <text x="235" y="70" text-anchor="middle" class="lbl">the garments</text>
+        <text x="235" y="84" text-anchor="middle" class="tiny">II.6</text>
+        <rect x="320" y="38" width="130" height="52" rx="3" class="ink"/>
+        <text x="328" y="52" class="tiny">3</text>
+        <text x="385" y="70" text-anchor="middle" class="lbl">the place</text>
+        <text x="385" y="84" text-anchor="middle" class="tiny">II.7</text>
+        <rect x="470" y="38" width="130" height="52" rx="3" class="ink"/>
+        <text x="478" y="52" class="tiny">4</text>
+        <text x="535" y="70" text-anchor="middle" class="lbl">the instruments</text>
+        <text x="535" y="84" text-anchor="middle" class="tiny">II.8</text>
+        <rect x="470" y="150" width="130" height="52" rx="3" class="ink"/>
+        <text x="478" y="164" class="tiny">8</text>
+        <text x="535" y="182" text-anchor="middle" class="lbl">the light and fire</text>
+        <text x="535" y="196" text-anchor="middle" class="tiny">II.12</text>
+        <rect x="320" y="150" width="130" height="52" rx="3" class="ink"/>
+        <text x="328" y="164" class="tiny">7</text>
+        <text x="385" y="182" text-anchor="middle" class="lbl">the water</text>
+        <text x="385" y="196" text-anchor="middle" class="tiny">II.11</text>
+        <rect x="170" y="150" width="130" height="52" rx="3" class="ink"/>
+        <text x="178" y="164" class="tiny">6</text>
+        <text x="235" y="182" text-anchor="middle" class="lbl">the suffumigations</text>
+        <text x="235" y="196" text-anchor="middle" class="tiny">II.10</text>
+        <rect x="20" y="150" width="130" height="52" rx="3" class="ink"/>
+        <text x="28" y="164" class="tiny">5</text>
+        <text x="85" y="182" text-anchor="middle" class="lbl">the circle</text>
+        <text x="85" y="196" text-anchor="middle" class="tiny">II.9</text>
+        <path d="M 150,64 L 170,64" class="faint"/>
+        <path d="M 164,60 L 170,64 L 164,68" class="faint"/>
+        <path d="M 300,64 L 320,64" class="faint"/>
+        <path d="M 314,60 L 320,64 L 314,68" class="faint"/>
+        <path d="M 450,64 L 470,64" class="faint"/>
+        <path d="M 464,60 L 470,64 L 464,68" class="faint"/>
+        <path d="M 170,176 L 150,176" class="faint"/>
+        <path d="M 156,172 L 150,176 L 156,180" class="faint"/>
+        <path d="M 320,176 L 300,176" class="faint"/>
+        <path d="M 306,172 L 300,176 L 306,180" class="faint"/>
+        <path d="M 470,176 L 450,176" class="faint"/>
+        <path d="M 456,172 L 450,176 L 456,180" class="faint"/>
+        <path d="M 600,90 L 600,150" class="faint"/>
+        <path d="M 596,144 L 600,150 L 604,144" class="faint"/>
+        <text x="20" y="24" class="lbl">THE ORDER OF MATHERS’S CHAPTERS, BOOK II</text>
+        <text x="20" y="230" class="tiny">This is the order of the book, not of an evening. The sword at 4 is consecrated by sprinkling and censing,</text>
+        <text x="20" y="244" class="tiny">which means it already assumes the suffumigations at 6 and the water at 7. The text is a manual, not a liturgy.</text>
         </svg>
-        <figcaption><b>Fig. 1 — The order of preparation.</b> The rites printed below this figure are not alternatives; they are consecutive, and the <em>Key of Solomon</em> is emphatic that the sequence is itself part of the operation. Read serpentine — left to right along the top, then right to left along the bottom. The three consecrations that follow (the water for the bath, the water and salt, the sword) occupy steps 1, 5 and 8. Drawn for this book from the order Mathers 1889 sets out.</figcaption>
+        <figcaption><b>Fig. 1 — The order of preparation.</b> Three of the rites printed below are consecrations, and this is where each sits in the <em>Key of Solomon</em>: the water for the bath at 1, the sword at 4, the water and salt at 7. Read serpentine — left to right along the top, then right to left along the bottom. What the figure shows is the order of Mathers’s chapters, which is worth knowing precisely because it is <em>not</em> a working sequence: the manual describes the instruments before it describes the water they are to be sprinkled with. Any operator has to reorder it, and the book never says how. Drawn for this book from the chapter list of the 1889 first edition.</figcaption>
     </figure>
 
     <div class="rite">
@@ -1985,7 +1997,7 @@ a { color: inherit; text-decoration: none; }
             <text x="280" y="220" text-anchor="middle" class="lbl">THE WORK ITSELF</text>
             <text x="280" y="254" text-anchor="middle" class="tiny">The close is the open, run backwards. A circle you do not close is not a rite you finished.</text>
         </svg>
-        <figcaption><b>Fig. 4 — Opening and closing.</b> The two halves are deliberately symmetrical, and reading them side by side is the fastest way to learn either. Everything raised on the left is dismissed on the right, in reverse order, so that the last thing done is the undoing of the first. The arrangement below is this book’s own, assembled from dated components; the mirror principle is common to every ceremonial source in this chapter.</figcaption>
+        <figcaption><b>Fig. 4 — Opening and closing.</b> The two halves are deliberately symmetrical, and reading them side by side is the fastest way to learn either. Everything raised on the left is dismissed on the right, in reverse order, so that the last thing done is the undoing of the first. The arrangement below is this book’s own, assembled from dated components, and so is the diagram: the sources in this chapter all close what they open, but none of them sets it out as a symmetry, and none uses these four words for the four acts.</figcaption>
     </figure>
 
     <div class="rite">
@@ -2840,37 +2852,42 @@ a { color: inherit; text-decoration: none; }
     </div>
 
     <figure class="fig">
-        <svg viewBox="0 0 470 434" role="img" aria-label="The hexagram as two interlocked triangles with the order in which its six lines are traced and the centre reserved for a sigil">
-            <path d="M 230,60 L 343,255 L 117,255 Z" class="hi"/>
-            <path d="M 230,320 L 117,125 L 343,125 Z" class="ink"/>
-            <circle cx="230" cy="60" r="4" class="solid"/>
-            <text x="230" y="38" text-anchor="middle" class="lbl">1</text>
-            <circle cx="343" cy="255" r="4" class="solid"/>
-            <text x="365" y="272" text-anchor="middle" class="lbl">2</text>
-            <circle cx="117" cy="255" r="4" class="solid"/>
-            <text x="95" y="272" text-anchor="middle" class="lbl">3</text>
-            <circle cx="230" cy="320" r="4" class="solid"/>
-            <text x="230" y="350" text-anchor="middle" class="lbl">4</text>
-            <circle cx="117" cy="125" r="4" class="solid"/>
-            <text x="95" y="116" text-anchor="middle" class="lbl">5</text>
-            <circle cx="343" cy="125" r="4" class="solid"/>
-            <text x="365" y="116" text-anchor="middle" class="lbl">6</text>
-            <circle cx="230" cy="190" r="30" class="faint" stroke-dasharray="3 4"/>
-            <text x="230" y="194" text-anchor="middle" class="tiny">sigil</text>
-            <text x="235" y="26" text-anchor="middle" class="lbl">HOW IT IS TRACED</text>
-            <text x="20" y="376" class="tiny">Points 1—3 are the upward triangle, drawn first and closed before the second is begun.</text>
-            <text x="20" y="392" class="tiny">Points 4—6 are the downward triangle. The figure is not a hexagram until both are closed.</text>
-            <text x="20" y="408" class="tiny">To banish rather than invoke, every line is traced in the reverse direction.</text>
-            <text x="20" y="424" class="tiny">The centre carries the sigil of whatever the working concerns; it is drawn last.</text>
+        <svg viewBox="0 0 560 452" role="img" aria-label="The hexagram of Earth, with the starting point attributed to the planet marked and the centre reserved for its sigil">
+        <text x="20" y="24" class="lbl">THE HEXAGRAM OF EARTH</text>
+        <path d="M 190,75 L 290,248 L 90,248 Z" class="faint"/>
+        <path d="M 190,305 L 90,132 L 290,132 Z" class="hi"/>
+        <circle cx="190" cy="75" r="3.5" class="solidfg"/>
+        <circle cx="290" cy="248" r="3.5" class="solidfg"/>
+        <circle cx="90" cy="248" r="3.5" class="solidfg"/>
+        <circle cx="190" cy="305" r="3.5" class="solidfg"/>
+        <circle cx="90" cy="132" r="3.5" class="solidfg"/>
+        <circle cx="290" cy="132" r="7" class="hi"/>
+        <path d="M 326,128 L 300,131" class="faint"/>
+        <text x="332" y="118" class="lbl">BEGIN HERE</text>
+        <text x="332" y="133" class="tiny">at the point attributed</text>
+        <text x="332" y="147" class="tiny">to the planet</text>
+        <circle cx="190" cy="190" r="27" class="faint" stroke-dasharray="3 4"/>
+        <text x="190" y="194" text-anchor="middle" class="tiny">sigil</text>
+        <path d="M 326,196 L 222,191" class="faint"/>
+        <text x="332" y="200" class="lbl">AND LAST</text>
+        <text x="332" y="215" class="tiny">the sigil of the planet,</text>
+        <text x="332" y="229" class="tiny">in the centre</text>
+        <path d="M 146,330 Q 190,346 234,330" class="ink"/>
+        <path d="M 226,326 L 236,330 L 228,336" class="ink"/>
+        <text x="190" y="362" text-anchor="middle" class="tiny">dextro-rotary</text>
+        <text x="20" y="388" class="tiny">Begin at the point attributed to the planet. Which of the two triangles that falls on depends on the planet,</text>
+        <text x="20" y="403" class="tiny">so the figure has no fixed starting corner. Liber O sends the reader to a table of attributions for it.</text>
+        <text x="20" y="418" class="tiny">Trace that triangle dextro-rotary and complete it; then trace the other from its own attributed point.</text>
+        <text x="20" y="433" class="tiny">The sigil of the planet goes in the centre, drawn last. To banish, the hexagram is reversed.</text>
         </svg>
-        <figcaption><b>Fig. 3 — The hexagram, traced.</b> The Greater ritual below differs from the Lesser chiefly in that it is worked for one particular force at a time, and this is the mechanical part of it: two triangles, each completed before the next is begun, and a centre left empty until the end. What goes in that centre, and where on the figure a given force is taken to begin, varies between the published sources and this book does not adjudicate between them — the diagram gives only what the ritual text itself states.</figcaption>
+        <figcaption><b>Fig. 3 — The hexagram of Earth.</b> The Greater ritual differs from the Lesser chiefly in being worked for one force at a time, and the mechanical consequence is this: there is no fixed order in which the figure is drawn. You begin wherever the planet’s point falls, complete that triangle, then take the other. <em>Liber O</em> gives one worked example — Jupiter, from the right-hand point of the lower triangle, which is the corner ringed above — and refers the reader elsewhere for the rest of the attributions. This book does not reproduce that table, so the figure marks the position and not the planet.</figcaption>
     </figure>
 
     <div class="rite">
         <h4>The Greater Ritual of the Hexagram</h4>
         <ol>
             <li>Used to invoke or banish a <strong>planet</strong> or a sign of the zodiac rather than an element. Only the hexagram of Earth is used.</li>
-            <li>Begin tracing from the point of the figure attributed to the planet in question, sunwise, completing the lower triangle; then trace the upper triangle from its own attributed point and complete it.</li>
+            <li>Begin tracing from the point of the figure attributed to the planet in question, sunwise, and complete that triangle; then trace the other triangle from its own attributed point and complete it. <em>Liber O</em> gives the rule in the form of a single worked example — to invoke Jupiter, begin from the right-hand point of the lower triangle — which is why some later printings state it as though the lower triangle always came first. It does not; the starting point moves with the planet.</li>
             <li>Trace the astrological sigil of the planet in the centre of the hexagram.</li>
             <li>For a sign of the zodiac, use the hexagram of the planet that rules the sign, but draw the sigil of the <em>sign</em> in the centre rather than the planet’s.</li>
         </ol>
@@ -3030,7 +3047,7 @@ a { color: inherit; text-decoration: none; }
             <text x="480" y="146" text-anchor="middle" class="tiny">fresh green herb,</text>
             <text x="480" y="162" text-anchor="middle" class="tiny">juice wanted whole</text>
             <text x="30" y="22" class="lbl">THE THREE PREPARATIONS</text>
-            <text x="30" y="206" class="tiny">The choice is made by the material, not by the complaint: soft parts are infused, hard parts are boiled,</text>
+            <text x="30" y="206" class="tiny">The rule of thumb is this book’s, not Culpeper’s: soft parts are infused, hard parts are boiled,</text>
             <text x="30" y="222" class="tiny">and anything whose virtue will not survive heat is pressed cold. This much is ordinary kitchen technique.</text>
         </svg>
         <figcaption><b>Fig. 2 — The three preparations.</b> Culpeper’s regimen below turns on this distinction and assumes the reader already has it. The <em>method</em> is sound extraction practice and has not changed; what has changed, entirely, is the seventeenth-century account of what the resulting liquid then does, which is not medicine and is not to be followed as such. Drawn for this book from the distinctions the 1653 text uses throughout.</figcaption>
@@ -4406,6 +4423,20 @@ a { color: inherit; text-decoration: none; }
       return p.querySelector('h2[id]') && !p.querySelector('.printtoc');
     });
     if (firstNumbered < 0) firstNumbered = 0;
+
+    // first pass: which folio does each chapter open on? The contents page
+    // has no way to know this until pagination has actually run.
+    var folioOf = {};
+    pages.forEach(function (page, i) {
+      var h = page.querySelector('h2[id]');
+      if (h && i >= firstNumbered) folioOf[h.id] = i - firstNumbered + 1;
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.printtoc li[data-ch]'),
+      function (li) {
+        var n = folioOf[li.getAttribute('data-ch')];
+        var cell = li.querySelector('.pg');
+        if (cell && n) cell.textContent = String(n);
+      });
 
     var chapter = '';
     pages.forEach(function (page, i) {

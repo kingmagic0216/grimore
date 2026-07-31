@@ -62,6 +62,9 @@ def chapters(body):
         chunk = body[pos:end]
         t = re.search(r'<h2[^>]*>(.*?)</h2>', chunk, re.S).group(1)
         t = re.sub(r'<span class="difficulty[^>]*>.*?</span>', '', t, flags=re.S)
+        # the chapter number lives in its own span inside the <h2>; leaving it in
+        # glues "Chapter III" onto the title in the printed contents
+        t = re.sub(r'<span class="chapnum">.*?</span>', '', t, flags=re.S)
         t = re.sub(r'<[^>]+>', '', t).strip()
         out.append({'id': cid, 'num': chapnum or '', 'title': t, 'html': chunk})
     front = body[:marks[0][0]] if marks else body
@@ -164,13 +167,14 @@ p  { orphans: 3; widows: 3; text-align: justify; hyphens: auto; }
 .frontmatter { break-after: page; }
 
 /* the contents page, rebuilt for print */
-.printtoc { break-after: page; }
+.printtoc { break-before: page; break-after: page; }
 .printtoc h2 { break-before: avoid; }
 .printtoc ol { list-style: none; padding: 0; margin: 2em 0 0; }
 .printtoc li { margin: 0.55em 0; display: flex; align-items: baseline; }
-.printtoc .n { width: 2.6em; color: #7a7268; font-size: 0.85em; letter-spacing: .1em; }
+.printtoc .n { width: 3.3em; color: #7a7268; font-size: 0.85em; letter-spacing: .1em; }
 .printtoc .t { flex: 1; }
 .printtoc .dots { flex: 1; border-bottom: 1px dotted #bbb; margin: 0 0.5em; transform: translateY(-0.25em); }
+.printtoc .pg { width: 2.2em; text-align: right; font-size: 0.85em; color: #7a7268; }
 
 figure.fig { break-inside: avoid; max-width: 100%; }
 figure.fig svg { max-width: 3.9in; }
@@ -211,6 +215,20 @@ FOLIO_JS = u"""
       return p.querySelector('h2[id]') && !p.querySelector('.printtoc');
     });
     if (firstNumbered < 0) firstNumbered = 0;
+
+    // first pass: which folio does each chapter open on? The contents page
+    // has no way to know this until pagination has actually run.
+    var folioOf = {};
+    pages.forEach(function (page, i) {
+      var h = page.querySelector('h2[id]');
+      if (h && i >= firstNumbered) folioOf[h.id] = i - firstNumbered + 1;
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.printtoc li[data-ch]'),
+      function (li) {
+        var n = folioOf[li.getAttribute('data-ch')];
+        var cell = li.querySelector('.pg');
+        if (cell && n) cell.textContent = String(n);
+      });
 
     var chapter = '';
     pages.forEach(function (page, i) {
@@ -294,11 +312,14 @@ def build_print(html):
     n = 0
     for c in chs:
         if c['id'] == 'sources':
-            toc_rows.append(u'<li><span class="n"></span><span class="t">%s</span><span class="dots"></span></li>' % c['title'])
+            toc_rows.append(u'<li data-ch="%s"><span class="n"></span><span class="t">%s</span>'
+                            u'<span class="dots"></span><span class="pg"></span></li>'
+                            % (c['id'], c['title']))
         else:
             n += 1
-            toc_rows.append(u'<li><span class="n">%s</span><span class="t">%s</span><span class="dots"></span></li>'
-                            % (c['num'].replace('Chapter ', ''), c['title']))
+            toc_rows.append(u'<li data-ch="%s"><span class="n">%s</span><span class="t">%s</span>'
+                            u'<span class="dots"></span><span class="pg"></span></li>'
+                            % (c['id'], c['num'].replace('Chapter ', ''), c['title']))
     printtoc = (u'<section class="printtoc"><h2>Contents</h2><ol>%s</ol></section>\n'
                 % u''.join(toc_rows))
 
