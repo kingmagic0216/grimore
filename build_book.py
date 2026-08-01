@@ -193,6 +193,12 @@ table.tbl { font-size: 9pt; }
 table.tbl th { background: #f2efe6; }
 a { color: inherit; text-decoration: none; }
 .bib li { font-size: 9pt; margin-bottom: 0.5em; }
+
+/* the index: two columns, tight, and never orphan a letter heading */
+#index + p.idxnote, .idxnote { font-size: 8.5pt; }
+h3.idxletter { font-size: 9.5pt; break-after: avoid; margin: 1.1em 0 0.4em; }
+ul.idx { column-count: 2; column-gap: 1.4em; font-size: 8.2pt; }
+ul.idx li { break-inside: avoid; margin: 0.06em 0; line-height: 1.25; }
 .pd { font-size: 7.5pt; }
 """
 
