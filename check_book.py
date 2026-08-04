@@ -49,10 +49,24 @@ EPUB = os.path.join(HERE, 'grimoire.epub')
 # folio = pdf page - FOLIO_OFFSET; the front matter is unnumbered
 FOLIO_OFFSET = 7
 
-# references the index cannot confirm by searching for the term itself. Some
-# entries index a subject under a name the page never uses -- "the archangels
-# of the quarters", "the ring of Solomon" -- and no search will find those.
-# Raise this only when you have looked at what was added and know why.
+# References the index cannot confirm by searching for the term itself. Only
+# some of these are irreducible: an entry that indexes a subject under a name
+# the page never uses -- "the archangels of the quarters", "the ring of
+# Solomon" -- can never be found by searching for its own words.
+#
+# The rest are findable another way, and that way is worth knowing, because a
+# rise in this number is usually one of three things and only one of them is
+# harmless. Take the term's occurrence on the page it USED to be on, lift the
+# sentence around it, and look for that sentence in the new PDF:
+#
+#   found, on another page   the reference moved and the index is stale
+#   found, on the same page  the search is too narrow; give it a KEY_OVERRIDE
+#   not found at all         the passage was cut, and the reference is dead
+#
+# That third case is real. A reference here once pointed at a note saying a
+# volume could not be obtained; the volume was found, the note was deleted, and
+# the index went on pointing at it for two commits. Diagnose a rise. Do not
+# absorb it into the floor.
 INDEX_FLOOR = 40
 
 VOID = set('br img hr meta link input path circle line rect use polygon '
@@ -95,7 +109,7 @@ def check_anchors(s, report):
     dupes = sorted(i for i, c in collections.Counter(ids).items() if c > 1)
     report('anchors', not dangling and not dupes,
            '%d ids, %d internal links' % (len(idset), len(set(re.findall(r'href="#([^"]+)"', s)))),
-           ['dangling: %s' % dangling] if dangling else [] +
+           (['dangling: %s' % dangling] if dangling else []) +
            (['duplicate id: %s' % dupes] if dupes else []))
 
 
