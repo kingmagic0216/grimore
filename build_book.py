@@ -606,6 +606,18 @@ def main():
     ep = build_epub(html)
     print('  epub          -> %s (%d bytes)' % (os.path.basename(ep), os.path.getsize(ep)))
 
+    # An index goes stale silently: add a paragraph anywhere and every folio
+    # after it is wrong, with nothing on the page to say so. This book shipped
+    # that defect once. The build now reports it instead of leaving it to be
+    # noticed two commits later.
+    print('')
+    try:
+        import check_book
+    except ImportError:
+        print('  checks        -> skipped, check_book.py not found')
+        return 0
+    return check_book.main([])
+
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main() or 0)

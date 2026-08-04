@@ -1,6 +1,6 @@
 # The Complete Hermetic & Rosicrucian Grimoire
 
-A working grimoire of the Western esoteric tradition — twenty-two chapters, 300 pages, 43 diagrams — in which **every source is dated and attributed, and the attribution is allowed to be inconvenient.**
+A working grimoire of the Western esoteric tradition — twenty-two chapters, 302 pages, 43 diagrams — in which **every source is dated and attributed, and the attribution is allowed to be inconvenient.**
 
 That last clause is the point. Where a teaching commonly presented as ancient turns out to be medieval, early modern or modern, the chapter says so and keeps the practice. Where two sources disagree, both are printed. Where this edition could not reach a text, it names the text and says why.
 
@@ -54,7 +54,15 @@ The warnings in the book are specific and worth reading before practising anythi
 python build_book.py
 ```
 
-Regenerates the print HTML, the PDF and the EPUB from `grimoire.html`. Requires Chrome — the PDF is produced through the DevTools protocol, because Chrome's own `--print-to-pdf` snapshots before pagination finishes — and `websocket-client`. Paged.js (MIT) is vendored under `vendor/` and embedded in the print edition only, so the source file stays dependency-free.
+Regenerates the print HTML, the PDF and the EPUB from `grimoire.html`, then checks them. Requires Chrome — the PDF is produced through the DevTools protocol, because Chrome's own `--print-to-pdf` snapshots before pagination finishes — and `websocket-client`. Paged.js (MIT) is vendored under `vendor/` and embedded in the print edition only, so the source file stays dependency-free.
+
+```
+python check_book.py
+```
+
+The checks on their own, against whatever is currently built. Internal links resolve to real anchors, no id is used twice, no chapter repeats or skips a figure number, no SVG `<text>` contains markup that will not render, the EPUB is a well-formed archive whose XML parses — **and every page number in the index is a page the term is actually on.**
+
+That last one is the reason the script exists. An index goes stale silently: add a paragraph anywhere and every folio after it is wrong, with nothing on the page to say so. This book shipped that defect for two commits, with 490 of its 491 entries pointing at the wrong page. The check re-reads the typeset PDF, searches each entry's own term, and fails the build if more references than the recorded floor cannot be found where the index says they are. Needs PyMuPDF; the other checks run without it.
 
 ## License
 
