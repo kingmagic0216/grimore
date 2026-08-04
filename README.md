@@ -1,6 +1,6 @@
 # The Complete Hermetic & Rosicrucian Grimoire
 
-A working grimoire of the Western esoteric tradition — twenty-one chapters, 257 pages, 43 diagrams — in which **every source is dated and attributed, and the attribution is allowed to be inconvenient.**
+A working grimoire of the Western esoteric tradition — twenty-two chapters, 300 pages, 43 diagrams — in which **every source is dated and attributed, and the attribution is allowed to be inconvenient.**
 
 That last clause is the point. Where a teaching commonly presented as ancient turns out to be medieval, early modern or modern, the chapter says so and keeps the practice. Where two sources disagree, both are printed. Where this edition could not reach a text, it names the text and says why.
 
@@ -8,8 +8,8 @@ That last clause is the point. Where a teaching commonly presented as ancient tu
 
 | Edition | File | Best for |
 |---|---|---|
-| **EPUB** | [`grimoire.epub`](grimoire.epub) — 680 KB | **Phones and e-readers.** Reflowable, follows your font size and dark mode, diagrams are vector so they stay sharp. |
-| **PDF** | [`grimoire.pdf`](grimoire.pdf) — 12 MB | The typeset book: 6×9, running heads, folios, a contents page with real page numbers. |
+| **EPUB** | [`grimoire.epub`](grimoire.epub) — 715 KB | **Phones and e-readers.** Reflowable, follows your font size and dark mode, diagrams are vector so they stay sharp. |
+| **PDF** | [`grimoire.pdf`](grimoire.pdf) — 13 MB | The typeset book: 6×9, running heads, folios, a contents page with real page numbers. |
 | **HTML** | [`grimoire.html`](grimoire.html) | The source of truth. One self-contained file, no dependencies, sticky navigation, dark mode. |
 
 The PDF and EPUB are generated from the HTML. **Corrections go to `grimoire.html`**; the other two are rebuilt from it.
@@ -26,7 +26,7 @@ Meanwhile the **Greek Magical Papyri** are genuinely ancient, physically extant 
 
 **The operative material.** 36 rites given in full, each dated and sourced: the Lesser Banishing Ritual of the Pentagram with Hebrew and pronunciation, the Lesser and Greater Hexagram, the Middle Pillar, godform assumption, scrying, a complete opening and closing, the Solomonic consecrations of water, salt and sword, the Headless Rite from the papyri, dream oracles, the Fourth Pentacle of the Moon, talisman construction, geomancy from the casting to the Judge, Pennsylvania Dutch charms, and the Anglo-Saxon remedies.
 
-**Chapters.** Introduction · The Hermetica and Their Transmission · Sacred Geometry & Symbols · Alchemical Foundations · The Emerald Tablet · Meditation Practices · Ritual Foundations · The Greek Magical Papyri · The Solomonic Tradition · Rosicrucian Mysteries · Advanced Practices · Protection & Banishing · Healing & Wellness · Prosperity & Abundance · Seasonal Celebrations · Greater Mysteries · Correspondences, Timing & Materials · Sigils, Seals & Symbols · Geomancy · Folk Magic · Sources & Bibliography
+**Chapters.** Introduction · The Hermetica and Their Transmission · Sacred Geometry & Symbols · Alchemical Foundations · The Emerald Tablet · Meditation Practices · Ritual Foundations · The Greek Magical Papyri · The Solomonic Tradition · Rosicrucian Mysteries · Advanced Practices · Protection & Banishing · Healing & Wellness · Prosperity & Abundance · Seasonal Celebrations · Greater Mysteries · Correspondences, Timing & Materials · Sigils, Seals & Symbols · Geomancy · Folk Magic · Materials · The Laboratory · Sources & Bibliography
 
 ## Some of what the research turned up
 
@@ -41,7 +41,7 @@ Meanwhile the **Greek Magical Papyri** are genuinely ancient, physically extant 
 
 - No operations aimed at harming or coercing a named third party.
 - No procedure requiring harm to an animal. Where a source contains one, the omission is stated on the page rather than closed over.
-- No laboratory alchemy with mercury, antimony, lead or corrosive acids. Doctrine, symbolism, apparatus and dating, yes; actionable toxic protocols, no.
+- No laboratory alchemy anywhere except Chapter XXII, which is written for a reader who already has a fume hood, a chemistry qualification and a waste-disposal route. Six operations with mercury, antimony, lead and the corrosive acids are given there in full — hazard first, with the modern controls that make them survivable, the historical toll of running them without, and, where a safer modern route exists, both routes and the difference between them.
 - No quotation from a text the editor has only read through corrupt OCR. Where that blocked something, the bibliography says so and names the identifier that failed.
 
 ## Safety
