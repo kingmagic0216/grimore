@@ -9,6 +9,8 @@ apparatus is checked mechanically rather than by eye:
   anchors      every href="#x" resolves to an id="x", and no id is used twice
   crossrefs    every "Chapter N" that links to an id says that chapter's real
                number, and every mention in the file is classified
+  claims       every sentence saying the book lacks something is registered,
+               with the reason it is still true
   figures      no repeated or skipped figure number inside a chapter
   svg          no markup inside an SVG <text>, which does not render
   epub         the archive is well formed and its XML parses
@@ -155,6 +157,74 @@ def check_crossrefs(s, report):
            errs[:8])
 
 
+# --------------------------------------------------------------------------
+# claims about what the book does not contain
+#
+# Adding a chapter can make a sentence elsewhere untrue without touching it,
+# and this book has now shipped that defect three separate times: Chapter XXII
+# arrived, and Chapter IV went on saying the book stopped at the third degree
+# of fire, Chapter XXI went on saying nothing in the book required a toxic
+# material, and a table cell went on printing "Nothing in this book" for the
+# fourth degree in red. None of those greps for the same phrase, which is why
+# they were found one at a time by eye.
+#
+# So every sentence that claims the book lacks something is registered here
+# with the reason it is still true. A new or reworded one fails the check
+# until somebody has looked at it against the current chapter list.
+# --------------------------------------------------------------------------
+
+CLAIM_PATTERNS = (r'[Nn]othing in this book|this book does not|no procedure'
+                  r'|this (?:book|chapter) (?:refuses|declines|stops)|this book gives no'
+                  r'|nowhere in this book')
+
+REVIEWED_CLAIMS = {
+    'this book does not treat it as settled':
+        "about an attribution, not about the book's contents",
+    'this book does not assert one':
+        "about a line of transmission, not about the book's contents",
+    'this book does not claim':
+        'about a living tradition the book does not speak for',
+    'Nothing in this book claims the plant acts':
+        'about what the correspondences assert, not about coverage',
+    'this book does not reproduce as procedure':
+        'blood sacrifice; still true and stated as an omission',
+    'no procedure for handling any of it':
+        'scoped to Chapter XXI and points at Chapter XXII',
+    'this book does not give you':
+        'the fulminates; still true, and Chapter XXII says why',
+    'this book does not assert it':
+        "about Newton's mercury and his breakdown; a causal claim",
+    'this chapter prints history and no procedure':
+        'scoped to Chapter IV, which does stop at the third degree',
+    'why this chapter stops there':
+        'scoped to Chapter IV; the book does not stop there',
+}
+
+
+def check_claims(s, report):
+    text = re.sub(r'\s+', ' ', B.strip_tags(s))
+    errs, seen = [], set()
+    for m in re.finditer(CLAIM_PATTERNS, text):
+        window = text[m.start():m.start() + 90]
+        hit = None
+        for known in REVIEWED_CLAIMS:
+            # the pattern can match at the tail of the registered sentence,
+            # so look back far enough to see the whole of it
+            if window.startswith(known) or known in text[max(0, m.start() - 60):m.start() + 90]:
+                hit = known
+                break
+        if hit is None:
+            errs.append('unreviewed claim: %r' % text[max(0, m.start() - 30):m.start() + 80])
+        else:
+            seen.add(hit)
+    stale = sorted(set(REVIEWED_CLAIMS) - seen)
+    for k in stale:
+        errs.append('registered claim no longer in the book, drop it: %r' % k)
+    report('claims', not errs,
+           '%d absence claims, all reviewed against the chapter list' % len(seen),
+           errs[:8])
+
+
 def check_figures(s, report):
     parts = re.split(r'(<h2 id="[^"]+")', s)
     bad, total = [], 0
@@ -265,6 +335,7 @@ def main(argv):
         check_wellformed(s, report)
         check_anchors(s, report)
         check_crossrefs(s, report)
+        check_claims(s, report)
         check_figures(s, report)
         check_svg_text(s, report)
         check_epub(report)
