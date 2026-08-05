@@ -1,6 +1,6 @@
 # The Complete Hermetic & Rosicrucian Grimoire
 
-A working grimoire of the Western esoteric tradition — twenty-three chapters, 310 pages, 44 diagrams — in which **every source is dated and attributed, and the attribution is allowed to be inconvenient.**
+A working grimoire of the Western esoteric tradition — twenty-four chapters, 316 pages, 45 diagrams — in which **every source is dated and attributed, and the attribution is allowed to be inconvenient.**
 
 That last clause is the point. Where a teaching commonly presented as ancient turns out to be medieval, early modern or modern, the chapter says so and keeps the practice. Where two sources disagree, both are printed. Where this edition could not reach a text, it names the text and says why.
 
@@ -21,13 +21,14 @@ The PDF and EPUB are generated from the HTML. **Corrections go to `grimoire.html
 - The **Seven Hermetic Principles** come from *The Kybalion* (1908), a New Thought work — not from ancient Hermeticism. All seven are kept, explained, and dated.
 - The **Corpus Hermeticum** is Greek, c. 100–300 CE. Ficino translated it in 1471 believing it older than Moses; Casaubon showed otherwise. That misdating is *why* the Renaissance took Hermeticism seriously.
 - The **Zohar** is assigned to a second-century sage. It appears in Castile around 1280 in the hands of Moses de León, and the case that he wrote it was in print from 1851 — reproduced, by Mathers, inside the 1887 translation that carried the text into English magic. The tradition kept the text and dropped the introduction.
+- **Enochian was first printed as a warning.** Meric Casaubon published Dee’s angel diaries in 1659 with a preface confirming that the spirits were real and concluding they were evil — and he states the Kelley-was-a-fraud theory himself, as an objection, before rejecting it. The argument has been attached to the corpus since the day it entered print.
 - The **Rosicrucian Brotherhood** cannot be shown to have existed. Andreae, who acknowledged writing the *Chymical Wedding*, called the whole affair a *ludibrium* — a lampoon.
 
 Meanwhile the **Greek Magical Papyri** are genuinely ancient, physically extant and provenanced — and they are the part usually left out. That inversion is the argument of the book: the material presented as ancient is mostly early modern, and the genuinely ancient material is the part nobody prints.
 
 **The operative material.** 36 rites given in full, each dated and sourced: the Lesser Banishing Ritual of the Pentagram with Hebrew and pronunciation, the Lesser and Greater Hexagram, the Middle Pillar, godform assumption, scrying, a complete opening and closing, the Solomonic consecrations of water, salt and sword, the Headless Rite from the papyri, dream oracles, the Fourth Pentacle of the Moon, talisman construction, geomancy from the casting to the Judge, Pennsylvania Dutch charms, and the Anglo-Saxon remedies.
 
-**Chapters.** Introduction · The Hermetica and Their Transmission · Sacred Geometry & Symbols · Kabbalah and Its Transmission · Alchemical Foundations · The Emerald Tablet · Meditation Practices · Ritual Foundations · The Greek Magical Papyri · The Solomonic Tradition · Rosicrucian Mysteries · Advanced Practices · Protection & Banishing · Healing & Wellness · Prosperity & Abundance · Seasonal Celebrations · Greater Mysteries · Correspondences, Timing & Materials · Sigils, Seals & Symbols · Geomancy · Folk Magic · Materials · The Laboratory · Sources & Bibliography
+**Chapters.** Introduction · The Hermetica and Their Transmission · Sacred Geometry & Symbols · Kabbalah and Its Transmission · Alchemical Foundations · The Emerald Tablet · Meditation Practices · Ritual Foundations · The Greek Magical Papyri · The Solomonic Tradition · Rosicrucian Mysteries · Advanced Practices · Enochian · Protection & Banishing · Healing & Wellness · Prosperity & Abundance · Seasonal Celebrations · Greater Mysteries · Correspondences, Timing & Materials · Sigils, Seals & Symbols · Geomancy · Folk Magic · Materials · The Laboratory · Sources & Bibliography
 
 ## Some of what the research turned up
 
