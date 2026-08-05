@@ -170,7 +170,14 @@ def signature(s, pos):
     lt, gt = win.find('<'), win.find('>')
     if gt != -1 and (lt == -1 or gt < lt):
         win = win[gt + 1:]
-    return re.sub(r'\s+', u' ', strip_tags(win)).strip()[-SIG_LEN:]
+    win = re.sub(r'\s+', u' ', strip_tags(win)).strip()
+    # A signature must survive the renumbering it is used to perform, and some
+    # of them sit just after another chapter reference -- "...the ritual
+    # boundary of Chapter 7, the pentagram as the figure traced in Chapter 12".
+    # Renumbering the first would move the key of the second, so the numbers
+    # are masked out of the context before it is used as a key.
+    win = re.sub(r'Chapters?\s+(?:[IVXLC]+|\d+)', u'Chapter #', win)
+    return win[-SIG_LEN:]
 
 
 # Every mention of "Chapter N" that is neither a heading nor an id-linked
@@ -183,7 +190,7 @@ MANUAL_REFS = {
         ['meditation', 'rituals', 'protection', 'practicum'],
     u'h in the public domain. The planetary herbs in': 'practicum',
     u'the book: the circle as the ritual boundary of': 'rituals',
-    u'apter 7, the pentagram as the figure traced in': 'protection',
+    u'apter #, the pentagram as the figure traced in': 'protection',
     u'a quotation from it. A third English rendering': 'emerald',
     u'; light, smoke, water, edge Everything else in': 'rituals',
     u'ny table you can clear. The altar of Fig. 2 in': 'rituals',
@@ -202,7 +209,7 @@ MANUAL_REFS = {
     u' amulet, and the two do not agree. Attached to': FOREIGN,
     u'aced on the neck of the khu. And the rubric to': FOREIGN,
     u'ace it in the heart — belongs to the rubric of': FOREIGN,
-    u' belongs to the rubric of Chapter LXIV, not to': FOREIGN,
+    u't — belongs to the rubric of Chapter #, not to': FOREIGN,
     u'd does not map onto modern spell numbers, so "': FOREIGN,
     # Lémery's own chapter VIII, not this book's
     u'istry in 1677. Lémery gives the preparation in': FOREIGN,
@@ -319,6 +326,10 @@ KEY_OVERRIDES = {
     u'deflagration': [u'deflagration', u'deflagrating'],
     u'fume hood': [u'fume hood', u'fume-hood'],
     u'Howard, Edward': [u'edward howard'],
+    # he is Rosenkreuz in the English, Rosencreutz on the title page of
+    # the Chymische Hochzeit, and a Rosenkreuzer in the German plural
+    u'Rosenkreuz, Christian': [u'rosenkreuz', u'rosencreutz',
+                               u'rosenkreuzer', u'c.r.c'],
     u'Kerckring, Theodore': [u'kerckring', u'kerckringius'],
     u'occupational disease': [u'occupational disease', u'occupational toll',
                               u'occupational history'],
@@ -336,6 +347,24 @@ KEY_OVERRIDES = {
     u'aqua valens (the strong water)': [u'aqua valens', u'strong water'],
     u'Course of Chymistry, A (Lémery, 1677)': [u'course of chymistry',
                                                u'cours de chymie'],
+
+    # Chapter IV. The book prints several of these under more than one form --
+    # En Soph beside Ein Sof, "the Christian and occult Cabala" beside
+    # "Christian Cabala" -- and an entry resolved on one form must be checked
+    # on all of them, or the checker and the resolver disagree about an index
+    # that is correct.
+    u'Ein Sof (the Boundless)': [u'ein sof', u'en soph'],
+    u'Christian Cabala': [u'christian cabala', u'christian and occult cabala'],
+    u'four worlds (Atziluth, Briah, Yetzirah, Assiah)':
+        [u'four worlds', u'briatic', u'jetziratic', u'assiatic', u'atziluth'],
+    u'Knorr von Rosenroth, Christian': [u'rosenroth'],
+    u'Kabbala Denudata (Rosenroth, 1677–84)': [u'kabbala denudata'],
+    u'Kabbalah Unveiled, The (Mathers, 1887)': [u'kabbalah unveiled'],
+    u'León, Moses de': [u'moses de leon', u'de leon'],
+    u'Simeon ben Jochai': [u'simeon ben jochai', u'simon ben jochai'],
+    u'Lully, Raymond': [u'raymond lully'],
+    u'emanation': [u'emanation', u'emanated'],
+    u'Idra Rabba and Idra Suta': [u'idra rabba', u'idra suta'],
 }
 
 
@@ -358,7 +387,11 @@ def search_keys(entry_plain, overrides=None):
         tail = base.split(',')[-1].strip()
         if head and head != base:
             keys.append(head)
-        if len(tail) > 8 and tail != head:
+        # the tail of an inverted heading is a title in "Waite, A. E., The
+        # Book of Ceremonial Magic" and a forename in "Rosenkreuz, Christian".
+        # Only the first is worth searching for; a bare forename matches every
+        # Christian Hebraist and Christian Cabala in the book.
+        if ' ' in tail and len(tail) > 12 and tail != head:
             keys.append(tail)
     m = re.search(r'\(([^)]*)\)', e)
     if m:

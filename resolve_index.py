@@ -70,6 +70,9 @@ SWEEP_REJECT = {
     ('sprinkler, nine-herb (Key of Solomon)', 'matched via its parenthetical'),
     ('Green Egg (magazine)', 'matched "magazine" in a publisher name'),
     ('pelican (vessel)', 'matched the word "vessel"'),
+    ('Rosenkreuz, Christian', 'matched the forename in "Christian Cabala", "Christian Hebraist", "Christian D. Ginsburg"'),
+    ('Bull, Christian H.', 'the same, through the squeezed fallback'),
+    ('Moses', 'matched "Moses de Leon", who is not that Moses'),
 }
 _REJECT_NAMES = {n for n, _ in SWEEP_REJECT}
 

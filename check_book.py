@@ -9,11 +9,13 @@ apparatus is checked mechanically rather than by eye:
   anchors      every href="#x" resolves to an id="x", and no id is used twice
   crossrefs    every "Chapter N" that links to an id says that chapter's real
                number, and every mention in the file is classified
+  contents     the navigation list names every chapter, in document order
   claims       every sentence saying the book lacks something is registered,
                with the reason it is still true
   glyphs       no character that renders as a picture; the book draws its own
   rites        the rite count printed in Chapter XXI matches the rites present
   figures      no repeated or skipped figure number inside a chapter
+  figure fit   no figure label wider than the box drawn around it
   svg          no markup inside an SVG <text>, which does not render
   epub         the archive is well formed and its XML parses
   index        every page number in the index is a page the term is on
@@ -65,7 +67,12 @@ import bookkit as B
 # volume could not be obtained; the volume was found, the note was deleted, and
 # the index went on pointing at it for two commits. Diagnose a rise by running
 # `python resolve_index.py`. Do not absorb it into the floor.
-INDEX_FLOOR = 40
+# Chapter IV lowered this from 40: `Rosenkreuz, Christian` had two of its
+# references confirmed only by a spurious match on the forename, and
+# tightening the key exposed them. He is Rosenkreuz in the English,
+# Rosencreutz on the title page of the Chymische Hochzeit, and a
+# Rosenkreuzer in the German plural; the override now names all three.
+INDEX_FLOOR = 39
 
 VOID = set('br img hr meta link input path circle line rect use polygon '
            'polyline ellipse stop source col area base'.split())
@@ -266,7 +273,7 @@ ALLOWED_PICTOGRAPHIC = {
 
 
 def check_glyphs(s, report):
-    body = re.sub(r'<script.*?</script>', '', s, flags=re.S)   # vendored code
+    body = re.sub(r'<script\b.*?</script>', '', s, flags=re.S)   # vendored code
     body = re.sub(r'&#(\d+);', lambda m: chr(int(m.group(1))), body)
     found = collections.Counter(
         c for c in body
@@ -336,6 +343,30 @@ def check_rite_count(s, report):
            % (total, lab, claimed_word), extra)
 
 
+def check_contents(s, report):
+    """The navigation list names every chapter, in document order.
+
+    A chapter can be written, numbered, cross-referenced and indexed and still
+    be missing from the list a reader navigates by, and nothing else here would
+    notice.
+    """
+    i = s.index('<li><a href="#introduction"')
+    j = s.index('</ol>', i)
+    listed = re.findall(r'<li><a href="#([a-z]+)">', s[i:j])
+    want = [c.id for c in B.chapters(s)]
+    errs = []
+    missing = [c for c in want if c not in listed]
+    extra = [c for c in listed if c not in want and c not in ('sources', 'index')]
+    if missing:
+        errs.append('chapters absent from the contents list: %s' % missing)
+    if extra:
+        errs.append('listed but not a numbered chapter: %s' % extra)
+    order = [c for c in listed if c in want]
+    if not errs and order != want:
+        errs.append('the contents list is out of document order')
+    report('contents', not errs, '%d chapters listed, in order' % len(order), errs)
+
+
 def check_figures(s, report):
     parts = re.split(r'(<h2 id="[^"]+")', s)
     bad, total = [], 0
@@ -353,6 +384,79 @@ def check_figures(s, report):
         if nums and nums != list(range(1, len(nums) + 1)):
             bad.append('%s: numbering %s' % (cid, nums))
     report('figures', not bad, '%d labels, none repeated or skipped' % total, bad)
+
+
+# Per-character advance in the figure founts, in units of font-size. One
+# average will not do: the labels are Georgia with letter-spacing, where a
+# capital runs to about 0.78em and a lowercase letter to about 0.46em, so a
+# single factor either passes an overflowing run of capitals or fails a
+# comfortable line of lowercase. Measured off the rendered pages, and left
+# slightly generous, because this exists to catch a label overrunning its box
+# and not to typeset one.
+_ADV_UPPER, _ADV_LOWER, _ADV_OTHER = 0.78, 0.46, 0.45
+
+
+def _estimate_width(label, size):
+    em = 0.0
+    for ch in label:
+        if ch.isupper():
+            em += _ADV_UPPER
+        elif ch.islower():
+            em += _ADV_LOWER
+        else:
+            em += _ADV_OTHER
+    return em * size
+
+_RECT = re.compile(r'<rect x="([\d.]+)" y="([\d.]+)" width="([\d.]+)" height="([\d.]+)"')
+_TEXT = re.compile(r'<text\b([^>]*)>([^<]+)</text>')
+_ATTR = re.compile(r'(\w[\w-]*)="([^"]*)"')
+
+
+def check_figure_fit(s, report):
+    """No figure label wider than the box it is drawn inside.
+
+    A label that overruns its rect is invisible in the source and obvious on
+    the page, which is the worst combination to debug. Widths are estimated
+    from the character count and the font size rather than measured in a
+    browser, so the margin is loose and only gross overflow is reported.
+
+    A label counts as inside a box only if it falls within it on both axes.
+    Checking the horizontal alone flags every axis tick and every caption that
+    happens to sit under a rectangle.
+    """
+    errs, checked = [], 0
+    for fig in re.findall(r'<svg\b.*?</svg>', s, re.S):
+        rects = [tuple(float(g) for g in m.groups()) for m in _RECT.finditer(fig)]
+        if not rects:
+            continue
+        for m in _TEXT.finditer(fig):
+            attrs = dict(_ATTR.findall(m.group(1)))
+            if attrs.get('text-anchor') != 'middle':
+                continue
+            try:
+                x, y = float(attrs['x']), float(attrs['y'])
+            except (KeyError, ValueError):
+                continue
+            cls = attrs.get('class')
+            size = 12.0 if cls == 'lbl' else 9.0
+            fs = re.search(r'font-size:([\d.]+)px', attrs.get('style', ''))
+            if fs:
+                size = float(fs.group(1))
+            inside = [(rx, rw) for rx, ry, rw, rh in rects
+                      if rx <= x <= rx + rw and ry <= y <= ry + rh]
+            if not inside:
+                continue
+            checked += 1
+            rx, rw = inside[0]
+            # &#8211; is one dash on the page and eight characters here
+            label = re.sub(r'&#(\d+);', lambda e: chr(int(e.group(1))), m.group(2))
+            label = re.sub(r'&\w+;', 'x', label)
+            width = _estimate_width(label, size)
+            if width > rw:
+                errs.append('%r is about %dpx wide in a %dpx box'
+                            % (label[:36], round(width), round(rw)))
+    report('figure fit', not errs,
+           '%d labels sit inside a box, none overflowing it' % checked, errs[:6])
 
 
 def check_svg_text(s, report):
@@ -446,10 +550,12 @@ def main(argv):
         check_wellformed(s, report)
         check_anchors(s, report)
         check_crossrefs(s, report)
+        check_contents(s, report)
         check_claims(s, report)
         check_glyphs(s, report)
         check_rite_count(s, report)
         check_figures(s, report)
+        check_figure_fit(s, report)
         check_svg_text(s, report)
         check_epub(report)
     check_index(s, report)
