@@ -11,6 +11,7 @@ apparatus is checked mechanically rather than by eye:
                number, and every mention in the file is classified
   claims       every sentence saying the book lacks something is registered,
                with the reason it is still true
+  glyphs       no character that renders as a picture; the book draws its own
   figures      no repeated or skipped figure number inside a chapter
   svg          no markup inside an SVG <text>, which does not render
   epub         the archive is well formed and its XML parses
@@ -225,6 +226,63 @@ def check_claims(s, report):
            errs[:8])
 
 
+# --------------------------------------------------------------------------
+# pictographic characters
+#
+# The book draws its own symbols. A character that renders as a picture is
+# therefore always a mistake here, and it is a mistake that hides: U+FE0F on a
+# warning sign printed a colour emoji in a monochrome book for months, and the
+# four elemental signs were soap, urine, horse dung and ashes under a column
+# whose rule text says "triangle, apex up".
+#
+# So the whole pictographic space is refused and the handful of legitimate
+# exceptions are registered. Vendored script is skipped: Paged.js draws
+# linked-list diagrams in box-drawing characters inside its own comments, and
+# none of that reaches a page.
+# --------------------------------------------------------------------------
+
+PICTOGRAPHIC = (
+    (0x00A9, 0x00A9), (0x00AE, 0x00AE), (0x2122, 0x2122),
+    (0x2049, 0x2049), (0x203C, 0x203C),
+    (0x2190, 0x21FF),          # arrows
+    (0x2300, 0x23FF),          # technical, including the clocks
+    (0x2460, 0x24FF),          # enclosed alphanumerics
+    (0x2500, 0x25FF),          # box drawing, blocks, geometric shapes
+    (0x2600, 0x27BF),          # miscellaneous symbols and dingbats
+    (0x2900, 0x297F), (0x2B00, 0x2BFF),
+    (0x3030, 0x3030), (0x303D, 0x303D), (0x3297, 0x3299),
+    (0xFE0E, 0xFE0F),          # the text and emoji presentation selectors
+    (0x1F000, 0x1FBFF),
+)
+
+# character -> why it is allowed to stay
+ALLOWED_PICTOGRAPHIC = {
+    u'→': 'a typographic arrow inside figure labels: "ash: black -> white", '
+                '"Yod = 10 -> 1". It sets in the figure font, monochrome.',
+    u'↑': 'the back-to-top control in the HTML edition; display:none in '
+                'print and absent from the EPUB.',
+}
+
+
+def check_glyphs(s, report):
+    body = re.sub(r'<script.*?</script>', '', s, flags=re.S)   # vendored code
+    body = re.sub(r'&#(\d+);', lambda m: chr(int(m.group(1))), body)
+    found = collections.Counter(
+        c for c in body
+        if any(a <= ord(c) <= b for a, b in PICTOGRAPHIC))
+    errs = []
+    for ch, n in found.items():
+        if ch not in ALLOWED_PICTOGRAPHIC:
+            errs.append('U+%04X x%d -- draw it, or register it in '
+                        'ALLOWED_PICTOGRAPHIC with a reason' % (ord(ch), n))
+    allowed = sum(n for c, n in found.items() if c in ALLOWED_PICTOGRAPHIC)
+    report('glyphs', not errs,
+           'no pictographic characters except %d registered '
+           '(%s)' % (allowed, ', '.join('U+%04X' % ord(c) for c in sorted(
+               c for c in found if c in ALLOWED_PICTOGRAPHIC))),
+           errs[:8])
+
+
 def check_figures(s, report):
     parts = re.split(r'(<h2 id="[^"]+")', s)
     bad, total = [], 0
@@ -336,6 +394,7 @@ def main(argv):
         check_anchors(s, report)
         check_crossrefs(s, report)
         check_claims(s, report)
+        check_glyphs(s, report)
         check_figures(s, report)
         check_svg_text(s, report)
         check_epub(report)
