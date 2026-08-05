@@ -5,6 +5,7 @@
 The book's claim on a reader is that its apparatus can be trusted, so the
 apparatus is checked mechanically rather than by eye:
 
+  tools        renumber.py and resolve_index.py still compile
   well-formed  tags balance
   anchors      every href="#x" resolves to an id="x", and no id is used twice
   crossrefs    every "Chapter N" that links to an id says that chapter's real
@@ -45,6 +46,7 @@ except (AttributeError, ValueError):
     pass
 
 import collections
+import io
 import os
 import re
 import zipfile
@@ -83,6 +85,32 @@ VOID = set('br img hr meta link input path circle line rect use polygon '
 
 
 # --------------------------------------------------------------------------
+
+def check_tools(report):
+    """The sibling tools still compile.
+
+    check_book imports bookkit, and nothing imports renumber.py or
+    resolve_index.py, so a syntax error in either sits undetected until the
+    day you need it -- which is the day you have just edited the book and want
+    the index re-resolved. One of them was broken for three commits exactly
+    that way.
+    """
+    errs = []
+    for name in ('bookkit.py', 'renumber.py', 'resolve_index.py', 'build_book.py'):
+        path = os.path.join(B.HERE, name)
+        if not os.path.exists(path):
+            errs.append('%s is missing' % name)
+            continue
+        # compile() rather than py_compile, which insists on writing a .pyc
+        # somewhere and will not accept the null device on Windows
+        with io.open(path, encoding='utf-8') as fh:
+            src = fh.read()
+        try:
+            compile(src, path, 'exec')
+        except SyntaxError as exc:
+            errs.append('%s line %s: %s' % (name, exc.lineno, exc.msg))
+    report('tools', not errs, 'the four scripts compile', errs)
+
 
 def check_wellformed(s, report):
     from html.parser import HTMLParser
@@ -340,7 +368,7 @@ def check_rite_count(s, report):
     m = re.search(r'It covers all ([a-z-]+) rites this book gives outside the laboratory', s)
     if not m:
         report('rites', False,
-               'the sentence in Chapter XXI that states the rite count has '
+               'the sentence in the Materials chapter that states the rite count has '
                'been reworded; update check_rite_count', [])
         return
     claimed_word = m.group(1)
@@ -355,14 +383,14 @@ def check_rite_count(s, report):
     if claimed is None:
         extra.append('%r is not in NUMBER_WORDS; add it' % claimed_word)
     elif not ok:
-        extra.append('Chapter XXI says %s (%d); the book has %d rites outside '
+        extra.append('Materials says %s (%d); the book has %d rites outside '
                      'the laboratory (%d in all, %d of them laboratory '
                      'operations)' % (claimed_word, claimed, actual, total, lab))
         for w, v in sorted(NUMBER_WORDS.items(), key=lambda kv: kv[1]):
             if v == actual:
                 extra.append('the sentence should read "all %s rites"' % w)
     report('rites', ok,
-           '%d rites, %d of them laboratory operations; Chapter XXI says %s'
+           '%d rites, %d of them laboratory operations; Materials says %s'
            % (total, lab, claimed_word), extra)
 
 
@@ -607,6 +635,7 @@ def main(argv):
     s = B.read_source()
     print('checking %s' % os.path.basename(B.SOURCE))
     if not only_index:
+        check_tools(report)
         check_wellformed(s, report)
         check_anchors(s, report)
         check_crossrefs(s, report)

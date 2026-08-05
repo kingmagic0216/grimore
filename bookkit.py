@@ -326,6 +326,20 @@ KEY_OVERRIDES = {
     u'deflagration': [u'deflagration', u'deflagrating'],
     u'fume hood': [u'fume hood', u'fume-hood'],
     u'Howard, Edward': [u'edward howard'],
+    u'Lilly, William':
+        ['lilly'],
+    u'Christian Astrology (Lilly, 1647)':
+        ['christian astrology'],
+    u'houses, the twelve':
+        ['twelve houses', 'the houses'],
+    u'aspects (conjunction, sextile, square, trine, opposition)':
+        ['aspect', 'sextile', 'trine', 'opposition'],
+    u'horary astrology':
+        ['horary'],
+    u'natal astrology (nativities)':
+        ['nativit', 'natal'],
+    u'domicile (planetary rulership)':
+        ['domicile'],
     # Father and son, and the son edited Dee. Isaac is named in full once
     # and is plain 'Casaubon' thereafter, so confirming his references
     # needs the loose key -- but the loose key would also hand him his

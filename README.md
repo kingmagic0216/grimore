@@ -1,6 +1,6 @@
 # The Complete Hermetic & Rosicrucian Grimoire
 
-A working grimoire of the Western esoteric tradition — twenty-four chapters, 316 pages, 45 diagrams — in which **every source is dated and attributed, and the attribution is allowed to be inconvenient.**
+A working grimoire of the Western esoteric tradition — twenty-five chapters, 322 pages, 46 diagrams — in which **every source is dated and attributed, and the attribution is allowed to be inconvenient.**
 
 That last clause is the point. Where a teaching commonly presented as ancient turns out to be medieval, early modern or modern, the chapter says so and keeps the practice. Where two sources disagree, both are printed. Where this edition could not reach a text, it names the text and says why.
 
@@ -28,7 +28,7 @@ Meanwhile the **Greek Magical Papyri** are genuinely ancient, physically extant 
 
 **The operative material.** 36 rites given in full, each dated and sourced: the Lesser Banishing Ritual of the Pentagram with Hebrew and pronunciation, the Lesser and Greater Hexagram, the Middle Pillar, godform assumption, scrying, a complete opening and closing, the Solomonic consecrations of water, salt and sword, the Headless Rite from the papyri, dream oracles, the Fourth Pentacle of the Moon, talisman construction, geomancy from the casting to the Judge, Pennsylvania Dutch charms, and the Anglo-Saxon remedies.
 
-**Chapters.** Introduction · The Hermetica and Their Transmission · Sacred Geometry & Symbols · Kabbalah and Its Transmission · Alchemical Foundations · The Emerald Tablet · Meditation Practices · Ritual Foundations · The Greek Magical Papyri · The Solomonic Tradition · Rosicrucian Mysteries · Advanced Practices · Enochian · Protection & Banishing · Healing & Wellness · Prosperity & Abundance · Seasonal Celebrations · Greater Mysteries · Correspondences, Timing & Materials · Sigils, Seals & Symbols · Geomancy · Folk Magic · Materials · The Laboratory · Sources & Bibliography
+**Chapters.** Introduction · The Hermetica and Their Transmission · Sacred Geometry & Symbols · Kabbalah and Its Transmission · Alchemical Foundations · The Emerald Tablet · Meditation Practices · Ritual Foundations · The Greek Magical Papyri · The Solomonic Tradition · Rosicrucian Mysteries · Advanced Practices · Enochian · Protection & Banishing · Healing & Wellness · Prosperity & Abundance · Seasonal Celebrations · Greater Mysteries · Correspondences, Timing & Materials · Astrology · Sigils, Seals & Symbols · Geomancy · Folk Magic · Materials · The Laboratory · Sources & Bibliography
 
 ## Some of what the research turned up
 

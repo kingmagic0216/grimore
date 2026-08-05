@@ -73,7 +73,8 @@ SWEEP_REJECT = {
     ('Rosenkreuz, Christian', 'matched the forename in "Christian Cabala", "Christian Hebraist", "Christian D. Ginsburg"'),
     ('Bull, Christian H.', 'the same, through the squeezed fallback'),
     ('Moses', 'matched "Moses de Leon", who is not that Moses'),
-    ('Casaubon, Isaac', 'the loose key that confirms his own pages would also hand him Meric's Enochian chapter'),
+    ('Casaubon, Isaac', "the loose key that confirms his own pages would "
+                        "also hand him Meric's Enochian chapter"),
 }
 _REJECT_NAMES = {n for n, _ in SWEEP_REJECT}
 
