@@ -159,9 +159,18 @@ SIG_LEN = 46
 def signature(s, pos):
     """The words immediately before a mention, tags stripped and space
     collapsed. Used as the key for the mentions that have to be classified by
-    hand, because it survives reflowing, line breaks and inline markup."""
-    return re.sub(r'\s+', u' ',
-                  strip_tags(s[max(0, pos - SIG_LEN * 3):pos])).strip()[-SIG_LEN:]
+    hand, because it survives reflowing, line breaks and inline markup.
+
+    The window is cut at a fixed distance and can therefore begin in the
+    middle of a tag, leaving a fragment like "/td>" that strip_tags cannot
+    see is markup. That would make the signature depend on how far back the
+    window happens to reach, so any leading fragment is dropped first.
+    """
+    win = s[max(0, pos - SIG_LEN * 3):pos]
+    lt, gt = win.find('<'), win.find('>')
+    if gt != -1 and (lt == -1 or gt < lt):
+        win = win[gt + 1:]
+    return re.sub(r'\s+', u' ', strip_tags(win)).strip()[-SIG_LEN:]
 
 
 # Every mention of "Chapter N" that is neither a heading nor an id-linked
@@ -178,7 +187,7 @@ MANUAL_REFS = {
     u'a quotation from it. A third English rendering': 'emerald',
     u'; light, smoke, water, edge Everything else in': 'rituals',
     u'ny table you can clear. The altar of Fig. 2 in': 'rituals',
-    u'.5 SaltAny salt.3 A knifeA knife you own.': 'rituals',
+    u'5 SaltAny salt.3 A knifeA knife you own.': 'rituals',
     u'y knife, once consecrated. The consecration in': 'rituals',
     u'or herbs. Infusion, decoction and expression (': 'healing',
     u' and an hour when you will not be interrupted.': 'practicum',
