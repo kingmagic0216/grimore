@@ -14,6 +14,7 @@ apparatus is checked mechanically rather than by eye:
                with the reason it is still true
   glyphs       no character that renders as a picture; the book draws its own
   rites        the rite count printed in Chapter XXI matches the rites present
+  tree count   the chapter count printed in Chapter III matches the chapters
   figures      no repeated or skipped figure number inside a chapter
   figure fit   no figure label wider than the box drawn around it
   svg          no markup inside an SVG <text>, which does not render
@@ -305,6 +306,9 @@ def check_glyphs(s, report):
 # --------------------------------------------------------------------------
 
 NUMBER_WORDS = {
+    'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8,
+    'nine': 9, 'ten': 10, 'eleven': 11, 'twelve': 12, 'thirteen': 13,
+    'fourteen': 14, 'fifteen': 15, 'sixteen': 16,
     'thirty-six': 36, 'thirty-seven': 37, 'thirty-eight': 38, 'thirty-nine': 39,
     'forty': 40, 'forty-one': 41, 'forty-two': 42, 'forty-three': 43,
     'forty-four': 44, 'forty-five': 45, 'forty-six': 46, 'forty-seven': 47,
@@ -410,6 +414,43 @@ def _estimate_width(label, size):
 _RECT = re.compile(r'<rect x="([\d.]+)" y="([\d.]+)" width="([\d.]+)" height="([\d.]+)"')
 _TEXT = re.compile(r'<text\b([^>]*)>([^<]+)</text>')
 _ATTR = re.compile(r'(\w[\w-]*)="([^"]*)"')
+
+
+def check_tree_count(s, report):
+    """Chapter III says how many chapters use the Tree of Life. Count them.
+
+    It is a whole-book claim made from inside one chapter, which is the kind
+    that goes stale without being touched: a Tarot chapter cannot be written
+    without the Tree, and the sentence would not notice. The definition is
+    deliberately mechanical -- a chapter counts if it names the Tree or the
+    sephiroth at all -- so that the number and the check cannot drift apart on
+    a judgement call.
+    """
+    m = re.search(r'This book uses the Tree of Life in ([a-z-]+) chapters', s)
+    if not m:
+        report('tree count', False,
+               'the sentence in Chapter III that counts them has been '
+               'reworded; update check_tree_count', [])
+        return
+    word = m.group(1)
+    claimed = NUMBER_WORDS.get(word)
+    chs = B.chapters(s)
+    ends = [chs[i + 1].pos for i in range(len(chs) - 1)] + [s.index('<h2 id="sources"')]
+    using = [c.id for c, e in zip(chs, ends)
+             if re.search(r'Tree of Life|sephir', s[c.pos:e], re.I)]
+    ok = claimed == len(using)
+    extra = []
+    if claimed is None:
+        extra.append('%r is not in NUMBER_WORDS; add it' % word)
+    elif not ok:
+        extra.append('Chapter III says %s (%d); %d chapters use it: %s'
+                     % (word, claimed, len(using), ', '.join(using)))
+        for w, v in sorted(NUMBER_WORDS.items(), key=lambda kv: kv[1]):
+            if v == len(using):
+                extra.append('the sentence should read "in %s chapters"' % w)
+    report('tree count', ok,
+           '%d chapters use the Tree; Chapter III says %s' % (len(using), word),
+           extra)
 
 
 def check_figure_fit(s, report):
@@ -554,6 +595,7 @@ def main(argv):
         check_claims(s, report)
         check_glyphs(s, report)
         check_rite_count(s, report)
+        check_tree_count(s, report)
         check_figures(s, report)
         check_figure_fit(s, report)
         check_svg_text(s, report)
