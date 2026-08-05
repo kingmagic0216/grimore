@@ -326,6 +326,19 @@ KEY_OVERRIDES = {
     u'deflagration': [u'deflagration', u'deflagrating'],
     u'fume hood': [u'fume hood', u'fume-hood'],
     u'Howard, Edward': [u'edward howard'],
+    # Father and son, and the son edited Dee. Isaac is named in full once
+    # and is plain 'Casaubon' thereafter, so confirming his references
+    # needs the loose key -- but the loose key would also hand him his
+    # son's chapter, so he is in resolve_index's SWEEP_REJECT as well.
+    # Confirming a folio and adding one are different jobs.
+    u'Casaubon, Isaac': [u'casaubon'],
+    u'Casaubon, Meric': [u'meric casaubon'],
+    u'Enochian system': [u'enochian'],
+    u'Angelical (the Enochian language)': [u'angelical'],
+    u'Watchtowers': [u'watchtower'],
+    u'Cotton, Sir Thomas': [u'sir tho. cotton'],
+    u'True and Faithful Relation, A (Casaubon, 1659)':
+        [u'true & faithful relation', u'true and faithful relation'],
     # he is Rosenkreuz in the English, Rosencreutz on the title page of
     # the Chymische Hochzeit, and a Rosenkreuzer in the German plural
     u'Rosenkreuz, Christian': [u'rosenkreuz', u'rosencreutz',

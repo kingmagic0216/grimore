@@ -73,7 +73,10 @@ import bookkit as B
 # tightening the key exposed them. He is Rosenkreuz in the English,
 # Rosencreutz on the title page of the Chymische Hochzeit, and a
 # Rosenkreuzer in the German plural; the override now names all three.
-INDEX_FLOOR = 39
+# Chapter XIII lowered this from 39: giving Isaac Casaubon the loose key
+# that his own pages need confirmed three references the tighter one
+# could not, while SWEEP_REJECT keeps his son's chapter off his entry.
+INDEX_FLOOR = 38
 
 VOID = set('br img hr meta link input path circle line rect use polygon '
            'polyline ellipse stop source col area base'.split())
@@ -183,9 +186,11 @@ def check_crossrefs(s, report):
 # until somebody has looked at it against the current chapter list.
 # --------------------------------------------------------------------------
 
-CLAIM_PATTERNS = (r'[Nn]othing in this book|this book does not|no procedure'
-                  r'|this (?:book|chapter) (?:refuses|declines|stops)|this book gives no'
-                  r'|nowhere in this book')
+# case-folded at the first letter: these sentences start sentences as often
+# as not, and a pattern that only matched mid-sentence missed a real claim
+CLAIM_PATTERNS = (r'[Nn]othing in this book|[Tt]his book does not|no procedure'
+                  r'|[Tt]his (?:book|chapter) (?:refuses|declines|stops)'
+                  r'|[Tt]his book gives no|[Nn]owhere in this book')
 
 REVIEWED_CLAIMS = {
     'this book does not treat it as settled':
@@ -208,6 +213,20 @@ REVIEWED_CLAIMS = {
         'scoped to Chapter IV, which does stop at the third degree',
     'why this chapter stops there':
         'scoped to Chapter IV; the book does not stop there',
+    'why this chapter stops':
+        'Chapter XIII, which stops at the copyright line and says so',
+    'This book does not attempt to establish how the reading arose':
+        'the Bornless/Headless reading; the chapter shows what can be shown '
+        'and declines the usual account, which it could not verify',
+    'This book does not reproduce that table':
+        "Liber O's path attributions; the figure marks the position and not "
+        'the planet, and says so in the caption',
+    'This book does not print quotations it has only read through corrupt OCR':
+        'the standing rule; still true, and Chapter XIII follows it by using '
+        'two scans of one edition and saying which passage came from which',
+    'This book gives no Enochian operation':
+        'true: the workable system is in copyright, and the public-domain '
+        'source is a transcript of conversations, not a set of instructions',
 }
 
 
