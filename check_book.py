@@ -12,6 +12,7 @@ apparatus is checked mechanically rather than by eye:
   claims       every sentence saying the book lacks something is registered,
                with the reason it is still true
   glyphs       no character that renders as a picture; the book draws its own
+  rites        the rite count printed in Chapter XXI matches the rites present
   figures      no repeated or skipped figure number inside a chapter
   svg          no markup inside an SVG <text>, which does not render
   epub         the archive is well formed and its XML parses
@@ -283,6 +284,58 @@ def check_glyphs(s, report):
            errs[:8])
 
 
+# --------------------------------------------------------------------------
+# the rite count
+#
+# Chapter XXI's Materials table is a shopping list for the rites, and it says
+# how many there are. Every chapter added from here on may add rites, and a
+# spelled-out number in prose does not notice. So it is checked against the
+# thing it counts.
+#
+# The laboratory operations of Chapter XXII are deliberately outside the
+# table: what they need is a fume hood, not a shopping list, and that chapter
+# states the requirement beside each hazard instead.
+# --------------------------------------------------------------------------
+
+NUMBER_WORDS = {
+    'thirty-six': 36, 'thirty-seven': 37, 'thirty-eight': 38, 'thirty-nine': 39,
+    'forty': 40, 'forty-one': 41, 'forty-two': 42, 'forty-three': 43,
+    'forty-four': 44, 'forty-five': 45, 'forty-six': 46, 'forty-seven': 47,
+    'forty-eight': 48, 'forty-nine': 49, 'fifty': 50, 'fifty-one': 51,
+    'fifty-two': 52, 'fifty-three': 53, 'fifty-four': 54, 'fifty-five': 55,
+}
+
+
+def check_rite_count(s, report):
+    m = re.search(r'It covers all ([a-z-]+) rites this book gives outside the laboratory', s)
+    if not m:
+        report('rites', False,
+               'the sentence in Chapter XXI that states the rite count has '
+               'been reworded; update check_rite_count', [])
+        return
+    claimed_word = m.group(1)
+    claimed = NUMBER_WORDS.get(claimed_word)
+    total = s.count('class="rite"')
+    a = s.index('<h2 id="laboratory"')
+    b = s.index('<h2 id="sources"')
+    lab = s[a:b].count('class="rite"')
+    actual = total - lab
+    ok = claimed == actual
+    extra = []
+    if claimed is None:
+        extra.append('%r is not in NUMBER_WORDS; add it' % claimed_word)
+    elif not ok:
+        extra.append('Chapter XXI says %s (%d); the book has %d rites outside '
+                     'the laboratory (%d in all, %d of them laboratory '
+                     'operations)' % (claimed_word, claimed, actual, total, lab))
+        for w, v in sorted(NUMBER_WORDS.items(), key=lambda kv: kv[1]):
+            if v == actual:
+                extra.append('the sentence should read "all %s rites"' % w)
+    report('rites', ok,
+           '%d rites, %d of them laboratory operations; Chapter XXI says %s'
+           % (total, lab, claimed_word), extra)
+
+
 def check_figures(s, report):
     parts = re.split(r'(<h2 id="[^"]+")', s)
     bad, total = [], 0
@@ -395,6 +448,7 @@ def main(argv):
         check_crossrefs(s, report)
         check_claims(s, report)
         check_glyphs(s, report)
+        check_rite_count(s, report)
         check_figures(s, report)
         check_svg_text(s, report)
         check_epub(report)

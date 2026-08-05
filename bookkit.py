@@ -207,11 +207,6 @@ MANUAL_REFS = {
     # Lémery's own chapter VIII, not this book's
     u'istry in 1677. Lémery gives the preparation in': FOREIGN,
 
-    # "the thirty-six rites of Chapters III to XX". Inserting a chapter inside
-    # a range changes what the range means and not merely what it is called,
-    # so this is never rewritten automatically -- the renumberer stops and
-    # asks for the sentence to be reworded.
-    u'ic requires. It covers the thirty-six rites of': RANGE,
 }
 
 
