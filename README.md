@@ -1,6 +1,6 @@
 # The Complete Hermetic & Rosicrucian Grimoire
 
-A working grimoire of the Western esoteric tradition — twenty-eight chapters, 337 pages, 48 diagrams — in which **every source is dated and attributed, and the attribution is allowed to be inconvenient.**
+A working grimoire of the Western esoteric tradition — twenty-eight chapters, 341 pages, 48 diagrams — in which **every source is dated and attributed, and the attribution is allowed to be inconvenient.**
 
 That last clause is the point. Where a teaching commonly presented as ancient turns out to be medieval, early modern or modern, the chapter says so and keeps the practice. Where two sources disagree, both are printed. Where this edition could not reach a text, it names the text and says why.
 
@@ -21,6 +21,7 @@ The PDF and EPUB are generated from the HTML. **Corrections go to `grimoire.html
 - The **Seven Hermetic Principles** come from *The Kybalion* (1908), a New Thought work — not from ancient Hermeticism. All seven are kept, explained, and dated.
 - The **Corpus Hermeticum** is Greek, c. 100–300 CE. Ficino translated it in 1471 believing it older than Moses; Casaubon showed otherwise. That misdating is *why* the Renaissance took Hermeticism seriously.
 - The **Zohar** is assigned to a second-century sage. It appears in Castile around 1280 in the hands of Moses de León, and the case that he wrote it was in print from 1851 — reproduced, by Mathers, inside the 1887 translation that carried the text into English magic. The tradition kept the text and dropped the introduction.
+- **&ldquo;Memphis is Rome.&rdquo;** The *Grimorium Verum* claims on its title page to have been published by Alibeck the Egyptian at Memphis in 1517. It is mid-eighteenth-century and Roman. In that family of printed grimoires the false imprint is not an error anybody made — it is the first line of the sales pitch, and the buyer was expected to enjoy it.
 - **The tarot attributions everyone uses disagree with the ones they replaced on twenty-one cards out of twenty-two.** Lévi made the Juggler Aleph in 1856; the Golden Dawn moved the Fool to the front and shifted every numbered trump one letter along. Both tables are printed side by side. Waite translated Lévi’s scheme into English and then issued a deck built on the other one.
 - **Enochian was first printed as a warning.** Meric Casaubon published Dee’s angel diaries in 1659 with a preface confirming that the spirits were real and concluding they were evil — and he states the Kelley-was-a-fraud theory himself, as an objection, before rejecting it. The argument has been attached to the corpus since the day it entered print.
 - The **Rosicrucian Brotherhood** cannot be shown to have existed. Andreae, who acknowledged writing the *Chymical Wedding*, called the whole affair a *ludibrium* — a lampoon.

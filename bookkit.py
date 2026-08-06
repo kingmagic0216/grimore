@@ -316,7 +316,12 @@ KEY_OVERRIDES = {
     u'Paris, BnF lat. 13951': [u'bnf lat. 13951'],
     u'Secret, The (2006)': [u'2006'],
     u'Golden Dawn, The (Regardie, 1937–40)': [u'regardie'],
-    u'Waite, A. E., The Book of Ceremonial Magic': [u'book of ceremonial magic'],
+    # The grimoire survey rests on this book and names its author on every
+    # page of it, so confirming those references needs the surname -- and
+    # the surname would sweep half the book onto the entry, so it is in
+    # resolve_index's SWEEP_REJECT too. Same split as the two Casaubons.
+    u'Waite, A. E., The Book of Ceremonial Magic':
+        [u'book of ceremonial magic', u'waite'],
     u'assaying': [u'assay', u'assayer'],
     u'bone ash': [u'bone ash', u'bone-ash'],
     u'calomel (mercurius dulcis)': [u'calomel', u'mercurius dulcis'],
@@ -326,6 +331,14 @@ KEY_OVERRIDES = {
     u'deflagration': [u'deflagration', u'deflagrating'],
     u'fume hood': [u'fume hood', u'fume-hood'],
     u'Howard, Edward': [u'edward howard'],
+    u'Sworn Book of Honorius (Liber Juratus)': ['sworn book'],
+    u'Grimoire of Honorius (1629)': ['grimoire of honorius'],
+    u'Honorius, the two books of': ['honorius'],
+    u'Grand Grimoire (the Red Dragon)': ['grand grimoire', 'red dragon'],
+    u'Black Pullet, The': ['black pullet'],
+    u'True Black Magic': ['true black magic'],
+    u'Alibeck the Egyptian': ['alibeck'],
+    u'false imprints': ['false imprint'],
     u'Court de Gébelin, Antoine': ['court de gebelin'],
     u'Monde Primitif (Court de Gébelin, 1781)': ['monde primitif'],
     u'Lévi, Éliphas': ['levi'],
