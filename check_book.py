@@ -11,6 +11,7 @@ apparatus is checked mechanically rather than by eye:
   crossrefs    every "Chapter N" that links to an id says that chapter's real
                number, and every mention in the file is classified
   contents     the navigation list names every chapter, in document order
+  voice        no chapter narrates the book's own drafting history
   claims       every sentence saying the book lacks something is registered,
                with the reason it is still true
   glyphs       no character that renders as a picture; the book draws its own
@@ -418,6 +419,49 @@ def check_contents(s, report):
     report('contents', not errs, '%d chapters listed, in order' % len(order), errs)
 
 
+# --------------------------------------------------------------------------
+# voice
+#
+# A chapter that opens by describing what the book used to lack is a changelog,
+# not a chapter. The reader has not seen the previous edition and has no reason
+# to care about it, and prose that keeps score of its own revisions reads as
+# unfinished. All six chapters added in one pass opened that way -- "this book
+# has used astrology in six chapters without ever casting a chart", "Chapter 3
+# says X and then does not print it" -- and all six were rewritten to open on
+# their subject.
+#
+# The book is still free to say what it does not cover and why: those are
+# claims about scope, they are checked separately by check_claims, and they
+# belong in a sources line or a note rather than in an opening paragraph.
+# What is banned here is the book narrating its own drafting.
+# --------------------------------------------------------------------------
+
+VOICE_PATTERNS = [
+    (r'[Tt]his book has (?:never|already|met|used|given|spent|been)',
+     'narrating its own history'),
+    (r'had to come first|comes? (?:first|later) in this book', 'explaining its own running order'),
+    (r'[Ww]hat this chapter adds', 'editorialising about itself'),
+    (r'[Tt]his book has caused', 'apologising for itself'),
+    (r'[Ww]hat (?:it|this book) has never', 'keeping score of omissions'),
+    (r'and (?:then )?does not (?:print|give|say) (?:it|the)', 'complaining about another chapter'),
+    (r'as far as this book can tell', 'first-person hedging'),
+    (r'never (?:put them together|joined them)', 'noting a former gap'),
+    (r'\b(?:\w+) times in this book\b', 'counting its own mentions'),
+]
+
+
+def check_voice(s, report):
+    """No chapter narrates the book's own drafting."""
+    text = re.sub(r'\s+', ' ', B.strip_tags(s))
+    errs = []
+    for pat, why in VOICE_PATTERNS:
+        for m in re.finditer(pat, text):
+            errs.append('%s: ...%s...'
+                        % (why, text[max(0, m.start() - 40):m.start() + 70]))
+    report('voice', not errs,
+           'no chapter narrates the book\'s own drafting', errs[:6])
+
+
 def check_figures(s, report):
     parts = re.split(r'(<h2 id="[^"]+")', s)
     bad, total = [], 0
@@ -641,6 +685,7 @@ def main(argv):
         check_crossrefs(s, report)
         check_contents(s, report)
         check_claims(s, report)
+        check_voice(s, report)
         check_glyphs(s, report)
         check_rite_count(s, report)
         check_tree_count(s, report)
