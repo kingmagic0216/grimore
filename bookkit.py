@@ -326,6 +326,14 @@ KEY_OVERRIDES = {
     u'deflagration': [u'deflagration', u'deflagrating'],
     u'fume hood': [u'fume hood', u'fume-hood'],
     u'Howard, Edward': [u'edward howard'],
+    u'mansions of the Moon, the twenty-eight': ['mansion'],
+    u'Alnath': ['alnath'],
+    u'Aldebaran': ['aldebaran'],
+    u'Teucer the Babylonian': ['teucer'],
+    u'Porphyry': ['porphyry'],
+    u'astral images': ['astral image', 'astral-image'],
+    u'election (choosing a moment)': ['election'],
+    u'Three Books of Occult Philosophy (Agrippa, 1651)': ['three books of occult philosophy'],
     u'Lilly, William':
         ['lilly'],
     u'Christian Astrology (Lilly, 1647)':
