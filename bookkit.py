@@ -191,6 +191,7 @@ def signature(s, pos):
 # unclassified reference is exactly how one goes stale in silence.
 MANUAL_REFS = {
     # this book's own chapters, referred to in prose without a link
+    u' The Lemegeton and its Ars Goetia are dated in': 'solomonic',
     u'Indiana University, 2010). The ritual texts in':
         ['meditation', 'rituals', 'protection', 'practicum'],
     u'h in the public domain. The planetary herbs in': 'practicum',
@@ -315,6 +316,14 @@ def format_folios(nums, passim=False, apply_passim_rule=False):
 # "medici" matching inside "medicine" being the one that produced nine pages
 # for a man named on two.
 KEY_OVERRIDES = {
+    # Reginald Scot's surname is a prefix of Walter Scott's, and the two share
+    # no subject; confirm on words neither shares with the other entry
+    # word-boundary 'scot' never matches 'Scott' (the only permitted suffixes
+    # are s/es/'s), so the surname is safe as a key
+    u'Scot, Reginald, Discoverie of Witchcraft': [u'scot', u'discoverie'],
+    u'James VI of Scotland': [u'james vi'],
+    u'Daemonologie (James VI, 1597)': [u'daemonologie'],
+    u'Baëll': [u'baëll', u'baell'],
     u"Medici, Cosimo de'": [u"cosimo de' medici"],
     u'Reading, Pennsylvania': [u'reading, pennsylvania'],
     u'Paris, BnF lat. 13951': [u'bnf lat. 13951'],

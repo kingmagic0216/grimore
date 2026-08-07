@@ -79,7 +79,7 @@ import bookkit as B
 # Chapter XIII lowered this from 39: giving Isaac Casaubon the loose key
 # that his own pages need confirmed three references the tighter one
 # could not, while SWEEP_REJECT keeps his son's chapter off his entry.
-INDEX_FLOOR = 38
+INDEX_FLOOR = 32
 
 VOID = set('br img hr meta link input path circle line rect use polygon '
            'polyline ellipse stop source col area base'.split())
