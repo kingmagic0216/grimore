@@ -276,9 +276,10 @@ REVIEWED_CLAIMS = {
     'This book does not reproduce that table':
         "Liber O's path attributions; the figure marks the position and not "
         'the planet, and says so in the caption',
-    'This book does not print quotations it has only read through corrupt OCR':
-        'the standing rule; still true, and Chapter XIII follows it by using '
-        'two scans of one edition and saying which passage came from which',
+    'this book does not print quotations it has only read through corrupt OCR':
+        'the standing rule, now stated in the bibliography; Chapter XIII '
+        'follows it by using two scans of one edition and saying which '
+        'passage came from which',
     'This book gives no Enochian operation':
         'true: the workable system is in copyright, and the public-domain '
         'source is a transcript of conversations, not a set of instructions',
