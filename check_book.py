@@ -468,7 +468,7 @@ def check_contents(s, report):
 # --------------------------------------------------------------------------
 
 VOICE_PATTERNS = [
-    (r'[Tt]his book has (?:never|already|met|used|given|spent|been)',
+    (r'[Tt]h(?:is|e) book has (?:never|already|met|used|given|spent|been)',
      'narrating its own history'),
     (r'had to come first|comes? (?:first|later) in this book', 'explaining its own running order'),
     (r'[Ww]hat this chapter adds', 'editorialising about itself'),
