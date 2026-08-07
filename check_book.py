@@ -597,7 +597,7 @@ VOICE_PATTERNS = [
     (r'as far as this book can tell', 'first-person hedging'),
     (r'never (?:put them together|joined them)', 'noting a former gap'),
     (r'\b(?:\w+) times in this book\b', 'counting its own mentions'),
-    (r'[Ee]arlier printings of this (?:book|edition)', 'narrating its own revisions'),
+    (r'[Aa]n? ?[Ee]arlier printings? of this (?:book|edition)', 'narrating its own revisions'),
     (r'later commits|goes stale silently', 'talking about the repository'),
     (r'(?:second|third|fourth|fifth) pass (?:corrected|found|is worth)',
      'reporting its own revision passes'),
