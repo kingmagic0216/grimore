@@ -198,7 +198,7 @@ MANUAL_REFS = {
     u'apter #, the pentagram as the figure traced in': 'protection',
     u'; light, smoke, water, edge Everything else in': 'rituals',
     u'ny table you can clear. The altar of Fig. 2 in': 'rituals',
-    u'5 SaltAny salt.3 A knifeA knife you own.': 'rituals',
+    u'5 SaltAny salt.2 A knifeA knife you own.': 'rituals',
     u'y knife, once consecrated. The consecration in': 'rituals',
     u'or herbs. Infusion, decoction and expression (': 'healing',
     u' and an hour when you will not be interrupted.': 'practicum',
