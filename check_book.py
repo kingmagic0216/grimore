@@ -348,6 +348,9 @@ ALLOWED_PICTOGRAPHIC = {
     u'✠': 'the benediction crosses of the conjuration quoted in Chapter XI, '
                 'set as the 1886 reprint sets them; declared in that '
                 'chapter\'s sources note.',
+    u'✱': 'the printer\'s star in Decarabia\'s entry, quoted as the 1886 '
+                'reprint sets it -- the Latin says the spirit appears as a '
+                'star in a pentacle, and the English prints the star itself.',
 }
 
 
