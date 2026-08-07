@@ -198,12 +198,30 @@ def check_crossrefs(s, report):
     for m, sig in unclassified:
         errs.append('unclassified mention %r (signature %r) -- classify it in '
                     'bookkit.MANUAL_REFS' % (m.group(0), sig))
-    total = sum(len(v) for v in buckets.values())
+    # links whose visible text is a bare roman numeral (the Ch. column of the
+    # Materials table).  find_mentions never sees these because nothing says
+    # "Chapter", which is exactly how thirty-five of them shipped with
+    # pre-insertion numbering: the renumberer updated every reference that
+    # named itself and skipped every one that did not.  The href is the
+    # intent, so the numeral is checkable against it.
+    bare = 0
+    for m in re.finditer(r'<a href="#([a-z-]+)">([IVXLC]+)</a>', s):
+        cid, rom = m.groups()
+        if cid not in numbers:
+            errs.append('bare numeral link to #%s, which is not a chapter'
+                        % cid)
+            continue
+        bare += 1
+        if B.from_roman(rom) != numbers[cid]:
+            errs.append('bare link says %s but #%s is chapter %d'
+                        % (rom, cid, numbers[cid]))
+    total = sum(len(v) for v in buckets.values()) + bare
     report('crossrefs', not errs,
            '%d mentions: %d headings, %d linked, %d prose, %d other books, '
-           '%d ranges' % (total, len(buckets['header']), len(buckets['linked']),
-                          len(buckets['manual']), len(buckets['foreign']),
-                          len(buckets['range'])),
+           '%d ranges, %d bare links'
+           % (total, len(buckets['header']), len(buckets['linked']),
+              len(buckets['manual']), len(buckets['foreign']),
+              len(buckets['range']), bare),
            errs[:8])
 
 
@@ -365,7 +383,12 @@ NUMBER_WORDS = {
     'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8,
     'nine': 9, 'ten': 10, 'eleven': 11, 'twelve': 12, 'thirteen': 13,
     'fourteen': 14, 'fifteen': 15, 'sixteen': 16,
-    'two': 2, 'seventeen': 17, 'twenty-eight': 28, 'twenty-nine': 29, 'thirty': 30,
+    'two': 2, 'seventeen': 17, 'eighteen': 18, 'nineteen': 19, 'twenty': 20,
+    'twenty-one': 21, 'twenty-two': 22, 'twenty-three': 23, 'twenty-four': 24,
+    'twenty-five': 25, 'twenty-six': 26, 'twenty-seven': 27,
+    'twenty-eight': 28, 'twenty-nine': 29, 'thirty': 30,
+    'thirty-one': 31, 'thirty-two': 32, 'thirty-three': 33,
+    'thirty-four': 34, 'thirty-five': 35,
     'forty-eight': 48, 'forty-nine': 49, 'fifty-one': 51,
     'thirty-six': 36, 'thirty-seven': 37, 'thirty-eight': 38, 'thirty-nine': 39,
     'forty': 40, 'forty-one': 41, 'forty-two': 42, 'forty-three': 43,
@@ -403,6 +426,102 @@ def check_rite_count(s, report):
     report('rites', ok,
            '%d rites, %d of them laboratory operations; Materials says %s'
            % (total, lab, claimed_word), extra)
+
+
+def check_materials(s, report):
+    """The Materials chapter is derived from the rites, so re-derive it.
+
+    Everything in that chapter is arithmetic over its own rite table: which
+    chapter each rite is printed in, how many rites need nothing, how many
+    the ten common items cover, and how many rites each item serves.  All
+    four went stale silently -- the Ch. column survived a renumbering, and
+    two material lists were extraction errors ("a sphere of gold" is not a
+    metal requirement) whose correction moved three counts.  So the table is
+    checked against the rites, and the prose against the table.
+    """
+    def norm(t):
+        t = t.replace('&mdash;', u'—').replace('&#8212;', u'—')
+        t = t.replace('&amp;', '&')
+        t = re.sub(r'<[^>]+>', '', t)
+        return re.sub(r'\s+', ' ', t).strip().lower()
+
+    errs = []
+    chs = B.chapters(s)
+    ends = [c.pos for c in chs[1:]] + [s.index('<h2 id="sources"')]
+    rite_ch = {}
+    for c, e in zip(chs, ends):
+        for m in re.finditer(r'<div class="rite">\s*<h4>(.*?)</h4>',
+                             s[c.pos:e], re.S):
+            rite_ch.setdefault(norm(m.group(1)), []).append(c.id)
+
+    i = s.index('<th>Rite</th>')
+    j = s.index('</table>', i)
+    rows = re.findall(r'<tr(?: class="bare")?><td>(.*?)</td>'
+                      r'<td><a href="#([a-z-]+)">[IVXLC]+</a></td>'
+                      r'<td>(.*?)</td></tr>', s[i:j], re.S)
+    if not rows:
+        report('materials', False,
+               'the rite table has been reformatted; update check_materials',
+               [])
+        return
+
+    # 1. every row names the chapter its rite is actually printed in
+    for t, cid, mat in rows:
+        where = rite_ch.get(norm(t))
+        if not where:
+            errs.append('table rite %r has no matching h4 in any chapter'
+                        % norm(t)[:48])
+        elif cid not in where:
+            errs.append('table says %r is in #%s; it is printed in %s'
+                        % (norm(t)[:40], cid, '/'.join(where)))
+
+    # 2. the derived counts in the prose and the items table
+    TEN = ['paper or parchment', 'herbs', 'a table or altar', 'water',
+           'censer & charcoal', 'a light', 'linen or clean clothes',
+           'vessel or bowl', 'salt', 'knife']
+    ITEM_ROWS = {  # items-table label -> rite-table vocabulary
+        'Paper and a pen': 'paper or parchment', 'A herb or two': 'herbs',
+        'A table': 'a table or altar', 'Water': 'water',
+        'Charcoal and a resin': 'censer & charcoal', 'A light': 'a light',
+        'Clean clothes kept for the purpose': 'linen or clean clothes',
+        'A vessel': 'vessel or bowl', 'Salt': 'salt', 'A knife': 'knife'}
+    use = {}
+    dash = covered = 0
+    for t, cid, mat in rows:
+        mat = mat.strip()
+        if mat == '&#8212;':
+            dash += 1
+            covered += 1
+            continue
+        items = [x.strip() for x in mat.split(',')]
+        for x in items:
+            use[x] = use.get(x, 0) + 1
+        if all(x in TEN for x in items):
+            covered += 1
+
+    m = re.search(r'([a-z-]+) of the thirty-six rites\s+in this book need '
+                  r'no equipment at all', s)
+    if not m or NUMBER_WORDS.get(m.group(1)) != dash:
+        errs.append('%d rites need nothing; the prose says %s'
+                    % (dash, m.group(1) if m else '(sentence not found)'))
+    m = re.search(r'Ten ordinary things cover <strong>([a-z-]+) of the '
+                  r'thirty-six rites</strong>', s)
+    if not m or NUMBER_WORDS.get(m.group(1)) != covered:
+        errs.append('the ten items cover %d rites; the prose says %s'
+                    % (covered, m.group(1) if m else '(sentence not found)'))
+    for label, vocab in sorted(ITEM_ROWS.items()):
+        im = re.search(r'<tr><td>%s</td><td>.*?</td><td>(\d+)</td></tr>'
+                       % re.escape(label), s, re.S)
+        if not im:
+            errs.append('items table row %r not found' % label)
+        elif int(im.group(1)) != use.get(vocab, 0):
+            errs.append('items table says %r serves %s rites; the rite '
+                        'table gives %d'
+                        % (label, im.group(1), use.get(vocab, 0)))
+
+    report('materials', not errs,
+           '%d table rows re-derived: chapters, %d bare-handed, %d covered '
+           'by the ten items' % (len(rows), dash, covered), errs[:8])
 
 
 def check_contents(s, report):
@@ -478,6 +597,10 @@ VOICE_PATTERNS = [
     (r'as far as this book can tell', 'first-person hedging'),
     (r'never (?:put them together|joined them)', 'noting a former gap'),
     (r'\b(?:\w+) times in this book\b', 'counting its own mentions'),
+    (r'[Ee]arlier printings of this (?:book|edition)', 'narrating its own revisions'),
+    (r'later commits|goes stale silently', 'talking about the repository'),
+    (r'(?:second|third|fourth|fifth) pass (?:corrected|found|is worth)',
+     'reporting its own revision passes'),
 ]
 
 
@@ -719,6 +842,7 @@ def main(argv):
         check_voice(s, report)
         check_glyphs(s, report)
         check_rite_count(s, report)
+        check_materials(s, report)
         check_tree_count(s, report)
         check_figures(s, report)
         check_figure_fit(s, report)
