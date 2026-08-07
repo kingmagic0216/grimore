@@ -177,6 +177,11 @@ def signature(s, pos):
     # Renumbering the first would move the key of the second, so the numbers
     # are masked out of the context before it is used as a key.
     win = re.sub(r'Chapters?\s+(?:[IVXLC]+|\d+)', u'Chapter #', win)
+    # quote characters are typography, not content: a pass that curls straight
+    # quotes must not invalidate every signature that contains one
+    for a, b in ((u'’', u"'"), (u'‘', u"'"),
+                 (u'“', u'"'), (u'”', u'"')):
+        win = win.replace(a, b)
     return win[-SIG_LEN:]
 
 
