@@ -196,7 +196,6 @@ MANUAL_REFS = {
     u'h in the public domain. The planetary herbs in': 'practicum',
     u'the book: the circle as the ritual boundary of': 'rituals',
     u'apter #, the pentagram as the figure traced in': 'protection',
-    u'a quotation from it. A third English rendering': 'emerald',
     u'; light, smoke, water, edge Everything else in': 'rituals',
     u'ny table you can clear. The altar of Fig. 2 in': 'rituals',
     u'5 SaltAny salt.3 A knifeA knife you own.': 'rituals',
