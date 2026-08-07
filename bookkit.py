@@ -177,6 +177,11 @@ def signature(s, pos):
     # Renumbering the first would move the key of the second, so the numbers
     # are masked out of the context before it is used as a key.
     win = re.sub(r'Chapters?\s+(?:[IVXLC]+|\d+)', u'Chapter #', win)
+    # quote characters are typography, not content: a pass that curls straight
+    # quotes must not invalidate every signature that contains one
+    for a, b in ((u'’', u"'"), (u'‘', u"'"),
+                 (u'“', u'"'), (u'”', u'"')):
+        win = win.replace(a, b)
     return win[-SIG_LEN:]
 
 
@@ -191,7 +196,6 @@ MANUAL_REFS = {
     u'h in the public domain. The planetary herbs in': 'practicum',
     u'the book: the circle as the ritual boundary of': 'rituals',
     u'apter #, the pentagram as the figure traced in': 'protection',
-    u'a quotation from it. A third English rendering': 'emerald',
     u'; light, smoke, water, edge Everything else in': 'rituals',
     u'ny table you can clear. The altar of Fig. 2 in': 'rituals',
     u'5 SaltAny salt.3 A knifeA knife you own.': 'rituals',
