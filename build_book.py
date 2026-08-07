@@ -191,6 +191,9 @@ figure.fig text.tiny { fill: #54504a; }
 .rite { border-left: 3px solid #6b3410; }
 table.tbl { font-size: 9pt; }
 table.tbl th { background: #f2efe6; }
+/* the source sets --accent to #000 for print; the warn cell wants the
+   accent brown, the same one the figure labels are given above */
+table.tbl td.warn, table.tbl td.warn strong { color: #6b3410; }
 a { color: inherit; text-decoration: none; }
 .bib li { font-size: 9pt; margin-bottom: 0.5em; }
 
@@ -522,6 +525,7 @@ table.tbl { border-collapse: collapse; width: 100%; font-size: .9em; }
 table.tbl th, table.tbl td { border: 1px solid #ccc; padding: .4em .5em;
                              text-align: left; vertical-align: top; }
 table.tbl th { background: #f2efe6; }
+table.tbl td.warn, table.tbl td.warn strong { color: #6b3410; }
 figure.fig { margin: 1.6em 0; text-align: center; }
 figure.fig svg { max-width: 100%; height: auto; }
 figure.fig .ink { stroke: #1a1a1a; fill: none; stroke-width: 1.4; }
@@ -606,6 +610,18 @@ def main():
     ep = build_epub(html)
     print('  epub          -> %s (%d bytes)' % (os.path.basename(ep), os.path.getsize(ep)))
 
+    # An index goes stale silently: add a paragraph anywhere and every folio
+    # after it is wrong, with nothing on the page to say so. This book shipped
+    # that defect once. The build now reports it instead of leaving it to be
+    # noticed two commits later.
+    print('')
+    try:
+        import check_book
+    except ImportError:
+        print('  checks        -> skipped, check_book.py not found')
+        return 0
+    return check_book.main([])
+
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main() or 0)
