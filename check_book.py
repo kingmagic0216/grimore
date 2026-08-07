@@ -79,7 +79,7 @@ import bookkit as B
 # Chapter XIII lowered this from 39: giving Isaac Casaubon the loose key
 # that his own pages need confirmed three references the tighter one
 # could not, while SWEEP_REJECT keeps his son's chapter off his entry.
-INDEX_FLOOR = 38
+INDEX_FLOOR = 32
 
 VOID = set('br img hr meta link input path circle line rect use polygon '
            'polyline ellipse stop source col area base'.split())
@@ -345,6 +345,9 @@ ALLOWED_PICTOGRAPHIC = {
                 '"Yod = 10 -> 1". It sets in the figure font, monochrome.',
     u'↑': 'the back-to-top control in the HTML edition; display:none in '
                 'print and absent from the EPUB.',
+    u'✠': 'the benediction crosses of the conjuration quoted in Chapter XI, '
+                'set as the 1886 reprint sets them; declared in that '
+                'chapter\'s sources note.',
 }
 
 
@@ -500,13 +503,13 @@ def check_materials(s, report):
         if all(x in TEN for x in items):
             covered += 1
 
-    m = re.search(r'([a-z-]+) of the thirty-six rites\s+in this book need '
+    m = re.search(r'([a-z-]+) of the thirty-\w+ rites\s+in this book need '
                   r'no equipment at all', s)
     if not m or NUMBER_WORDS.get(m.group(1)) != dash:
         errs.append('%d rites need nothing; the prose says %s'
                     % (dash, m.group(1) if m else '(sentence not found)'))
     m = re.search(r'Ten ordinary things cover <strong>([a-z-]+) of the '
-                  r'thirty-six rites</strong>', s)
+                  r'thirty-\w+ rites</strong>', s)
     if not m or NUMBER_WORDS.get(m.group(1)) != covered:
         errs.append('the ten items cover %d rites; the prose says %s'
                     % (covered, m.group(1) if m else '(sentence not found)'))

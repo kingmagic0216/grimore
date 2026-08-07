@@ -29,6 +29,7 @@ unclassified reference is how one goes stale in silence.
 """
 from __future__ import print_function
 
+import re
 import sys
 
 try:
@@ -100,6 +101,22 @@ def plan(s):
             head = lm.group(0)[:lm.start(1) - lm.start(0)]
             edits.append((a, b, s[a:b], head + newbody,
                           'prose -> %s' % '/'.join(targets)))
+
+    # bare numeral links: <a href="#id">XI</a> with no "Chapter" in the text.
+    # find_mentions never sees these (nothing says "Chapter"), which is how
+    # the Materials table's Ch. column once survived a renumbering unchanged.
+    # The href names the target, so the numeral is mechanical.
+    for lm in re.finditer(r'<a href="#([a-z-]+)">([IVXLC]+)</a>', s):
+        cid, rom = lm.groups()
+        if cid not in by_id:
+            problems.append('bare numeral link to #%s, which is not a chapter'
+                            % cid)
+            continue
+        want = B.to_roman(by_id[cid])
+        if rom != want:
+            edits.append((lm.start(), lm.end(), lm.group(0),
+                          u'<a href="#%s">%s</a>' % (cid, want),
+                          'bare link -> %s' % cid))
 
     # ranges: refuse
     for a, b, sig in buckets['range']:
