@@ -110,6 +110,14 @@ def check_tools(report):
             compile(src, path, 'exec')
         except SyntaxError as exc:
             errs.append('%s line %s: %s' % (name, exc.lineno, exc.msg))
+        # a generator writing an escaped word-boundary through a non-raw
+        # string plants a literal backspace inside a regex: it compiles,
+        # matches nothing, and has now happened three times in this repo.
+        # Refuse the whole control range.
+        ctl = sorted({ord(c) for c in src if ord(c) < 32 and c not in '\r\n\t'})
+        if ctl:
+            errs.append('%s contains control characters: %s'
+                        % (name, ['U+%04X' % c for c in ctl]))
     report('tools', not errs, 'the four scripts compile', errs)
 
 
@@ -357,6 +365,8 @@ NUMBER_WORDS = {
     'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8,
     'nine': 9, 'ten': 10, 'eleven': 11, 'twelve': 12, 'thirteen': 13,
     'fourteen': 14, 'fifteen': 15, 'sixteen': 16,
+    'two': 2, 'seventeen': 17, 'twenty-eight': 28, 'twenty-nine': 29, 'thirty': 30,
+    'forty-eight': 48, 'forty-nine': 49, 'fifty-one': 51,
     'thirty-six': 36, 'thirty-seven': 37, 'thirty-eight': 38, 'thirty-nine': 39,
     'forty': 40, 'forty-one': 41, 'forty-two': 42, 'forty-three': 43,
     'forty-four': 44, 'forty-five': 45, 'forty-six': 46, 'forty-seven': 47,
@@ -416,7 +426,28 @@ def check_contents(s, report):
     order = [c for c in listed if c in want]
     if not errs and order != want:
         errs.append('the contents list is out of document order')
-    report('contents', not errs, '%d chapters listed, in order' % len(order), errs)
+    # the title page states the chapter and figure counts in prose, and has
+    # been wrong before: it said "Seventeen chapters" while the book had
+    # twenty-eight, because nothing compared the sentence to the book
+    m = re.search(r'<p class="imprint">([A-Za-z-]+) chapters &#183; with ([a-z-]+) '
+                  r'diagrams and ([a-z-]+) plates</p>', s)
+    if not m:
+        errs.append('the title-page imprint line has been reworded; update check_contents')
+    else:
+        chs_said = NUMBER_WORDS.get(m.group(1).lower())
+        digs_said = NUMBER_WORDS.get(m.group(2).lower())
+        plates_said = NUMBER_WORDS.get(m.group(3).lower())
+        figs = re.findall(r'<figure\b.*?</figure>', s, re.S)
+        n_diagrams = sum(1 for f in figs if '<svg' in f)
+        n_plates = len(figs) - n_diagrams
+        if chs_said != len(want):
+            errs.append('title page says %s chapters; the book has %d' % (m.group(1), len(want)))
+        if digs_said != n_diagrams:
+            errs.append('title page says %s diagrams; the book has %d drawn figures'
+                        % (m.group(2), n_diagrams))
+        if plates_said != n_plates:
+            errs.append('title page says %s plates; the book has %d' % (m.group(3), n_plates))
+    report('contents', not errs, '%d chapters listed, in order; title-page counts agree' % len(order), errs)
 
 
 # --------------------------------------------------------------------------
