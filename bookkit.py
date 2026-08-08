@@ -194,6 +194,7 @@ MANUAL_REFS = {
     u' The Lemegeton and its Ars Goetia are dated in': 'solomonic',
     u'nto Hermesthe ascent in imagination, quoted in': 'introduction',
     u'mages of the Early English Books scan cited in': 'sigils',
+    u"ish occultism in Waite's translation, cited in": 'tarot',
     u'Indiana University, 2010). The ritual texts in':
         ['meditation', 'rituals', 'protection', 'practicum'],
     u'h in the public domain. The planetary herbs in': 'practicum',
