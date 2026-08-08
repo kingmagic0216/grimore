@@ -280,6 +280,10 @@ REVIEWED_CLAIMS = {
         'the standing rule, now stated in the bibliography; Chapter XIII '
         'follows it by using two scans of one edition and saying which '
         'passage came from which',
+    'this book does not repeat unchecked':
+        "Mathers's claim that the SATOR square derives from his pentacle; "
+        'about one editor’s assertion, and the chapter gives the dating '
+        'that refutes it on the same page',
     'This book gives no Enochian operation':
         'true: the workable system is in copyright, and the public-domain '
         'source is a transcript of conversations, not a set of instructions',
