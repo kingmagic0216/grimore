@@ -1,6 +1,6 @@
 # The Complete Hermetic & Rosicrucian Grimoire
 
-A working grimoire of the Western esoteric tradition — twenty-nine chapters, 402 pages, 52 diagrams — in which **every source is dated and attributed, and the attribution is allowed to be inconvenient.**
+A working grimoire of the Western esoteric tradition — twenty-nine chapters, 412 pages, 52 diagrams — in which **every source is dated and attributed, and the attribution is allowed to be inconvenient.**
 
 That last clause is the point. Where a teaching commonly presented as ancient turns out to be medieval, early modern or modern, the chapter says so and keeps the practice. Where two sources disagree, both are printed. Where this edition could not reach a text, it names the text and says why.
 
@@ -8,8 +8,8 @@ That last clause is the point. Where a teaching commonly presented as ancient tu
 
 | Edition | File | Best for |
 |---|---|---|
-| **EPUB** | [`grimoire.epub`](grimoire.epub) — 715 KB | **Phones and e-readers.** Reflowable, follows your font size and dark mode, diagrams are vector so they stay sharp. |
-| **PDF** | [`grimoire.pdf`](grimoire.pdf) — 13 MB | The typeset book: 6×9, running heads, folios, a contents page with real page numbers. |
+| **EPUB** | [`grimoire.epub`](grimoire.epub) — 787 KB | **Phones and e-readers.** Reflowable, follows your font size and dark mode, diagrams are vector so they stay sharp. |
+| **PDF** | [`grimoire.pdf`](grimoire.pdf) — 16 MB | The typeset book: 6×9, running heads, folios, a contents page with real page numbers. |
 | **HTML** | [`grimoire.html`](grimoire.html) | The source of truth. One self-contained file, no dependencies, sticky navigation, dark mode. |
 
 The PDF and EPUB are generated from the HTML. **Corrections go to `grimoire.html`**; the other two are rebuilt from it.
@@ -23,12 +23,13 @@ The PDF and EPUB are generated from the HTML. **Corrections go to `grimoire.html
 - The **Zohar** is assigned to a second-century sage. It appears in Castile around 1280 in the hands of Moses de León, and the case that he wrote it was in print from 1851 — reproduced, by Mathers, inside the 1887 translation that carried the text into English magic. The tradition kept the text and dropped the introduction.
 - **&ldquo;Memphis is Rome.&rdquo;** The *Grimorium Verum* claims on its title page to have been published by Alibeck the Egyptian at Memphis in 1517. It is mid-eighteenth-century and Roman. In that family of printed grimoires the false imprint is not an error anybody made — it is the first line of the sales pitch, and the buyer was expected to enjoy it.
 - **The tarot attributions everyone uses disagree with the ones they replaced on twenty-one cards out of twenty-two.** Lévi made the Juggler Aleph in 1856; the Golden Dawn moved the Fool to the front and shifted every numbered trump one letter along. Both tables are printed side by side. Waite translated Lévi’s scheme into English and then issued a deck built on the other one.
+- **The corpus’s most famous text is misnamed twice over.** The *Mithras Liturgy* is not a liturgy — “a Liturgy is a service in which several take part,” and this is a rite for one person alone — and Franz Cumont, who founded the modern study of Mithraism, quoted it “only to reject it as a genuine Mithriac document.” Mithras is named in it exactly once. Both objections are printed in the 1907 volume that carries the English translation, and the rite is given here entire.
 - **Enochian was first printed as a warning.** Meric Casaubon published Dee’s angel diaries in 1659 with a preface confirming that the spirits were real and concluding they were evil — and he states the Kelley-was-a-fraud theory himself, as an objection, before rejecting it. The argument has been attached to the corpus since the day it entered print.
 - The **Rosicrucian Brotherhood** cannot be shown to have existed. Andreae, who acknowledged writing the *Chymical Wedding*, called the whole affair a *ludibrium* — a lampoon.
 
 Meanwhile the **Greek Magical Papyri** are genuinely ancient, physically extant and provenanced — and they are the part usually left out. That inversion is the argument of the book: the material presented as ancient is mostly early modern, and the genuinely ancient material is the part nobody prints.
 
-**The operative material.** 38 rites given in full, each dated and sourced: the Lesser Banishing Ritual of the Pentagram with Hebrew and pronunciation, the Lesser and Greater Hexagram, the Middle Pillar, godform assumption, scrying, a complete opening and closing, the Solomonic consecrations of water, salt and sword, the Headless Rite from the papyri, dream oracles, the Fourth Pentacle of the Moon, talisman construction, geomancy from the casting to the Judge, Pennsylvania Dutch charms, and the Anglo-Saxon remedies.
+**The operative material.** 39 rites given in full, each dated and sourced: the Mithras Liturgy entire, the Lesser Banishing Ritual of the Pentagram with Hebrew and pronunciation, the Lesser and Greater Hexagram, the Middle Pillar, godform assumption, scrying, a complete opening and closing, the Solomonic consecrations of water, salt and sword, the Headless Rite from the papyri, dream oracles, the Fourth Pentacle of the Moon, talisman construction, geomancy from the casting to the Judge, Pennsylvania Dutch charms, and the Anglo-Saxon remedies.
 
 **Chapters.** Introduction · The Hermetica and Their Transmission · Sacred Geometry & Symbols · Kabbalah and Its Transmission · Alchemical Foundations · The Emerald Tablet · Meditation Practices · Ritual Foundations · The Greek Magical Papyri · The Solomonic Tradition · Demonology · Rosicrucian Mysteries · Advanced Practices · Enochian · Protection & Banishing · Healing & Wellness · Prosperity & Abundance · Seasonal Celebrations · Greater Mysteries · Correspondences, Timing & Materials · Astrology · Sigils, Seals & Symbols · Talismanic & Astral-Image Magic · Geomancy · Tarot · Folk Magic · The Modern Occult Revival · Materials · The Laboratory · Sources & Bibliography
 

@@ -284,6 +284,10 @@ REVIEWED_CLAIMS = {
         "Mathers's claim that the SATOR square derives from his pentacle; "
         'about one editor’s assertion, and the chapter gives the dating '
         'that refutes it on the same page',
+    'this book does not guess what stands behind them':
+        'the daggers in the Mithras Liturgy, where Mead declined to set '
+        'the Greek magical name; true, and the chapter says the names are in '
+        "Dieterich's Greek for a reader who wants them",
     'This book gives no Enochian operation':
         'true: the workable system is in copyright, and the public-domain '
         'source is a transcript of conversations, not a set of instructions',
@@ -499,7 +503,11 @@ def check_materials(s, report):
     use = {}
     dash = covered = 0
     for t, cid, mat in rows:
-        mat = mat.strip()
+        # one row wrote "censer &amp; charcoal" and every other wrote
+        # "censer & charcoal", so that rite was invisible to the censer
+        # count for as long as it stood. Compare what renders, not what
+        # is typed.
+        mat = mat.strip().replace('&amp;', '&')
         if mat == '&#8212;':
             dash += 1
             covered += 1
