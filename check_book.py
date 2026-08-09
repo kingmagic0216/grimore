@@ -284,6 +284,10 @@ REVIEWED_CLAIMS = {
         "Mathers's claim that the SATOR square derives from his pentacle; "
         'about one editor’s assertion, and the chapter gives the dating '
         'that refutes it on the same page',
+    'this book does not quote what it has not seen set in type':
+        'the Ars Almadel, which Waite prints but whose printings could not be '
+        'reached in a scan; the chapter names the identifiers it tried and '
+        'says which are re-keyings and which is access-restricted',
     'this book does not guess what stands behind them':
         'the daggers in the Mithras Liturgy, where Mead declined to set '
         'the Greek magical name; true, and the chapter says the names are in '
@@ -518,13 +522,13 @@ def check_materials(s, report):
         if all(x in TEN for x in items):
             covered += 1
 
-    m = re.search(r'([a-z-]+) of the thirty-\w+ rites\s+in this book need '
+    m = re.search(r'([a-z-]+) of the [a-z-]+ rites\s+in this book need '
                   r'no equipment at all', s)
     if not m or NUMBER_WORDS.get(m.group(1)) != dash:
         errs.append('%d rites need nothing; the prose says %s'
                     % (dash, m.group(1) if m else '(sentence not found)'))
     m = re.search(r'Ten ordinary things cover <strong>([a-z-]+) of the '
-                  r'thirty-\w+ rites</strong>', s)
+                  r'[a-z-]+ rites</strong>', s)
     if not m or NUMBER_WORDS.get(m.group(1)) != covered:
         errs.append('the ten items cover %d rites; the prose says %s'
                     % (covered, m.group(1) if m else '(sentence not found)'))
@@ -616,7 +620,9 @@ VOICE_PATTERNS = [
     (r'as far as this book can tell', 'first-person hedging'),
     (r'never (?:put them together|joined them)', 'noting a former gap'),
     (r'\b(?:\w+) times in this book\b', 'counting its own mentions'),
-    (r'[Aa]n? ?[Ee]arlier printings? of this (?:book|edition)', 'narrating its own revisions'),
+    (r'[Aa]n? ?[Ee]arlier (?:printings?|versions?|editions?|drafts?) of this '
+     r'(?:book|edition|chapter)', 'narrating its own revisions'),
+    (r'conceded more ground|than it needed to', 'grading its own earlier judgement'),
     (r'later commits|goes stale silently', 'talking about the repository'),
     (r'(?:second|third|fourth|fifth) pass (?:corrected|found|is worth)',
      'reporting its own revision passes'),
