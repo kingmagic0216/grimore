@@ -633,6 +633,20 @@ VOICE_PATTERNS = [
     (r'later commits|goes stale silently', 'talking about the repository'),
     (r'(?:second|third|fourth|fifth) pass (?:corrected|found|is worth)',
      'reporting its own revision passes'),
+    # the vocabulary of machine-written prose. Zero instances exist in the
+    # book's own voice; this stops them arriving. Words that appear inside
+    # period quotations ("delve up the herb", Agrippa's "elevated soul") are
+    # not in this list for exactly that reason.
+    (r'\btapestry\b|\bseamless(?:ly)?\b|\bshowcas(?:e|es|ing)\b',
+     'machine-prose vocabulary'),
+    (r'\bunderscor(?:e|es|ing)\b|\bmultifaceted\b|\bdelv(?:es|ing)\b',
+     'machine-prose vocabulary'),
+    (r'testament to\b|serves as a reminder|rich cultural|vibrant\b',
+     'machine-prose vocabulary'),
+    (r'[Ii]t is important to note|[Ii]n today’s|plays a (?:crucial|vital|pivotal) role',
+     'machine-prose framing'),
+    (r'\bis worth (?:noting|stating|dwelling|mentioning)\b',
+     'the "is worth" editorial tic, removed in the voice pass'),
 ]
 
 
