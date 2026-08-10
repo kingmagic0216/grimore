@@ -292,10 +292,9 @@ REVIEWED_CLAIMS = {
         'the Ars Almadel, which Waite prints but whose printings could not be '
         'reached in a scan; the chapter names the identifiers it tried and '
         'says which are re-keyings and which is access-restricted',
-    'this book does not guess what stands behind them':
-        'the daggers in the Mithras Liturgy, where Mead declined to set '
-        'the Greek magical name; true, and the chapter says the names are in '
-        "Dieterich's Greek for a reader who wants them",
+    # 'this book does not guess what stands behind them' was registered here
+    # while the dagger-names were unreachable; Dieterich's 1903 scan surfaced,
+    # the names were read off its leaves, and the sentence left the book.
     'This book gives no Enochian operation':
         'true: the workable system is in copyright, and the public-domain '
         'source is a transcript of conversations, not a set of instructions',
