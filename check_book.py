@@ -668,7 +668,7 @@ def check_figures(s, report):
         cid = re.search(r'id="([^"]+)"', parts[i]).group(1)
         body = parts[i] + parts[i + 1]
         labels = re.findall(
-            r'<b>(Fig\.\s*\d+|Plate\s+[IVXLC]+)\s*(?:&#8212;|&mdash;|[—–-])', body)
+            r'<b>(Fig\.\s*\d+|Plate\s+[IVXLC]+)\s*(?:&#8212;|&mdash;|[—–.-])', body)
         total += len(labels)
         dup = [l for l, c in collections.Counter(labels).items() if c > 1]
         nums = sorted(int(re.search(r'\d+', l).group())

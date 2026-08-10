@@ -195,7 +195,7 @@ MANUAL_REFS = {
     u'nto Hermesthe ascent in imagination, quoted in': 'introduction',
     u'mages of the Early English Books scan cited in': 'sigils',
     u"ish occultism in Waite's translation, cited in": 'tarot',
-    u'OfSolomon, leaves 38–41 — the same translation': 'demonology',
+    u'tOfSolomon, leaves 38–41: the same translation': 'demonology',
     u' house whose pirated Goetia this book reads in': 'demonology',
     u'Indiana University, 2010). The ritual texts in':
         ['meditation', 'rituals', 'protection', 'practicum'],
@@ -218,8 +218,8 @@ MANUAL_REFS = {
     # onto modern spell numbers -- the page says so itself
     u' amulet, and the two do not agree. Attached to': FOREIGN,
     u'aced on the neck of the khu. And the rubric to': FOREIGN,
-    u'ace it in the heart — belongs to the rubric of': FOREIGN,
-    u't — belongs to the rubric of Chapter #, not to': FOREIGN,
+    u'lace it in the heart, belongs to the rubric of': FOREIGN,
+    u'rt, belongs to the rubric of Chapter #, not to': FOREIGN,
     u'd does not map onto modern spell numbers, so "': FOREIGN,
     # Lémery's own chapter VIII, not this book's
     u'istry in 1677. Lémery gives the preparation in': FOREIGN,
