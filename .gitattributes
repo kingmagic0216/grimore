@@ -1,0 +1,11 @@
+# The book's cross-reference signatures are cut from a fixed-width character
+# window (bookkit.signature), so a CRLF -> LF conversion shifts every one of
+# them at once. It surfaces as a single baffling 'unclassified mention' error
+# rather than as a line-ending problem. Pin the working-tree endings so that a
+# checkout on any machine matches the signatures committed in MANUAL_REFS.
+grimoire.html       text eol=crlf
+grimoire-book.html  text eol=crlf
+
+# The editions are archives and images. Never let git treat them as text.
+*.pdf   binary
+*.epub  binary

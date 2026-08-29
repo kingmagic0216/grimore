@@ -61,3 +61,12 @@ venv/
 # deliverable here, so they are tracked despite the *.pdf / *.epub rules above.
 !grimoire.pdf
 !grimoire.epub
+
+
+# Audiobook renders. The mp3 set is the deliverable and is kept on disk,
+# but it is 313 MB of build product, so git does not carry it. The wav
+# masters it was encoded from are not kept at all.
+audiobook/
+audiobook_mp3/
+*.wav
+*.mp3

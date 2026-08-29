@@ -87,6 +87,41 @@ VOID = set('br img hr meta link input path circle line rect use polygon '
 
 # --------------------------------------------------------------------------
 
+def check_endings(report):
+    """The source is CRLF throughout.
+
+    bookkit.signature cuts its window at a fixed character distance before a
+    mention, so every character in front of that mention counts. Rewrite the
+    file with LF endings -- which any editor, script or git checkout set up
+    for Unix will do without saying so -- and all of the hand-classified
+    signatures in MANUAL_REFS shift at once. What you see then is a single
+    unclassified-mention failure quoting a signature that reads as nonsense,
+    with nothing in it to suggest the line endings are the cause.
+    .gitattributes pins the endings; this says so out loud when something has
+    unpinned them.
+    """
+    lf, cr = chr(10).encode(), chr(13).encode()
+    crlf = cr + lf
+    errs = []
+    for path in (B.SOURCE, os.path.abspath(__file__)):
+        try:
+            data = io.open(path, 'rb').read()
+        except IOError:
+            continue
+        name = os.path.basename(path)
+        bare = data.count(lf) - data.count(crlf)
+        lone = data.count(cr) - data.count(crlf)
+        if bare:
+            errs.append('%s: %d line%s end LF, not CRLF -- every cross-reference '
+                        'signature has shifted' % (name, bare, '' if bare == 1 else 's'))
+        if lone:
+            errs.append('%s: %d bare CR' % (name, lone))
+    data = io.open(B.SOURCE, 'rb').read()
+    total, flat = data.count(crlf), data.count(lf) - data.count(crlf)
+    detail = ('%d lines, all CRLF' % total if not errs else
+              '%d CRLF, %d LF' % (total, flat))
+    report('line endings', not errs, detail, errs)
+
 def check_tools(report):
     """The sibling tools still compile.
 
@@ -878,6 +913,7 @@ def main(argv):
     s = B.read_source()
     print('checking %s' % os.path.basename(B.SOURCE))
     if not only_index:
+        check_endings(report)
         check_tools(report)
         check_wellformed(s, report)
         check_anchors(s, report)
