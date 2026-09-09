@@ -319,10 +319,13 @@ REVIEWED_CLAIMS = {
         "Mathers's claim that the SATOR square derives from his pentacle; "
         'about one editor’s assertion, and the chapter gives the dating '
         'that refutes it on the same page',
-    'this book gives no operation directed at a named third party':
-        'true and restated where the Goetia roster prints offices that are '
+    'this book gives no operation aimed at harming a named person':
+        'true, and stated where the Goetia roster prints offices that are '
         'injuries to other people: the offices are recorded because the source '
-        'says them, and no operation aimed at anybody is given',
+        'says them, not as procedure. The wider form of this claim (no '
+        'operation directed at a named third party) was false: Hohman’s '
+        'bleeding charm in Chapter XXVI works on a person at a distance whose '
+        'first name is spoken, and it does them no harm',
     'this book does not quote what it has not seen set in type':
         'the Ars Almadel, which Waite prints but whose printings could not be '
         'reached in a scan; the chapter names the identifiers it tried and '
