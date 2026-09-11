@@ -79,7 +79,17 @@ import bookkit as B
 # Chapter XIII lowered this from 39: giving Isaac Casaubon the loose key
 # that his own pages need confirmed three references the tighter one
 # could not, while SWEEP_REJECT keeps his son's chapter off his entry.
-INDEX_FLOOR = 32
+# Chapter XXIV lowered this from 32 by auditing the floor itself rather
+# than trusting it. Fourteen references across ten entries pointed at a
+# page where the entry's word occurs only inside a longer one: Acquisitio
+# at "acquisition", Budge at "budget", Bull at "bulletin", Napoleon Hill
+# at "Achillini", the geomantic Judge at "judgement", Nous at "Selinous",
+# Ophiel at "Sophiel", Conjunctio at the alchemical "conjunction", and the
+# Key of Solomon perfumes at "frankincense". Those are artefacts of a
+# substring match, not passages the index cannot find by their own words,
+# so they were removed rather than absorbed. What is left below the floor
+# is the real case: a page that discusses the thing without naming it.
+INDEX_FLOOR = 18
 
 VOID = set('br img hr meta link input path circle line rect use polygon '
            'polyline ellipse stop source col area base'.split())
