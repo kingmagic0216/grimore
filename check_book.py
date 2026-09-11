@@ -829,8 +829,6 @@ def check_figure_fit(s, report):
             continue
         for m in _TEXT.finditer(fig):
             attrs = dict(_ATTR.findall(m.group(1)))
-            if attrs.get('text-anchor') != 'middle':
-                continue
             try:
                 x, y = float(attrs['x']), float(attrs['y'])
             except (KeyError, ValueError):
@@ -840,6 +838,11 @@ def check_figure_fit(s, report):
             fs = re.search(r'font-size:([\d.]+)px', attrs.get('style', ''))
             if fs:
                 size = float(fs.group(1))
+            # a left-aligned label runs right from x, a right-aligned one
+            # runs left to it, and a centred one straddles it. Checking only
+            # the centred ones left two labels overrunning their boxes in
+            # Fig. 2 of Chapter XVII, plainly visible on the page.
+            anchor = attrs.get('text-anchor')
             inside = [(rx, rw) for rx, ry, rw, rh in rects
                       if rx <= x <= rx + rw and ry <= y <= ry + rh]
             if not inside:
@@ -850,9 +853,15 @@ def check_figure_fit(s, report):
             label = re.sub(r'&#(\d+);', lambda e: chr(int(e.group(1))), m.group(2))
             label = re.sub(r'&\w+;', 'x', label)
             width = _estimate_width(label, size)
-            if width > rw:
-                errs.append('%r is about %dpx wide in a %dpx box'
-                            % (label[:36], round(width), round(rw)))
+            if anchor == 'end':
+                room = x - rx
+            elif anchor == 'middle':
+                room = min(x - rx, rx + rw - x) * 2
+            else:
+                room = rx + rw - x
+            if width > room:
+                errs.append('%r is about %dpx wide with %dpx of box'
+                            % (label[:36], round(width), round(room)))
     report('figure fit', not errs,
            '%d labels sit inside a box, none overflowing it' % checked, errs[:6])
 
@@ -904,6 +913,68 @@ def check_label_collisions(s, report):
                     errs.append('%r runs into %r' % (a[2][:34], b[2][:34]))
     report('label collisions', not errs,
            '%d neighbouring labels on a line, none overlapping' % checked,
+           errs[:6])
+
+
+def check_typeset_labels(report):
+    """No figure label overruns its box on the typeset page.
+
+    check_figure_fit estimates widths from character counts, and the estimate
+    runs about fifteen per cent under the truth for this font at label size.
+    That is enough to miss a real overrun: two labels in Fig. 2 of Chapter XVII
+    reached the border of their box and one crossed it, and the estimate passed
+    them both. This measures the rendered page instead, which is the only place
+    the question can actually be settled.
+
+    Only snug boxes count. A label with a leader line sits outside the shape it
+    names on purpose, so a box must be taller than the text and no more than
+    three times its height to be treated as the label's own.
+    """
+    try:
+        import fitz
+    except ImportError:
+        report('typeset labels', True, 'skipped, PyMuPDF not installed', [])
+        return
+    try:
+        doc = fitz.open(B.PDF)
+    except Exception as exc:
+        report('typeset labels', False, 'could not read the PDF: %s' % exc, [])
+        return
+    errs, checked, seen = [], 0, set()
+    for page in doc:
+        boxes = [d['rect'] for d in page.get_drawings()
+                 if 24 < d['rect'].width < 460 and 6 < d['rect'].height < 48]
+        if not boxes:
+            continue
+        for block in page.get_text('dict')['blocks']:
+            for line in block.get('lines', []):
+                for span in line.get('spans', []):
+                    text = span['text'].strip()
+                    if not text:
+                        continue
+                    x0, y0, x1, y1 = span['bbox']
+                    high = y1 - y0
+                    # a label set inside a box starts a short way in from its
+                    # left edge. A name on a leader line lands at an arbitrary
+                    # offset over whatever shape it happens to cross, which is
+                    # how the retort and the scrying table were being flagged.
+                    snug = [r for r in boxes
+                            if 2 <= x0 - r.x0 <= 14 and r.x1 > x0
+                            and r.y0 - 1 <= y0 and r.y1 + 1 >= y1
+                            and high < r.height <= high * 3]
+                    if not snug:
+                        continue
+                    key = (round(x0), round(y0), text)
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    checked += 1
+                    box = min(snug, key=lambda r: r.width)
+                    if x1 > box.x1 - 0.5:
+                        errs.append('p%d: %r runs to %.1f, its box ends %.1f'
+                                    % (page.number + 1, text[:36], x1, box.x1))
+    report('typeset labels', not errs,
+           '%d labels measured on the page, none overrunning its box' % checked,
            errs[:6])
 
 
@@ -1010,6 +1081,7 @@ def main(argv):
         check_figures(s, report)
         check_figure_fit(s, report)
         check_label_collisions(s, report)
+        check_typeset_labels(report)
         check_svg_text(s, report)
         check_epub(report)
     check_index(s, report)
