@@ -678,8 +678,15 @@ VOICE_PATTERNS = [
     (r'as far as this book can tell', 'first-person hedging'),
     (r'never (?:put them together|joined them)', 'noting a former gap'),
     (r'\b(?:\w+) times in this book\b', 'counting its own mentions'),
-    (r'[Aa]n? ?[Ee]arlier (?:printings?|versions?|editions?|drafts?) of this '
-     r'(?:book|edition|chapter)', 'narrating its own revisions'),
+    # the article matters: this caught 'an earlier version of this book' and
+    # walked straight past 'the earlier version of this chapter', which four
+    # chapters were using, so it now takes any determiner and none.
+    (r'(?:[Tt]he |[Aa]n? )?[Ee]arlier (?:printings?|versions?|editions?|drafts?|states?) '
+     r'of this (?:book|edition|chapter)', 'narrating its own revisions'),
+    (r'this (?:book|chapter|edition) (?:said|printed|gave|put|listed) it in an earlier',
+     'narrating its own revisions'),
+    (r'an error this (?:book|chapter) (?:made|printed)|was said in earlier '
+     r'(?:printings?|versions?|editions?)', 'narrating its own revisions'),
     (r'conceded more ground|than it needed to', 'grading its own earlier judgement'),
     (r'later commits|goes stale silently', 'talking about the repository'),
     (r'(?:second|third|fourth|fifth) pass (?:corrected|found|is worth)',
