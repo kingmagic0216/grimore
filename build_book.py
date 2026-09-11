@@ -35,7 +35,7 @@ BOOK_HTML = os.path.join(ROOT, 'grimoire-book.html')
 PDF = os.path.join(ROOT, 'grimoire.pdf')
 EPUB = os.path.join(ROOT, 'grimoire.epub')
 
-TITLE = 'The Complete Hermetic & Rosicrucian Grimoire'
+TITLE = 'The Hermetic & Rosicrucian Grimoire'
 
 
 # ----------------------------------------------------------------- helpers
@@ -214,7 +214,7 @@ ul.idx li { break-inside: avoid; margin: 0.06em 0; line-height: 1.25; }
 # the PDF step waits on.
 FOLIO_JS = u"""
 (function () {
-  var BOOK = 'The Complete Hermetic \\u0026 Rosicrucian Grimoire';
+  var BOOK = 'The Hermetic \\u0026 Rosicrucian Grimoire';
 
   function fill() {
     var pages = Array.prototype.slice.call(document.querySelectorAll('.pagedjs_page'));
