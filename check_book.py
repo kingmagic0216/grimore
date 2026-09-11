@@ -732,8 +732,14 @@ def check_figures(s, report):
             r'<b>(Fig\.\s*\d+|Plate\s+[IVXLC]+)\s*(?:&#8212;|&mdash;|[—–.-])', body)
         total += len(labels)
         dup = [l for l, c in collections.Counter(labels).items() if c > 1]
-        nums = sorted(int(re.search(r'\d+', l).group())
-                      for l in labels if l.startswith('Fig'))
+        seq = [int(re.search(r'\d+', l).group())
+               for l in labels if l.startswith('Fig')]
+        nums = sorted(seq)
+        # sorting hides the fault a renumbering makes: Chapter XXIX once
+        # carried Fig. 2 four pages above Fig. 1, and every count here was
+        # still correct. The labels have to climb in reading order too.
+        if seq != sorted(seq):
+            bad.append('%s: figures out of order on the page, %s' % (cid, seq))
         if dup:
             bad.append('%s: repeated %s' % (cid, dup))
         if nums and nums != list(range(1, len(nums) + 1)):
