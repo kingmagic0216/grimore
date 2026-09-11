@@ -687,6 +687,8 @@ VOICE_PATTERNS = [
      'narrating its own revisions'),
     (r'an error this (?:book|chapter) (?:made|printed)|was said in earlier '
      r'(?:printings?|versions?|editions?)', 'narrating its own revisions'),
+    (r'this (?:book|chapter|edition) once (?:described|called|said|printed|gave|had)',
+     'narrating its own revisions'),
     (r'conceded more ground|than it needed to', 'grading its own earlier judgement'),
     (r'later commits|goes stale silently', 'talking about the repository'),
     (r'(?:second|third|fourth|fifth) pass (?:corrected|found|is worth)',
