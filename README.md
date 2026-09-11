@@ -1,4 +1,4 @@
-# The Hermetic & Rosicrucian Grimoire
+# The Western Grimoire
 
 A working grimoire of the Western esoteric tradition — twenty-nine chapters, 461 pages, 61 diagrams — in which **every source is dated and attributed, and the attribution is allowed to be inconvenient.**
 
