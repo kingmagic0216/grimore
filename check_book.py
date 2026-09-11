@@ -467,7 +467,11 @@ NUMBER_WORDS = {
     'fifty-two': 52, 'fifty-three': 53, 'fifty-four': 54, 'fifty-five': 55,
     'fifty-six': 56, 'fifty-seven': 57, 'fifty-eight': 58, 'fifty-nine': 59,
     'sixty': 60, 'sixty-one': 61, 'sixty-two': 62, 'sixty-three': 63,
-    'sixty-four': 64, 'sixty-five': 65,
+    'sixty-four': 64, 'sixty-five': 65, 'sixty-six': 66, 'sixty-seven': 67,
+    'sixty-eight': 68, 'sixty-nine': 69, 'seventy': 70, 'seventy-one': 71,
+    'seventy-two': 72, 'seventy-three': 73, 'seventy-four': 74,
+    'seventy-five': 75, 'seventy-six': 76, 'seventy-seven': 77,
+    'seventy-eight': 78, 'seventy-nine': 79, 'eighty': 80,
 }
 
 
@@ -838,6 +842,56 @@ def check_figure_fit(s, report):
            '%d labels sit inside a box, none overflowing it' % checked, errs[:6])
 
 
+def check_label_collisions(s, report):
+    """No two labels on the same line of a figure overlap each other.
+
+    check_figure_fit catches a label wider than the box it sits in, which is
+    the failure a boxed diagram has. A diagram laid out in columns has a
+    different one: the labels sit in no box at all, each is comfortably inside
+    the frame, and they still run into one another. A four-stage figure in
+    Chapter XXIX shipped that way and read as "charged into a hot cupthe
+    surface goes bright andlitharge soaks into the bo", which is invisible in
+    the source and unmistakable on the page.
+
+    Rows are bucketed at four user units, which is tight enough to keep two
+    genuinely stacked lines apart and loose enough to group a row whose
+    baselines were nudged by a pixel.
+    """
+    errs, checked = [], 0
+    for fig in re.findall(r'<svg\b.*?</svg>', s, re.S):
+        rows = collections.defaultdict(list)
+        for m in _TEXT.finditer(fig):
+            attrs = dict(_ATTR.findall(m.group(1)))
+            try:
+                x, y = float(attrs['x']), float(attrs['y'])
+            except (KeyError, ValueError):
+                continue
+            size = 12.0 if attrs.get('class') == 'lbl' else 9.0
+            fs = re.search(r'font-size:([\d.]+)px', attrs.get('style', ''))
+            if fs:
+                size = float(fs.group(1))
+            label = re.sub(r'&#(\d+);', lambda e: chr(int(e.group(1))), m.group(2))
+            label = re.sub(r'&\w+;', 'x', label)
+            width = _estimate_width(label, size)
+            anchor = attrs.get('text-anchor')
+            if anchor == 'end':
+                left = x - width
+            elif anchor == 'middle':
+                left = x - width / 2
+            else:
+                left = x
+            rows[round(y / 4.0)].append((left, left + width, label))
+        for span in rows.values():
+            span.sort()
+            for a, b in zip(span, span[1:]):
+                checked += 1
+                if a[1] > b[0] + 1:
+                    errs.append('%r runs into %r' % (a[2][:34], b[2][:34]))
+    report('label collisions', not errs,
+           '%d neighbouring labels on a line, none overlapping' % checked,
+           errs[:6])
+
+
 def check_svg_text(s, report):
     bad = [t for t in re.findall(r'<text[^>]*>(.*?)</text>', s, re.S)
            if '<em' in t or '<strong' in t or '<a ' in t]
@@ -940,6 +994,7 @@ def main(argv):
         check_tree_count(s, report)
         check_figures(s, report)
         check_figure_fit(s, report)
+        check_label_collisions(s, report)
         check_svg_text(s, report)
         check_epub(report)
     check_index(s, report)
