@@ -1,6 +1,6 @@
 # The Western Grimoire
 
-A working grimoire of the Western esoteric tradition — twenty-nine chapters, 517 pages, 74 diagrams and 7 plates — in which **every source is dated and attributed, and the attribution is allowed to be inconvenient.**
+A working grimoire of the Western esoteric tradition — twenty-nine chapters, 579 pages, 74 diagrams and 7 plates — in which **every source is dated and attributed, and the attribution is allowed to be inconvenient.**
 
 That last clause is the point. Where a teaching commonly presented as ancient turns out to be medieval, early modern or modern, the chapter says so and keeps the practice. Where two sources disagree, both are printed. Where this edition could not reach a text, it names the text and says why.
 
@@ -9,7 +9,7 @@ That last clause is the point. Where a teaching commonly presented as ancient tu
 | Edition | File | Best for |
 |---|---|---|
 | **EPUB** | [`grimoire.epub`](grimoire.epub) — 1.6 MB | **Phones and e-readers.** Reflowable, follows your font size and dark mode, diagrams are vector so they stay sharp. |
-| **PDF** | [`grimoire.pdf`](grimoire.pdf) — 22 MB | The typeset book: 6×9, running heads, folios, a contents page with real page numbers. |
+| **PDF** | [`grimoire.pdf`](grimoire.pdf) — 22 MB | The typeset book: 6×9 in Cardo, cut after the Bembo of 1495; indented paragraphs, raised initials, small-capital heads, running heads and folios. |
 | **HTML** | [`grimoire.html`](grimoire.html) | The source of truth. One self-contained file, no dependencies, sticky navigation, dark mode. |
 
 The PDF and EPUB are generated from the HTML. **Corrections go to `grimoire.html`**; the other two are rebuilt from it.

@@ -74,9 +74,20 @@ def chapters(body):
 # ----------------------------------------------------------------- print edition
 
 PRINT_CSS = u"""
+/* ---------------------------------------------------------------------------
+   The printed book.
+
+   Everything here is book setting rather than web setting, and the difference
+   is mostly in what is taken away: the fills behind the panels, the rules
+   round the table cells, the blank line between paragraphs. What replaces
+   them is space, indentation and hairlines, which is how a page has been made
+   legible since Manutius. The face is Cardo, cut after his Bembo of 1495 and
+   embedded in the source file.
+   --------------------------------------------------------------------------- */
+
 @page {
     size: 6in 9in;
-    margin: 0.8in 0.7in 0.9in 0.7in;
+    margin: 0.82in 0.62in 0.92in 0.9in;
 
     /* No `content:` here. Paged.js resolves counter(page)/string() itself, and it
        counts front matter and flattens the whole <h2> (chapter number and
@@ -86,31 +97,36 @@ PRINT_CSS = u"""
        to fill. */
     @bottom-center {
         content: " ";
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 9pt;
-        color: #555;
+        font-family: Cardo, "Times New Roman", serif;
+        font-size: 9.5pt;
+        font-variant-numeric: oldstyle-nums;
+        color: #4a463f;
     }
 }
 
-@page :left {
-    @top-left {
+/* the gutter is on the left of a recto and the right of a verso */
+@page :right {
+    margin-left: 0.9in;
+    margin-right: 0.62in;
+    @top-right {
         content: " ";
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 8pt;
-        letter-spacing: 0.09em;
-        text-transform: uppercase;
+        font-family: Cardo, "Times New Roman", serif;
+        font-size: 9pt;
+        font-variant: small-caps;
+        letter-spacing: 0.06em;
         color: #6d6a64;
     }
 }
 
-@page :right {
-    @top-right {
+@page :left {
+    margin-left: 0.62in;
+    margin-right: 0.9in;
+    @top-left {
         content: " ";
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 8pt;
-        letter-spacing: 0.09em;
-        text-transform: uppercase;
-        font-style: italic;
+        font-family: Cardo, "Times New Roman", serif;
+        font-size: 9pt;
+        font-variant: small-caps;
+        letter-spacing: 0.06em;
         color: #6d6a64;
     }
 }
@@ -120,37 +136,135 @@ html { --bg:#fff; --fg:#1a1a1a; --accent:#6b3410; --rule:#c9c2ae;
        --warn-bg:#f7f0ee; --warn-edge:#8a3a2a; --note-bg:#f6f3ea;
        --note-edge:#8a7b5c; --muted:#54504a; }
 
-body { background: #fff; color: #1a1a1a; font-size: 10.5pt; line-height: 1.42; }
+body {
+    background: #fff;
+    color: #1a1a1a;
+    font-family: Cardo, "Segoe UI Symbol", "Times New Roman", serif;
+    font-size: 11.4pt;
+    line-height: 1.44;
+    font-variant-numeric: oldstyle-nums proportional-nums;
+    font-kerning: normal;
+    font-feature-settings: "kern" 1, "liga" 1, "onum" 1;
+    text-rendering: optimizeLegibility;
+}
 
 .layout { display: block; }
 .toc, .totop, .skip, .legend { display: none !important; }
 main { max-width: none; padding: 0; margin: 0; }
 
+/* ---- the page of text -------------------------------------------------- */
+
+p {
+    orphans: 3;
+    widows: 3;
+    text-align: justify;
+    hyphens: auto;
+    hyphenate-limit-chars: 5 3 3;
+    margin: 0;
+    text-indent: 1.15em;
+}
+
+/* a paragraph is only indented when it follows another one */
+p.pfirst, p.pchap,
+blockquote > p:first-child,
+.note > p:first-child, .warning > p:first-child,
+.modern > p:first-child, .rite > p:first-child,
+td p, li p, figcaption p,
+.frontmatter p, .idxnote, p.sources { text-indent: 0; }
+
+.frontmatter p, .printtoc, .idxnote { text-align: center; }
+.idxnote { text-align: left; }
+
+/* ---- chapter openings --------------------------------------------------- */
+
 h2 {
     break-before: page;
-    font-size: 1.5em;
+    font-size: 1.55em;
+    font-weight: normal;
+    font-variant: small-caps;
+    letter-spacing: 0.07em;
     border: none;
     text-align: center;
-    margin: 2.2em 0 1.6em;
-    letter-spacing: 0.02em;
+    margin: 2.6em 0 1.9em;
 }
 
 h2 .difficulty { display: none; }
 
 h2 .chapnum {
     display: block;
-    font-size: 0.5em;
-    letter-spacing: 0.3em;
+    font-size: 0.46em;
+    font-variant: normal;
+    letter-spacing: 0.34em;
     text-transform: uppercase;
     color: #7a7268;
-    margin-bottom: 1.1em;
+    margin-bottom: 1.3em;
 }
 
-h3 { font-size: 1.05em; margin-top: 1.7em; break-after: avoid; }
-h4 { break-after: avoid; }
-p  { orphans: 3; widows: 3; text-align: justify; hyphens: auto; }
+/* Chrome does not honour initial-letter here, so the raised capital is a
+   float. The paragraph it sits in must not also be indented. */
+.dropcap {
+    float: left;
+    font-size: 3.35em;
+    line-height: 0.76;
+    padding: 0.05em 0.1em 0 0;
+    color: #6b3410;
+    font-weight: normal;
+    font-style: normal;
+}
 
-/* front matter: each on its own page, vertically centred, no rules */
+h3 {
+    font-size: 1em;
+    font-weight: normal;
+    font-variant: small-caps;
+    letter-spacing: 0.06em;
+    margin: 1.9em 0 0.55em;
+    break-after: avoid;
+}
+h4 {
+    font-variant: small-caps;
+    text-transform: none;
+    letter-spacing: 0.05em;
+    font-weight: normal;
+    font-size: 1em;
+    break-after: avoid;
+}
+
+/* ---- quotations --------------------------------------------------------- */
+
+blockquote {
+    margin: 1.15em 1.7em;
+    padding: 0;
+    border: none;
+    font-style: normal;
+    font-size: 0.94em;
+    line-height: 1.4;
+    color: #1a1a1a;
+}
+blockquote p { text-indent: 0; }
+
+/* ---- set-off blocks: rules, not fills ----------------------------------- */
+
+.note, .warning, .modern, .rite {
+    background: none;
+    border: none;
+    border-radius: 0;
+    border-top: 0.5pt solid #b9b2a4;
+    border-bottom: 0.5pt solid #b9b2a4;
+    padding: 0.8em 0 0.85em;
+    margin: 1.6em 1.1em;
+    font-size: 0.95em;
+    break-inside: avoid;
+}
+.warning { border-top: 1.1pt solid #8a3a2a; border-bottom: 1.1pt solid #8a3a2a; }
+.rite    { border-left: none; }
+.note h4, .warning h4, .modern h4, .rite h4 {
+    color: #6b3410; margin: 0 0 0.5em;
+    font-variant: small-caps; text-transform: none;
+    letter-spacing: 0.05em; font-weight: normal; font-size: 1em;
+}
+
+/* ---- front matter and contents ------------------------------------------ */
+
 .frontmatter .halftitle,
 .frontmatter .titlepage,
 .frontmatter .copyrightpage,
@@ -163,21 +277,22 @@ p  { orphans: 3; widows: 3; text-align: justify; hyphens: auto; }
     justify-content: center;
     min-height: 6.6in;
 }
-.frontmatter .copyrightpage { display: block; padding-top: 2in; font-size: 8.5pt; }
+.frontmatter .copyrightpage { display: block; padding-top: 2in; font-size: 8.6pt; }
 .frontmatter { break-after: page; }
 
-/* the contents page, rebuilt for print */
 .printtoc { break-before: page; break-after: page; }
 .printtoc h2 { break-before: avoid; }
-.printtoc ol { list-style: none; padding: 0; margin: 2em 0 0; }
-.printtoc li { margin: 0.55em 0; display: flex; align-items: baseline; }
-.printtoc .n { width: 3.3em; color: #7a7268; font-size: 0.85em; letter-spacing: .1em; }
+.printtoc ol { list-style: none; padding: 0; margin: 2em 0 0; text-align: left; }
+.printtoc li { margin: 0.58em 0; display: flex; align-items: baseline; }
+.printtoc .n { width: 3.4em; color: #7a7268; font-size: 0.82em; letter-spacing: .12em; }
 .printtoc .t { flex: 1; }
-.printtoc .dots { flex: 1; border-bottom: 1px dotted #bbb; margin: 0 0.5em; transform: translateY(-0.25em); }
+.printtoc .dots { flex: 1; border-bottom: 1px dotted #c4bdae; margin: 0 0.5em; transform: translateY(-0.25em); }
 .printtoc .pg { width: 2.2em; text-align: right; font-size: 0.85em; color: #7a7268; }
 
-figure.fig { break-inside: avoid; max-width: 100%; }
-figure.fig svg { max-width: 3.9in; }
+/* ---- figures and plates -------------------------------------------------- */
+
+figure.fig { break-inside: avoid; max-width: 100%; margin: 1.6em 0; }
+figure.fig svg { max-width: 4.05in; }
 figure.fig .ink   { stroke: #1a1a1a; }
 figure.fig .hi    { stroke: #6b3410; }
 figure.fig .faint { stroke: #8a857c; opacity: .75; }
@@ -186,23 +301,54 @@ figure.fig .solidfg { fill: #1a1a1a; }
 figure.fig text { fill: #1a1a1a; }
 figure.fig text.lbl { fill: #6b3410; }
 figure.fig text.tiny { fill: #54504a; }
+figure.fig figcaption, figure.plate figcaption { font-size: 8.7pt; line-height: 1.4; }
+figure.fig figcaption b, figure.plate figcaption b {
+    font-variant: small-caps; text-transform: none; letter-spacing: 0.05em;
+}
+figure.plate { margin: 1.7em auto; }
+figure.plate img { border: 0.5pt solid #b9b2a4; }
 
-.warning, .note, .modern, .rite { break-inside: avoid; background: #f7f5ef; }
-.rite { border-left: 3px solid #6b3410; }
-table.tbl { font-size: 9pt; }
-table.tbl th { background: #f2efe6; }
-/* the source sets --accent to #000 for print; the warn cell wants the
-   accent brown, the same one the figure labels are given above */
+/* ---- tables: horizontal rules only --------------------------------------- */
+
+table.tbl { font-size: 9.4pt; border-collapse: collapse; width: 100%; margin: 1.3em 0; }
+table.tbl th, table.tbl td {
+    border: none;
+    border-bottom: 0.4pt solid #ddd7c9;
+    padding: 0.4em 0.8em 0.4em 0;
+    text-align: left;
+    vertical-align: top;
+}
+table.tbl th {
+    background: none;
+    color: #1a1a1a;
+    font-weight: normal;
+    font-variant: small-caps;
+    text-transform: none;
+    letter-spacing: 0.05em;
+    font-size: 1em;
+    border-top: 0.9pt solid #1a1a1a;
+    border-bottom: 0.5pt solid #1a1a1a;
+    padding-top: 0.45em;
+}
+table.tbl tr:last-child td { border-bottom: 0.9pt solid #1a1a1a; }
 table.tbl td.warn, table.tbl td.warn strong { color: #6b3410; }
-a { color: inherit; text-decoration: none; }
-.bib li { font-size: 9pt; margin-bottom: 0.5em; }
 
-/* the index: two columns, tight, and never orphan a letter heading */
-#index + p.idxnote, .idxnote { font-size: 8.5pt; }
-h3.idxletter { font-size: 9.5pt; break-after: avoid; margin: 1.1em 0 0.4em; }
-ul.idx { column-count: 2; column-gap: 1.4em; font-size: 8.2pt; }
-ul.idx li { break-inside: avoid; margin: 0.06em 0; line-height: 1.25; }
-.pd { font-size: 7.5pt; }
+a { color: inherit; text-decoration: none; }
+
+/* ---- apparatus ------------------------------------------------------------ */
+
+.sources { font-size: 8.9pt; line-height: 1.4; border-top: 0.5pt solid #b9b2a4; }
+.sources > strong:first-child {
+    font-variant: small-caps; font-weight: normal; letter-spacing: 0.05em; color: #6b3410;
+}
+.bib li { font-size: 9.2pt; margin-bottom: 0.5em; }
+
+.idxnote { font-size: 8.7pt; }
+h3.idxletter { font-size: 9.6pt; break-after: avoid; margin: 1.2em 0 0.4em; }
+ul.idx { column-count: 2; column-gap: 1.5em; font-size: 8.4pt; }
+ul.idx li { break-inside: avoid; margin: 0.06em 0; line-height: 1.26; text-indent: -1.1em; padding-left: 1.1em; }
+.pd { font-size: 7.8pt; }
+code { font-size: 0.88em; }
 """
 
 
@@ -300,6 +446,65 @@ FOLIO_JS = u"""
 """
 
 
+
+def mark_opening_paragraphs(html):
+    """Give the print edition classes where it used to need `+`.
+
+    `pchap` is the paragraph a chapter opens with, which carries the raised
+    capital; `pfirst` is the first paragraph under any lesser heading. Both
+    are set flush left, and every other paragraph is indented. Paged.js
+    rewrites adjacent-sibling selectors into generated attributes and has
+    been seen to merge two of them, so the print stylesheet uses no `+`."""
+    def add(cls):
+        def sub(m):
+            tag = m.group(0)
+            if 'class="' in tag:
+                return tag.replace('class="', 'class="%s ' % cls, 1)
+            return tag[:2] + ' class="%s"' % cls + tag[2:]
+        return sub
+    html = re.sub(r'(?<=</h2>)(\s*)(<p\b[^>]*>)',
+                  lambda m: m.group(1) + add('pchap')(re.match(r'<p\b[^>]*>', m.group(2))),
+                  html)
+    html = re.sub(r'(?<=</h3>)(\s*)(<p\b[^>]*>)',
+                  lambda m: m.group(1) + add('pfirst')(re.match(r'<p\b[^>]*>', m.group(2))),
+                  html)
+    html = re.sub(r'(?<=</h4>)(\s*)(<p\b[^>]*>)',
+                  lambda m: m.group(1) + add('pfirst')(re.match(r'<p\b[^>]*>', m.group(2))),
+                  html)
+    # Paged.js does not carry ::first-letter through fragmentation either, so
+    # the raised capital has to be a real element. The span goes wherever the
+    # first character falls, inside a <strong> or a link if that is where it
+    # is; the stylesheet sets it back to regular weight.
+    def raise_capital(m):
+        head, body = m.group(1), m.group(2)
+        i = 0
+        while i < len(body):
+            if body[i] == '<':
+                j = body.find('>', i)
+                if j < 0:
+                    return m.group(0)
+                i = j + 1
+            elif body[i].isspace():
+                i += 1
+            else:
+                break
+        else:
+            return m.group(0)
+        if body[i] == '&':
+            j = body.find(';', i)
+            if j < 0 or j - i > 10:
+                return m.group(0)
+            ch = body[i:j + 1]
+        else:
+            ch = body[i]
+        return (head + body[:i] + '<span class="dropcap">' + ch
+                + '</span>' + body[i + len(ch):])
+
+    html = re.sub(r'(<p class="pchap"[^>]*>)(.{0,400})',
+                  raise_capital, html, flags=re.S)
+    return html
+
+
 def ensure_pagedjs():
     if os.path.exists(VENDOR):
         return io.open(VENDOR, encoding='utf-8', errors='replace').read()
@@ -340,6 +545,7 @@ def build_print(html):
     out = out.replace(u'<main id="content">' + body + u'</main>',
                       u'<main id="content">' + newbody + u'</main>')
     out = out.replace(u'</style>', u'</style>\n<style>' + PRINT_CSS + u'</style>')
+    out = mark_opening_paragraphs(out)
     out = out.replace(u'</body>', u'<script>\n' + paged + u'\n</script>\n</body>')
     out = out.replace(u'<title>', u'<title>Print edition &#8212; ', 1)
 
