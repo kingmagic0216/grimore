@@ -332,6 +332,8 @@ table.tbl th {
 }
 table.tbl tr:last-child td { border-bottom: 0.9pt solid #1a1a1a; }
 table.tbl td.warn, table.tbl td.warn strong { color: #6b3410; }
+table.tbl .tiny { font-style: italic; color: #6a655d; font-size: 0.92em; }
+table.tbl .tiny::before { content: " — "; font-style: normal; }
 
 a { color: inherit; text-decoration: none; }
 
@@ -732,6 +734,8 @@ table.tbl th, table.tbl td { border: 1px solid #ccc; padding: .4em .5em;
                              text-align: left; vertical-align: top; }
 table.tbl th { background: #f2efe6; }
 table.tbl td.warn, table.tbl td.warn strong { color: #6b3410; }
+table.tbl .tiny { font-style: italic; color: #6a655d; font-size: 0.92em; }
+table.tbl .tiny::before { content: " — "; font-style: normal; }
 figure.fig { margin: 1.6em 0; text-align: center; }
 figure.fig svg { max-width: 100%; height: auto; }
 figure.fig .ink { stroke: #1a1a1a; fill: none; stroke-width: 1.4; }
